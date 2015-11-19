@@ -1,0 +1,23 @@
+<div class="nav-sections">
+	<nav>
+		<ul>
+			<li ng-repeat="section in sections">
+				<a ui-sref="{{ section.state }}">{{ section.name }}</a>
+				<!-- subsection -->	
+				<ul ng-if="section.sub.length > 0">
+					<li ng-repeat="subsection in section.sub">
+						<a ui-sref="{{ subsection.state }}">{{ subsection.name }}</a>
+						<!-- subsubsection -->	
+						<ul ng-if="subsection.sub.length > 0">
+							<li ng-repeat="subsubsection in subsection.sub">
+								<a ui-sref="{{ subsubsection.state }}">{{ subsubsection.name }}</a>
+							</li>
+						</ul>
+						<!-- /subsubsection -->
+					</li>
+				</ul>
+				<!-- /subsection -->	
+			</li>
+		</ul>
+	</nav>
+</div>

@@ -1,0 +1,35 @@
+{
+  "name": "ofba",
+  "version": "1.0.0",
+  "description": "OFBA Admin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dantovbein/ofba.git"
+  },
+  "author": "Dan Tovbein",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dantovbein/ofba/issues"
+  },
+  "homepage": "https://github.com/dantovbein/ofba#readme",
+  "dependencies": {
+    "angular": "^1.4.7",
+    "angular-route": "^1.4.7",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.1",
+    "node-mysql": "^0.4.2",
+    "uglify": "^0.1.5",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "gulp-browserify": "^0.5.1",
+    "gulp-webserver": "^0.9.1"
+  }
+}
