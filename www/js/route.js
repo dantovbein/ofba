@@ -11,6 +11,9 @@ angular.module('app')
 							templateUrl:'/templates/controllers/main.html',
 							controller: 'MainCtrl'
 						},
+						'header@main': {
+							templateUrl: './templates/directives/header-component.html'
+						},
 						'mainNav@main': {
 							templateUrl: './templates/controllers/main-nav.html',
 							controller: 'MainNavCtrl'

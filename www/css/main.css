@@ -1,6 +1,7 @@
 body, div, p, span, h1, h2, h3, h4, h5, h6, aside, figure, figcaption {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  font-size: 100%; }
 
 body {
   color: #fff;
@@ -16,16 +17,22 @@ li {
 
 #app {
   width: 1170px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  background-color: white; }
 
 #container {
-  float: left; }
+  float: left;
+  background-color: orange;
+  width: 868px;
+  min-height: 100px; }
 
 .error-message {
   color: red; }
 
 #main-nav {
-  float: left; }
+  float: left;
+  background-color: green;
+  width: 300px; }
 
 .item-list {
   font-size: 10pt;
