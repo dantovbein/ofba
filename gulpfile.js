@@ -9,7 +9,7 @@ var uglify = require('gulp-uglify');
 var sass = require('gulp-sass');
 //var sass = require('gulp-ruby-sass');
 
-/* Run dev server */
+
 gulp.task('connect',function(){
 	connect.server({
 		root: 'www',
