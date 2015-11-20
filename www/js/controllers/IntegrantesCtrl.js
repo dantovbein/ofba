@@ -1,7 +1,7 @@
 angular.module('app')
 	.controller('IntegrantesCtrl',['$scope',function($scope){
-		$scope.currentUser = {};
-		$scope.resetCurrentUser = function() {
-			$scope.currentUser = {};
+		$scope.currentMember = {};
+		$scope.resetCurrentMember = function() {
+			$scope.currentMember = {};
 		}
 	}]);

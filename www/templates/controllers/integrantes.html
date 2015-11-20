@@ -3,12 +3,12 @@
 	<h2 class="container-filters-title">Agregar o editar integrante</h2>
 	<form>
 		<label>Nombre:
-			<input name="integranteNombre" type="text" placeholder="Ingrese el nombre" value="{{ currentUser.nombres }}" />
+			<input name="integranteNombre" type="text" placeholder="Ingrese el nombre" value="{{ integrante.nombres }}" />
 		</label>
 		<label>Apellido:
-			<input name="integranteApellido" type="text" placeholder="Ingrese el apellido" value="{{ currentUser.apellidos }}" />
+			<input name="integranteApellido" type="text" placeholder="Ingrese el apellido" value="{{ integrante.apellidos }}" />
 		</label>
-		<select>
+		<select name="selectTipoIngtegrante" value="">
 		</select>
 		<input type="submit" value="Limpiar" ng-click="onCleanFields()" />
 		<input type="submit" value="Guardar" />
@@ -17,9 +17,9 @@
 <div class="container-data" ng-controller="IntegrantesListCtrl">
 	<h2 class="container-data-title">Integrantes:</h2>
 	<ul class="integrantes-list">
-		<li class="integrantes-list-item" ng-repeat="user in users">
-			<div class="integrante-nombre">{{ user.nombres }}</div>
-			<div class="integrante-apellido">{{ user.apellidos }}</div>
+		<li class="integrantes-list-item" ng-repeat="i in integrante">
+			<div class="integrante-nombre">{{ i.nombres }}</div>
+			<div class="integrante-apellido">{{ i.apellidos }}</div>
 			<ul class="integrante-controls">
 				<li ng-click="onClickUser(user)">Editar</li>
 				<li>Eliminar</li>
