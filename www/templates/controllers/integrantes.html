@@ -1,0 +1,23 @@
+<h1 class="title-scetion">Seccion Integrantes</h1>
+<div class="container-filters" ng-controller="IntegrantesFiltersCtrl">
+	<h2 class="container-filters-title">Agregar o editar integrante</h2>
+	<form>
+		<label>Nombre:<input name="integranteNombre" type="text" placeholder="Ingrese el nombre" value="{{ currentUser.name }}" /></label>
+		<label>Apellido:<input name="integranteApellido" type="text" placeholder="Ingrese el apellido" value="{{ currentUser.lastname }}" /></label>
+		<input type="submit" value="Limpiar" ng-click="onCleanFields()" />
+		<input type="submit" value="Guardar" />
+	</form>
+</div>
+<div class="container-data" ng-controller="IntegrantesListCtrl">
+	<h2 class="container-data-title">Integrantes:</h2>
+	<ul class="integrantes-list">
+		<li class="integrantes-list-item" ng-repeat="user in users">
+			<div class="integrante-nombre">{{ user.name }}</div>
+			<div class="integrante-apellido">{{ user.lastname }}</div>
+			<ul class="integrante-controls">
+				<li ng-click="onClickUser(user)">Editar</li>
+				<li>Eliminar</li>
+			</ul>
+		</li>
+	</ul>
+</div>

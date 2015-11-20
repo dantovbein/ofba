@@ -1,0 +1,39 @@
+body,div,p,span,h1,h2,h3,h4,h5,h6,aside,figure,figcaption {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+}
+
+body {
+	color: #fff;
+	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	background: $app-background-color;
+	//background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    //background: -moz-linear-gradient(left, $app-background-color 20%, #a60a0a 50%, $app-background-color 80%);
+    //background: -webkit-gradient(linear, left top, right top, color-stop(20%,$app-background-color), color-stop(50%,#a60a0a), color-stop(80%,$app-background-color));
+    //background: -webkit-linear-gradient(left, $app-background-color 20%,#a60a0a 50%,$app-background-color 80%);
+    //background: -o-linear-gradient(left, $app-background-color 20%,#a60a0a 50%,$app-background-color 80%);
+    //background: -ms-linear-gradient(left, $app-background-color 20%,#a60a0a 50%,$app-background-color 80%);
+    //background: linear-gradient(to right, $app-background-color 20%,#a60a0a 50%,$app-background-color 80%);
+    //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$app-background-color', endColorstr='$app-background-color',GradientType=1 );
+}
+
+a {
+	text-decoration: none;
+	color: #fceac3;
+}
+
+li {
+	list-style: none;
+}
+
+#app {
+	width: 1170px;
+	margin: 0 auto;
+}
+
+#container {
+	float: left;
+}
+
+

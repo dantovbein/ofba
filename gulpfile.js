@@ -6,6 +6,8 @@ var connect = require('gulp-connect');
 var browserify = require('gulp-browserify');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
+var sass = require('gulp-sass');
+//var sass = require('gulp-ruby-sass');
 
 /* Run dev server */
 gulp.task('connect',function(){
@@ -29,10 +31,32 @@ gulp.task('css',function(){
 gulp.task('js',function(){
 	gulp.src('./www/js/*.js')
 		.pipe(connect.reload())
-})
- 
+});
+
+//gulp.task('sass', function () {
+//    gulp.src('./sass/**/*.sass')
+//        .pipe(sass({errLogToConsole: true,indentedSyntax: true})) //sourceComments: 'normal',
+//        .pipe(gulp.dest('./www/css'));
+//});
+
+//gulp.task('sass', function () {
+//    gulp.src('./sass/main.sass')
+//        .pipe(sass({errLogToConsole: true,indentedSyntax: true})) //sourceComments: 'normal',
+//        .pipe(gulp.dest('./www/css'));
+//});
+
+gulp.task('sass', function () {
+    gulp.src('./sass/main.scss')
+        .pipe(sass({errLogToConsole: true,indentedSyntax: true})) //sourceComments: 'normal',
+        .pipe(gulp.dest('./www/css'));
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch('./sass/**/*.sass', ['sass']);
+});
+
 gulp.task('watch', function () {
-  gulp.watch(['./www/*.html','./www/css/*.css','.www/js/*.js'], ['html','css','js']);
+  gulp.watch(['./www/*.html','./www/css/*.css','.www/js/*.js'], ['html','sass:watch','js']);
 });
 
 gulp.task('default',['connect','watch']);

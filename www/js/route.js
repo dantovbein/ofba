@@ -8,11 +8,11 @@ angular.module('app')
 					url:'/',
 					views: {
 						'': {
-							templateUrl:'/templates/main.html',
+							templateUrl:'/templates/controllers/main.html',
 							controller: 'MainCtrl'
 						},
 						'mainNav@main': {
-							templateUrl: './templates/main-nav.html',
+							templateUrl: './templates/controllers/main-nav.html',
 							controller: 'MainNavCtrl'
 						}
 					}
@@ -23,7 +23,7 @@ angular.module('app')
 					url: 'integrantes/',
 					views: {
 						'container': {
-							templateUrl: "./templates/integrantes.html",
+							templateUrl: "./templates/controllers/integrantes.html",
 							controller: "IntegrantesCtrl"
 						}
 					}
@@ -33,7 +33,7 @@ angular.module('app')
 					url: 'galeria-de-imagenes/',
 					views: {
 						'container': {
-							templateUrl: "./templates/galeria-de-imagenes.html",
+							templateUrl: "./templates/controllers/galeria-de-imagenes.html",
 							controller: "IntegrantesCtrl"
 						}
 					}
@@ -43,7 +43,7 @@ angular.module('app')
 					url: 'conciertos/temporadas/',
 					views: {
 						'container': {
-							templateUrl: "./templates/temporadas.html",
+							templateUrl: "./templates/controllers/temporadas.html",
 							controller: "TemporadasCtrl"
 						}
 					}
@@ -53,7 +53,7 @@ angular.module('app')
 					url: 'conciertos/directores/',
 					views: {
 						'container': {
-							templateUrl: "./templates/directores.html",
+							templateUrl: "./templates/controllers/directores.html",
 							controller: "TemporadasCtrl"
 						}
 					}
@@ -63,7 +63,7 @@ angular.module('app')
 					url: 'conciertos/solistas/',
 					views: {
 						'container': {
-							templateUrl: "./templates/solistas.html",
+							templateUrl: "./templates/controllers/solistas.html",
 							controller: "SolistaCtrl"
 						}
 					}
@@ -73,7 +73,7 @@ angular.module('app')
 					url: 'conciertos/compositores-obras/',
 					views: {
 						'container': {
-							templateUrl: "./templates/compositores-obras.html",
+							templateUrl: "./templates/controllers/compositores-obras.html",
 							controller: "CompositoresObrasCtrl"
 						}
 					}
@@ -83,7 +83,7 @@ angular.module('app')
 					url: 'conciertos/giras/',
 					views: {
 						'container': {
-							templateUrl: "./templates/giras.html",
+							templateUrl: "./templates/controllers/giras.html",
 							controller: "GirasCtrl"
 						}
 					}
@@ -91,7 +91,7 @@ angular.module('app')
 
 				.state('login',{
 					url:'/login',
-					templateUrl:'./templates/login.html',
+					templateUrl:'./templates/controllers/login.html',
 					controller: 'LoginCtrl'
 				})
 		});

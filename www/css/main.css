@@ -1,3 +1,32 @@
+body, div, p, span, h1, h2, h3, h4, h5, h6, aside, figure, figcaption {
+  margin: 0;
+  padding: 0; }
+
+body {
+  color: #fff;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #7e0a08; }
+
+a {
+  text-decoration: none;
+  color: #fceac3; }
+
+li {
+  list-style: none; }
+
+#app {
+  width: 1170px;
+  margin: 0 auto; }
+
 #container {
-	float: left;
-}
+  float: left; }
+
+.error-message {
+  color: red; }
+
+#main-nav {
+  float: left; }
+
+.item-list {
+  font-size: 10pt;
+  line-height: 20px; }
