@@ -1,15 +1,15 @@
 <div class="nav-sections">
-	<nav>
-		<ul>
-			<li class="item-list" ng-repeat="section in sections">
+	<nav class="main-nav">
+		<ul class="main-nav-list">
+			<li class="main-nav-list-item" ng-repeat="section in sections">
 				<a ui-sref="{{ section.state }}">{{ section.name }}</a>
 				<!-- subsection -->	
 				<ul ng-if="section.sub.length > 0">
-					<li class="item-list" ng-repeat="subsection in section.sub">
+					<li class="main-nav-list-item main-nav-list-subitem" ng-repeat="subsection in section.sub">
 						<a ui-sref="{{ subsection.state }}">{{ subsection.name }}</a>
 						<!-- subsubsection -->	
 						<ul ng-if="subsection.sub.length > 0">
-							<li class="item-list" ng-repeat="subsubsection in subsection.sub">
+							<li class="main-nav-list-item main-nav-list-subsubitem" ng-repeat="subsubsection in subsection.sub">
 								<a ui-sref="{{ subsubsection.state }}">{{ subsubsection.name }}</a>
 							</li>
 						</ul>

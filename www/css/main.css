@@ -1,39 +1,210 @@
-body, div, p, span, h1, h2, h3, h4, h5, h6, aside, figure, figcaption {
+@font-face {
+  font-family: 'julius_sans_oneregular';
+  src: url("../fonts/juliussansone-regular-webfont.eot");
+  src: url("../fonts/juliussansone-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/juliussansone-regular-webfont.woff2") format("woff2"), url("../fonts/juliussansone-regular-webfont.woff") format("woff"), url("../fonts/juliussansone-regular-webfont.ttf") format("truetype"), url("../fonts/juliussansone-regular-webfont.svg#julius_sans_oneregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+body, div, p, span, ul, li, h1, h2, h3, h4, h5, h6, aside, figure, figcaption, label, input {
   margin: 0;
   padding: 0;
-  font-size: 100%; }
+  box-sizing: border-box; }
 
 body {
+  font-size: 100%;
   color: #fff;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: #7e0a08; }
+  background: #7e0a08;
+  background: -moz-linear-gradient(left, #7e0a08 20%, #a60a0a 50%, #7e0a08 80%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(20%, #7e0a08), color-stop(50%, #a60a0a), color-stop(80%, #7e0a08));
+  background: -webkit-linear-gradient(left, #7e0a08 20%, #a60a0a 50%, #7e0a08 80%);
+  background: -o-linear-gradient(left, #7e0a08 20%, #a60a0a 50%, #7e0a08 80%);
+  background: -ms-linear-gradient(left, #7e0a08 20%, #a60a0a 50%, #7e0a08 80%);
+  background: linear-gradient(to right, #7e0a08 20%, #a60a0a 50%, #7e0a08 80%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$app-first-color', endColorstr='$app-first-color',GradientType=1 ); }
 
 a {
   text-decoration: none;
-  color: #fceac3; }
+  color: #fff; }
 
 li {
   list-style: none; }
 
+label {
+  padding: 0 .8rem 0 0;
+  line-height: 220%;
+  float: left; }
+
+input, select {
+  padding: .4rem 0 .4rem .8rem;
+  font-size: 1rem; }
+
+select {
+  background-color: #fff;
+  margin: 0;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  border: none;
+  outline: none;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer; }
+
 #app {
-  width: 1170px;
-  margin: 0 auto;
-  background-color: white; }
+  width: 90rem;
+  margin: 0 auto; }
 
 #container {
   float: left;
-  background-color: orange;
-  width: 868px;
-  min-height: 100px; }
+  width: 82%;
+  min-height: 7rem;
+  padding: 1rem 1rem 2rem 1rem; }
+  #container .section-title {
+    color: #fceac3;
+    font-family: 'julius_sans_oneregular', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.8rem;
+    text-transform: uppercase; }
+  #container .sub-section {
+    padding: 1.25rem 0 0 0; }
+    #container .sub-section .sub-section-title {
+      font-family: 'julius_sans_oneregular', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #560311;
+      width: 100%;
+      float: left;
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      text-transform: uppercase; }
+    #container .sub-section .container-filters-form {
+      padding: 1rem 2.5rem;
+      box-sizing: border-box;
+      float: left;
+      width: 100%; }
+      #container .sub-section .container-filters-form .container-filters-form-list {
+        float: left;
+        width: 100%; }
+        #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item {
+          float: left;
+          width: 50%;
+          margin: 0 0 1rem 0; }
+          #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item label {
+            width: 30%;
+            text-align: right; }
+          #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item input {
+            width: 70%; }
+          #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item select {
+            width: 70%; }
+      #container .sub-section .container-filters-form .container-filters-form-wrapper-controls {
+        text-align: center; }
+        #container .sub-section .container-filters-form .container-filters-form-wrapper-controls .wrapper-controls-list {
+          float: none;
+          display: inline-block; }
+
+#main_nav {
+  float: left;
+  width: 18%;
+  padding: 3rem 0 0 1rem;
+  box-sizing: border-box; }
+
+.btn {
+  cursor: pointer;
+  background-color: #560311;
+  color: #fff;
+  padding: .35rem .6rem;
+  font-size: 0.85rem; }
+  .btn:hover {
+    background-color: #7e0a08; }
+
+.container-data-list-header, .container-data-list {
+  width: 100%;
+  float: left; }
+  .container-data-list-header .container-data-list-header-item-column:first-child, .container-data-list-header .container-data-list-item-column:first-child, .container-data-list .container-data-list-header-item-column:first-child, .container-data-list .container-data-list-item-column:first-child {
+    padding-left: .5rem; }
+  .container-data-list-header .container-data-list-header-item-column:last-child, .container-data-list-header .container-data-list-item-column:last-child, .container-data-list .container-data-list-header-item-column:last-child, .container-data-list .container-data-list-item-column:last-child {
+    padding-right: .5rem; }
+  .container-data-list-header .container-data-list-header-item-column, .container-data-list-header .container-data-list-item, .container-data-list .container-data-list-header-item-column, .container-data-list .container-data-list-item {
+    float: left;
+    box-sizing: border-box;
+    padding: .4rem 0;
+    min-height: .05rem; }
+    .container-data-list-header .container-data-list-header-item-column .container-data-list-header-item-column .container-data-list-header-item-column-value, .container-data-list-header .container-data-list-header-item-column .container-data-list-header-item-column .container-data-list-item-column-value, .container-data-list-header .container-data-list-header-item-column .container-data-list-item-column .container-data-list-header-item-column-value, .container-data-list-header .container-data-list-header-item-column .container-data-list-item-column .container-data-list-item-column-value, .container-data-list-header .container-data-list-item .container-data-list-header-item-column .container-data-list-header-item-column-value, .container-data-list-header .container-data-list-item .container-data-list-header-item-column .container-data-list-item-column-value, .container-data-list-header .container-data-list-item .container-data-list-item-column .container-data-list-header-item-column-value, .container-data-list-header .container-data-list-item .container-data-list-item-column .container-data-list-item-column-value, .container-data-list .container-data-list-header-item-column .container-data-list-header-item-column .container-data-list-header-item-column-value, .container-data-list .container-data-list-header-item-column .container-data-list-header-item-column .container-data-list-item-column-value, .container-data-list .container-data-list-header-item-column .container-data-list-item-column .container-data-list-header-item-column-value, .container-data-list .container-data-list-header-item-column .container-data-list-item-column .container-data-list-item-column-value, .container-data-list .container-data-list-item .container-data-list-header-item-column .container-data-list-header-item-column-value, .container-data-list .container-data-list-item .container-data-list-header-item-column .container-data-list-item-column-value, .container-data-list .container-data-list-item .container-data-list-item-column .container-data-list-header-item-column-value, .container-data-list .container-data-list-item .container-data-list-item-column .container-data-list-item-column-value {
+      font-size: .8rem;
+      line-height: 180%; }
+  .container-data-list-header .container-data-list-header-item-column, .container-data-list .container-data-list-header-item-column {
+    color: #7e0a08;
+    text-transform: uppercase;
+    font-size: 0.85rem; }
+  .container-data-list-header .container-data-list-item, .container-data-list .container-data-list-item {
+    width: 100%;
+    background-color: #fff;
+    color: #560311;
+    border-bottom: 3px solid #560311; }
+
+.container-data-list-header {
+  background-color: #fceac3; }
+
+.wrapper-controls {
+  width: 100%;
+  float: left; }
+  .wrapper-controls .wrapper-controls-list {
+    float: left;
+    width: 100%; }
+    .wrapper-controls .wrapper-controls-list .wrapper-controls-list-item {
+      float: left; }
 
 .error-message {
   color: red; }
 
-#main-nav {
-  float: left;
-  background-color: green;
-  width: 300px; }
-
-.item-list {
-  font-size: 10pt;
+.main-nav-list-item {
+  font-size: .8rem;
   line-height: 20px; }
+  .main-nav-list-item .main-nav-list-subitem {
+    padding-left: 20px; }
+    .main-nav-list-item .main-nav-list-subitem .main-nav-list-subsubitem {
+      padding-left: 40px; }
+
+.integrantes-list-header .integrante-nombre-header {
+  width: 20%; }
+
+.integrantes-list-header .integrante-apellido-header {
+  width: 14%; }
+
+.integrantes-list-header .integrante-instrumento-header {
+  width: 10%; }
+
+.integrantes-list-header .integrante-tipo-integrante-header {
+  width: 18%; }
+
+.integrantes-list-header .integrante-tipo-director-header {
+  width: 18%; }
+
+.integrantes-list-header .integrante-nacionalidad-header {
+  width: 7%; }
+
+.integrantes-list-header .integrante-wrapper-controls-header {
+  width: 13%; }
+
+.integrantes-list .integrantes-list-item .integrante {
+  float: left;
+  box-sizing: border-box;
+  min-height: .25rem; }
+  .integrantes-list .integrantes-list-item .integrante.integrante-nombre {
+    width: 20%; }
+  .integrantes-list .integrantes-list-item .integrante.integrante-apellido {
+    width: 14%; }
+  .integrantes-list .integrantes-list-item .integrante.integrante-instrumento {
+    width: 10%; }
+  .integrantes-list .integrantes-list-item .integrante.integrante-tipo-integrante {
+    width: 18%; }
+  .integrantes-list .integrantes-list-item .integrante.integrante-tipo-director {
+    width: 18%; }
+  .integrantes-list .integrantes-list-item .integrante.integrante-nacionalidad {
+    width: 7%; }
+  .integrantes-list .integrantes-list-item .integrante.wrapper-controls {
+    width: 13%;
+    float: right;
+    text-align: right; }
+    .integrantes-list .integrantes-list-item .integrante.wrapper-controls .wrapper-controls-list .wrapper-controls-list-item {
+      margin: 0 0 0 4%; }

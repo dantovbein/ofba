@@ -1,10 +1,12 @@
-#main-nav {
-	float: left;
-	background-color: green;
-	width: 300px;
-}
-
-.item-list {
-	font-size: 10pt;
+.main-nav-list-item {
+	font-size: .8rem;
     line-height: 20px;
+
+    .main-nav-list-subitem {
+    	padding-left:20px;
+
+    	.main-nav-list-subsubitem {
+    		padding-left:40px;
+    	}
+    }
 }

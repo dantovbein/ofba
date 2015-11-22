@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('app')
 	.controller('MainNavCtrl',['$scope','$rootScope',function($scope,$rootScope){
 		$scope.sections = [{ 'name':'Filarmónica de Buenos Aires',

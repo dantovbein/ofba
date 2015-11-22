@@ -1,43 +1,213 @@
-body,div,p,span,h1,h2,h3,h4,h5,h6,aside,figure,figcaption {
+body,div,p,span,ul,li,h1,h2,h3,h4,h5,h6,aside,figure,figcaption,label,input {
 	margin: 0;
 	padding: 0;
-	font-size: 100%;
+	box-sizing: border-box;
 }
 
 body {
+	font-size: 100%;
 	color: #fff;
 	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	background: $app-background-color;
+	background: $app-first-color;
 	//background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-    //background: -moz-linear-gradient(left, $app-background-color 20%, #a60a0a 50%, $app-background-color 80%);
-    //background: -webkit-gradient(linear, left top, right top, color-stop(20%,$app-background-color), color-stop(50%,#a60a0a), color-stop(80%,$app-background-color));
-    //background: -webkit-linear-gradient(left, $app-background-color 20%,#a60a0a 50%,$app-background-color 80%);
-    //background: -o-linear-gradient(left, $app-background-color 20%,#a60a0a 50%,$app-background-color 80%);
-    //background: -ms-linear-gradient(left, $app-background-color 20%,#a60a0a 50%,$app-background-color 80%);
-    //background: linear-gradient(to right, $app-background-color 20%,#a60a0a 50%,$app-background-color 80%);
-    //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$app-background-color', endColorstr='$app-background-color',GradientType=1 );
+    background: -moz-linear-gradient(left, $app-first-color 20%, #a60a0a 50%, $app-first-color 80%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(20%,$app-first-color), color-stop(50%,#a60a0a), color-stop(80%,$app-first-color));
+    background: -webkit-linear-gradient(left, $app-first-color 20%,#a60a0a 50%,$app-first-color 80%);
+    background: -o-linear-gradient(left, $app-first-color 20%,#a60a0a 50%,$app-first-color 80%);
+    background: -ms-linear-gradient(left, $app-first-color 20%,#a60a0a 50%,$app-first-color 80%);
+    background: linear-gradient(to right, $app-first-color 20%,#a60a0a 50%,$app-first-color 80%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$app-first-color', endColorstr='$app-first-color',GradientType=1 );
 }
 
 a {
 	text-decoration: none;
-	color: #fceac3;
+	color: #fff;
 }
 
 li {
 	list-style: none;
 }
 
+label {
+	padding: 0 .8rem 0 0;
+	line-height: 220%;
+	float: left;
+}
+
+input, select {
+	padding: .4rem 0 .4rem .8rem;
+	font-size: 1rem;
+}
+
+select {
+	background-color: #fff;
+	margin: 0;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+   	border: none;
+    outline: none;
+    display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
 #app {
-	width: 1170px;
+	width: 90rem;
 	margin: 0 auto;
-	background-color: white;
 }
 
 #container {
 	float: left;
-	background-color: orange;
-	width: 868px;
-	min-height: 100px;
+	width: 82%;
+	min-height: 7rem;
+	padding: 1rem 1rem 2rem 1rem;
+
+	.section-title {
+		color: $app-third-color;
+		font: {
+				family: 'julius_sans_oneregular', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		}
+		font-size: 1.8rem;
+		text-transform: uppercase;
+	}
+
+	.sub-section {
+		padding: 1.25rem 0 0 0;
+
+		.sub-section-title {
+			font: {
+				family: 'julius_sans_oneregular', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			}
+			background-color: $app-second-color;
+			width: 100%;
+			float: left;
+			padding: 0.5rem;
+			font-size: 1.2rem;
+			text-transform: uppercase;
+		}
+
+		.container-filters-form {
+			padding: 1rem 2.5rem;
+			box-sizing: border-box;
+			float: left;
+			width: 100%;
+
+			.container-filters-form-list {
+				float: left;
+				width: 100%;
+
+				.container-filters-form-list-item {
+					float: left;
+					width: 50%;
+					margin: 0 0 1rem 0; 
+					label {
+						width: 30%;
+						text: {
+							align: right;
+						}
+					}
+
+					input {
+						width: 70%;
+					}
+
+					select {
+						width: 70%;
+					}
+				}
+			}
+
+			.container-filters-form-wrapper-controls {
+				text-align: center;
+
+				.wrapper-controls-list {
+					float: none;
+					display: inline-block;
+				}
+			}	
+		}
+	}
 }
 
+#main_nav {
+	float: left;
+	width: 18%;
+	padding: 3rem 0 0 1rem;
+	box-sizing: border-box;
+}
 
+.btn {
+	cursor: pointer;
+	background-color: $app-second-color;
+	color: #fff;
+	padding: .35rem .6rem;
+    font-size: 0.85rem;
+
+	&:hover {
+		background-color: $app-first-color;
+	}
+}
+
+.container-data-list-header, .container-data-list {
+	width: 100%;
+	float: left;
+
+	.container-data-list-header-item-column, .container-data-list-item-column {
+		&:first-child {
+			padding-left: .5rem;
+		}
+
+		&:last-child {
+			padding-right: .5rem;
+		}
+	}
+	
+	.container-data-list-header-item-column, .container-data-list-item {
+		float:left;
+		box-sizing: border-box;
+		padding: .4rem 0;
+		min-height: .05rem;
+    	
+		.container-data-list-header-item-column, .container-data-list-item-column {
+    		
+    		.container-data-list-header-item-column-value, .container-data-list-item-column-value {
+    			font-size: .8rem;
+    			line-height: 180%;
+    		}
+    	}
+	}
+
+	.container-data-list-header-item-column {
+		color:$app-first-color;
+		text-transform: uppercase;
+		font-size: 0.85rem;
+	}
+
+	.container-data-list-item {
+		width: 100%;
+		background-color: #fff;
+		color: #560311;
+		border-bottom: 3px solid $app-second-color;
+	}
+}
+
+.container-data-list-header {
+	background-color: $app-third-color;
+}
+
+.wrapper-controls {
+	width:100%;
+	float: left;
+	
+	.wrapper-controls-list {
+		float: left;
+		width: 100%;
+				
+		.wrapper-controls-list-item {
+			float: left;
+		}
+	}
+}

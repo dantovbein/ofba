@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('app')
 	.controller('LoginCtrl',['$scope','$state','LoginService',function($scope,$state,LoginService){
 		$scope.credentials = {};

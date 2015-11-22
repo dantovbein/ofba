@@ -1,41 +1,104 @@
-<h1 class="title-scetion">Seccion Integrantes</h1>
-<div class="container-filters" ng-controller="IntegrantesFiltersCtrl">
-	<h2 class="container-filters-title">Agregar o editar integrante</h2>
-	<form>
-		<label>Nombre:
-			<input name="integranteNombre" type="text" placeholder="Ingrese el nombre" value="{{ integrante.nombres }}" />
-		</label>
-		<label>Apellido:
-			<input name="integranteApellido" type="text" placeholder="Ingrese el apellido" value="{{ integrante.apellidos }}" />
-		</label>
-		<select name="selectTipoIngtegrante" value="">
-		</select>
-		<input type="submit" value="Limpiar" ng-click="onCleanFields()" />
-		<input type="submit" value="Guardar" />
-	</form>
-</div>
-<div class="container-data" ng-controller="IntegrantesListCtrl">
-	<h2 class="container-data-title">Integrantes:</h2>
-	<ul class="integrantes-list">
-		<li class="integrantes-list-item" ng-repeat="i in integrante">
-			<div class="integrante-nombre">{{ i.nombres }}</div>
-			<div class="integrante-apellido">{{ i.apellidos }}</div>
-			<ul class="integrante-controls">
-				<li ng-click="onClickUser(user)">Editar</li>
-				<li>Eliminar</li>
+<h1 class="section-title">Seccion Integrantes</h1>
+<section class="sub-section container-filters" ng-controller="IntegrantesFiltersCtrl">
+	<h2 class="sub-section-title">Agregar o editar integrante</h2>
+	<form class="container-filters-form">
+		<ul class="container-filters-form-list">
+			<li class="container-filters-form-list-item">
+				<label>Nombre:</label>
+				<input name="integranteNombre" type="text" placeholder="Ingrese el nombre" value="{{ integranteSeleccionado.nombres }}" />
+			</li>
+			<li class="container-filters-form-list-item">
+				<label>Apellido:</label>
+				<input name="integranteApellido" type="text" placeholder="Ingrese el apellido" value="{{ integranteSeleccionado.apellidos }}" />
+			</li>
+			<li class="container-filters-form-list-item">
+				<label>Instrumento:</label>
+				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idInstrumento">
+					<option value="" default selected>Selecciona el instrumento</option>
+					<option ng-repeat="instrumento in instrumentos" value="{{ instrumento.id }}">{{ instrumento.codigoTexto }}</option>
+				</select>
+			</li>
+			<li class="container-filters-form-list-item">
+				<label>Tipo integrante:</label>
+				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idTipoIntegrante">
+					<option value="" default selected>Selecciona el tipo de integrante</option>
+					<option ng-repeat="integrante in tiposIntegrante" value="{{ integrante.id }}">{{ parseTipoIntegrante(integrante.codigoTexto) }}</option>
+				</select>
+			</li>
+			<li class="container-filters-form-list-item">
+				<label>Tipo director:</label>
+				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idTipoDirector">
+					<option value="" default selected>Selecciona el tipo de director</option>
+					<option ng-repeat="director in tiposDirector" value="{{ director.id }}">{{ parseTipoDirector(director.codigoTipo) }}</option>
+				</select>
+			</li>
+			<li class="container-filters-form-list-item">
+				<label>Nacionalidad:</label>
+				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idNacionalidad">
+					<option value="" default selected>Selecciona la nacionalidad</option>
+					<option ng-repeat="nacionalidad in nacionalidades" value="{{ nacionalidad.idNacionalidad }}">{{ nacionalidad.strNacionalidad }}</option>
+				</select>
+			</li>
+		</ul>
+		<div class="container-filters-form-wrapper-controls wrapper-controls">
+			<ul class="wrapper-controls-list">
+				<li class="wrapper-controls-list-item btn btn-clean" ng-click="onCleanFields()">Limpiar</li>
+				<li class="wrapper-controls-list-item btn btn-save" >Guardar</li>
 			</ul>
+		</div>
+	</form>
+</section>
+<section class="sub-section container-data" ng-controller="IntegrantesListCtrl">
+	<h2 class="sub-section-title">Total de integrantes ({{ integrantes.length }})</h2>
+	<ul class="container-data-list-header integrantes-list-header">
+		<li class="container-data-list-header-item-column integrante-nombre-header">
+			<span class="container-data-list-header-item-column-value">Nombres</span>
+		</li>
+		<li class="container-data-list-header-item-column integrante-apellido-header">
+			<span class="container-data-list-header-item-column-value">Apellidos</span>
+		</li>
+		<li class="container-data-list-header-item-column integrante-instrumento-header">
+			<span class="container-data-list-header-item-column-value">Instrumento</span>
+		</li>
+		<li class="container-data-list-header-item-column integrante-tipo-integrante-header">
+			<span class="container-data-list-header-item-column-value">Tipo integrante</span>
+		</li>
+		<li class="container-data-list-header-item-column integrante-tipo-director-header">
+			<span class="container-data-list-header-item-column-value">Tipo director</span>
+		</li>
+		<li class="container-data-list-header-item-column integrante-nacionalidad-header">
+			<span class="container-data-list-header-item-column-value">Nacionalidad</span>
+		</li>
+		<li class="container-data-list-header-item-column wrapper-controls-header">
+			<span class="container-data-list-header-item-column-value"></span>
+		</li>		
+	</ul>
+	<ul class="container-data-list integrantes-list">
+		<li class="container-data-list-item integrantes-list-item" ng-repeat="integrante in integrantes">
+			<div class="container-data-list-item-column integrante integrante-nombre">
+				<span class="container-data-list-item-column-value">{{ integrante.nombres }}</span>
+			</div>
+			<div class="container-data-list-item-column integrante integrante-apellido">
+				<span class="container-data-list-item-column-value">{{ integrante.apellidos }}</span>
+			</div>
+			<div class="container-data-list-item-column integrante integrante-instrumento">
+				<span class="container-data-list-item-column-value">{{ getInstrumento(integrante.idInstrumento) }}</span>
+			</div>
+			<div class="container-data-list-item-column integrante integrante-tipo-integrante">
+				<span class="container-data-list-item-column-value">{{ getTipoIntegrante(integrante.idTipoIntegrante) }}</span>
+			</div>
+			<div class="container-data-list-item-column integrante integrante-tipo-director">
+				<span class="container-data-list-item-column-value">{{ getTipoDirector(integrante.idTipoDirector) }}</span>
+			</div>
+			<div class="container-data-list-item-column integrante integrante-nacionalidad">
+				<span class="container-data-list-item-column-value">{{ integrante.strNacionalidad }}</span>
+			</div>
+			<div class="integrante wrapper-controls">
+				<ul class="wrapper-controls-list">
+					<li class="wrapper-controls-list-item btn btn-edit" ng-click="onClickIntegrante(integrante)">Editar</li>
+					<li class="wrapper-controls-list-item btn btn-remove" >Eliminar</li>
+				</ul>
+			</div>
 		</li>
 	</ul>
-</div>
-
-
-
-
-id 
-nombres
-apellidos
-idTipoIntegrante
-idInstrumento
-idNacionalidad
-idTipoDirector
-str_nacionalidad
+</section>

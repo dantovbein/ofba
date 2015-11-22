@@ -1,0 +1,90 @@
+$columnaNombre: 20%;
+$columnaApellido: 14%;
+$columnaInstrumemto: 10%;
+$columnaTipoIntegrante: 18%;
+$columnaTipoDirector: 18%;
+$columnaNacionalidad: 7%;
+$columnaControls: 13%;
+
+.integrantes-list-header {
+	.integrante-nombre-header {
+		width: $columnaNombre;
+	}
+
+	.integrante-apellido-header {
+		width: $columnaApellido;
+	}
+
+	.integrante-instrumento-header {
+		width: $columnaInstrumemto;
+	}
+
+	.integrante-tipo-integrante-header {
+		width: $columnaTipoIntegrante;
+	}
+
+	.integrante-tipo-director-header {
+		width: $columnaTipoDirector;
+	}
+
+	.integrante-nacionalidad-header {
+		width: $columnaNacionalidad;
+	}
+
+	.integrante-wrapper-controls-header {
+		width: $columnaControls;
+	}
+}
+
+.integrantes-list {
+	
+	.integrantes-list-item {
+
+		.integrante {
+			float:left;
+			box-sizing: border-box;
+			min-height: .25rem;
+
+			&.integrante-nombre {
+				width: $columnaNombre;
+			}
+
+			&.integrante-apellido {
+				width: $columnaApellido;
+			}
+
+			&.integrante-instrumento {
+				width: $columnaInstrumemto;
+			}
+
+			&.integrante-tipo-integrante {
+				width: $columnaTipoIntegrante;
+			}
+
+			&.integrante-tipo-director {
+				width: $columnaTipoDirector;
+			}
+
+			&.integrante-nacionalidad {
+				width: $columnaNacionalidad;
+			}
+
+			&.wrapper-controls {
+				width: $columnaControls;
+				float: right;
+				text-align: right;
+			
+				.wrapper-controls-list {
+
+					.wrapper-controls-list-item {
+					    margin: 0 0 0 4%;
+					}
+				}
+			}
+		}		
+		
+	}
+}
+
+
+
