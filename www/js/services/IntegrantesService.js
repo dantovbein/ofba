@@ -1,21 +1,43 @@
 angular.module('app')
 	.factory('IntegrantesService',['$http',function($http){
-		var integrantesService = {
-			getIntegrantes: function(successCallback,errorCallback) {
-				console.log("llega");
-				$http({
-				  method: 'GET',
-				  url: 'http://localhost/ofba_service/service/manager/getIntegrantes.php',
-				  params:{
-				  	successCallback: successCallback,
-				  	errorCallback: errorCallback
-				  }
-				}).then(function(callback){
-					console.log("test 4");
-					//successCallback();
-				},errorCallback);
-				//return [{id:"110",nombres:"Aaron",apellidos:"Copland",idTipoIntegrante:"9",idInstrumento:null,idNacionalidad:"2",idTipoDirector:null,strNacionalidad:"Extranjero"}]; 
-			}
+		var integrantesService = {};
+
+		integrantesService.getIntegrantes = function() {
+			return $http({
+				url: 'http://localhost/ofba_service/service/manager/getIntegrantes.php'
+			}).error(function(error){
+				console.log('error: ' + error);
+			});
 		}
+
+		integrantesService.getInstrumentos = function() {
+			return $http({
+				url: 'http://localhost/ofba_service/service/manager/getInstrumentos.php'
+			}).error(function(error){
+				console.log('error: ' + error);
+			});
+		}
+
+		integrantesService.getTiposDirector = function() {
+			return $http({
+				url: 'http://localhost/ofba_service/service/manager/getTiposDirector.php'
+			}).error(function(error){
+				console.log('error: ' + error);
+			});
+		}
+
+		integrantesService.getTiposIntegrante = function() {
+			return $http({
+				url: 'http://localhost/ofba_service/service/manager/getTiposIntegrante.php'
+			}).error(function(error){
+				console.log('error: ' + error);
+			});
+		}
+
+		integrantesService.getNacionalidades = function() {
+			return [{ idNacionalidad: 1, strNacionalidad: 'Argentino' },
+					{ idNacionalidad: 2, strNacionalidad: 'Extranjero' }];
+		}
+
 		return integrantesService;
 	}]);

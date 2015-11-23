@@ -13,4 +13,5 @@ angular.module('app')
 			$scope.integranteSeleccionado.idTipoIntegrante = integrante.idTipoIntegrante;
 			$scope.integranteSeleccionado.strNacionalidad = integrante.strNacionalidad;
 		}
+		
 	}]);

@@ -2,8 +2,7 @@
 
 angular.module('app')
 	.controller('IntegrantesFiltersCtrl',['$scope',function($scope){
-		$scope.onCleanFields = function(){
-			//$scope.currentUser = {};
-			$scope.resetCurrentMember();
+		$scope.onCleanFields = function() {
+			$scope.integranteSeleccionado = ({});
 		}
 	}]);
