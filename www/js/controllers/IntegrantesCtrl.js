@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-	.controller('IntegrantesCtrl',['$scope','IntegrantesService','$http','_',function($scope,IntegrantesService,_){
+	.controller('IntegrantesCtrl',['$scope','IntegrantesService','$http','_',function($scope, IntegrantesService, _){
 		
 		$scope.integranteSeleccionado = {};
 
@@ -80,6 +80,27 @@ angular.module('app')
 
 		$scope.parseTipoIntegrante = function(str) {
 			return str.substring('TIPO_INTEGRANTE_'.length).replace(/_/g,' ').toLowerCase();
+		}
+
+		$scope.postIntegrante = function() {
+			IntegrantesService.postIntegrante();
+		}
+
+		$scope.deleteIntegrante = function(id) {
+			console.log(_)
+			debugger;
+			_.filter($scope.integrantes, function(integrante){
+			 	return integrante.id == id
+			})
+
+			var evens = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+
+			IntegrantesService.deleteIntegrante(id).success(function(response) {
+				debugger;
+				//if(response==" "){
+					//$scope.integrantes.
+				//}
+			});
 		}
 
 	}]);

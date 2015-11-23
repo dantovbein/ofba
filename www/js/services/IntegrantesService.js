@@ -10,6 +10,35 @@ angular.module('app')
 			});
 		}
 
+		integrantesService.postIntegrante = function() {
+			return $http({
+				method: 'POST',
+				url: 'http://localhost/ofba_service/service/manager/postIntegrante.php'
+			}).error(function(error){
+				console.log('error: ' + error);
+			});
+		}
+
+		integrantesService.deleteIntegrante = function(id) {
+			console.log(id);
+			return $http({
+				method: 'GET',
+				url: 'http://localhost/ofba_service/service/manager/deleteIntegrante.php?id=' + id,
+				/*headers: {
+		            "Access-Control-Allow-Origin" : "*",
+		            "Access-Control-Allow-Methods" : "GET,POST,PUT,DELETE,OPTIONS",
+		            "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+		        },
+				data: {
+					id: id
+				}*/
+			}).error(function(error){
+				console.log('error: ' + error);
+			});
+		}
+
+
+
 		integrantesService.getInstrumentos = function() {
 			return $http({
 				url: 'http://localhost/ofba_service/service/manager/getInstrumentos.php'
