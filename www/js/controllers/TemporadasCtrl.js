@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('app')
+angular
+	.module('app')
 	.controller('TemporadasCtrl',['$scope',function($scope){
 		
 	}])

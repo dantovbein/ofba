@@ -54,7 +54,7 @@ select {
   cursor: pointer; }
 
 #app {
-  width: 90rem;
+  width: 96%;
   margin: 0 auto; }
 
 #container {
@@ -141,6 +141,8 @@ select {
     background-color: #fff;
     color: #560311;
     border-bottom: 3px solid #560311; }
+    .container-data-list-header .container-data-list-item:hover, .container-data-list .container-data-list-item:hover {
+      background-color: #fceac3; }
 
 .container-data-list-header {
   background-color: #fceac3; }

@@ -23,11 +23,28 @@ angular.module('app')
 				
 
 				.state('main.integrantes',{
-					url: 'integrantes/',
+					url: 'integrantes/:id',
 					views: {
 						'container': {
 							templateUrl: "./templates/controllers/integrantes.html",
 							controller: "IntegrantesCtrl"
+						}
+					},
+					resolve: {
+						integrantes: function(IntegrantesService) {
+							return IntegrantesService.getIntegrantes();
+						},
+						instrumentos: function(IntegrantesService) {
+							return IntegrantesService.getInstrumentos();
+						},
+						tiposDirector: function(IntegrantesService) {
+							return IntegrantesService.getTiposDirector();
+						},
+						tiposIntegrante: function(IntegrantesService) {
+							return IntegrantesService.getTiposIntegrante();
+						},
+						nacionalidades: function(IntegrantesService) {
+							return IntegrantesService.getNacionalidades();
 						}
 					}
 				})
@@ -98,16 +115,3 @@ angular.module('app')
 					controller: 'LoginCtrl'
 				})
 		});
-
-/*
-STATES vs URL ROUTE
-https://scotch.io/tutorials/angular-routing-using-ui-router 
-
-state ui-view 
-Most states in your application will probably have a url associated with them 
-iu-sref='state' http://angular-ui.github.io/ui-router/site/#/api/ui.router.state.directive:ui-sref
-It provides a different approach than ngRoute in that it changes your application views based on state of the application and not just the route URL.
-
-when ng-view
-$urlRouterProvider has the responsibility of watching $location
-*/

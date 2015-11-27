@@ -1,15 +1,15 @@
 <h1 class="section-title">Seccion Integrantes</h1>
 <section class="sub-section container-filters" ng-controller="IntegrantesFiltersCtrl">
 	<h2 class="sub-section-title">Agregar o editar integrante</h2>
-	<form class="container-filters-form">
+	<form name="integrantesFiltersForm" class="container-filters-form">
 		<ul class="container-filters-form-list">
 			<li class="container-filters-form-list-item">
 				<label>Nombre:</label>
-				<input name="integranteNombre" type="text" placeholder="Ingrese el nombre" value="{{ integranteSeleccionado.nombres }}" />
+				<input name="integranteNombre" type="text" placeholder="Ingrese el nombre" ng-model="integranteSeleccionado.nombres" value="{{ integranteSeleccionado.nombres }}" />
 			</li>
 			<li class="container-filters-form-list-item">
 				<label>Apellido:</label>
-				<input name="integranteApellido" type="text" placeholder="Ingrese el apellido" value="{{ integranteSeleccionado.apellidos }}" />
+				<input name="integranteApellido" type="text" placeholder="Ingrese el apellido" ng-model="integranteSeleccionado.apellidos" value="{{ integranteSeleccionado.apellidos }}" />
 			</li>
 			<li class="container-filters-form-list-item">
 				<label>Instrumento:</label>
@@ -43,7 +43,7 @@
 		<div class="container-filters-form-wrapper-controls wrapper-controls">
 			<ul class="wrapper-controls-list">
 				<li class="wrapper-controls-list-item btn btn-clean" ng-click="onCleanFields()">Limpiar</li>
-				<li class="wrapper-controls-list-item btn btn-save" >Guardar</li>
+				<li class="wrapper-controls-list-item btn btn-save" ng-click="postIntegrante(integranteSeleccionado)">Guardar</li>
 			</ul>
 		</div>
 	</form>
@@ -95,7 +95,7 @@
 			</div>
 			<div class="integrante wrapper-controls">
 				<ul class="wrapper-controls-list">
-					<li class="wrapper-controls-list-item btn btn-edit" ng-click="onClickIntegrante(integrante)">Editar</li>
+					<li class="wrapper-controls-list-item btn btn-edit" ng-click="editIntegrante(integrante)">Editar</li>
 					<li class="wrapper-controls-list-item btn btn-remove" ng-click="deleteIntegrante(integrante.id)">Eliminar</li>
 				</ul>
 			</div>

@@ -1,9 +1,11 @@
 'use strict';
 
-angular.module('app')
+angular
+	.module('app')
 	.controller('IntegrantesListCtrl',['$scope',function($scope){
 		
-		$scope.onClickIntegrante = function(integrante) {
+		$scope.editIntegrante = function(integrante) {
+			console.log(integrante);
 			$scope.integranteSeleccionado.id = integrante.id;
 			$scope.integranteSeleccionado.nombres = integrante.nombres;
 			$scope.integranteSeleccionado.apellidos = integrante.apellidos;

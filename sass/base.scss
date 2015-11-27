@@ -55,7 +55,8 @@ select {
 }
 
 #app {
-	width: 90rem;
+	//width: 90rem;
+	width: 96%;
 	margin: 0 auto;
 }
 
@@ -191,6 +192,10 @@ select {
 		background-color: #fff;
 		color: #560311;
 		border-bottom: 3px solid $app-second-color;
+
+		&:hover {
+			background-color: $app-third-color;
+		}
 	}
 }
 
