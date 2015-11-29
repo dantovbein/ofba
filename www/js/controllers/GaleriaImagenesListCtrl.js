@@ -7,6 +7,8 @@ angular
 			console.log(imagen);
 			$scope.cleanErrorText();
 			$scope.onEdit();
+			$scope.imagenSeleccionada.id = imagen.id;
+			$scope.imagenSeleccionada.orden = imagen.orden;
 			$scope.imagenSeleccionada.path = imagen.path;
 			$scope.imagenSeleccionada.codigoTexto = imagen.codigoTexto;
 			$scope.imagenSeleccionada.texto = imagen.texto;

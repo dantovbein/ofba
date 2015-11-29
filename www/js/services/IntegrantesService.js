@@ -19,8 +19,7 @@ angular
 			return $http
 		      	.get(config.path + 'service/manager/postIntegrante.php?nombres=' + integrante.nombres + '&apellidos=' + integrante.apellidos + '&idInstrumento=' + integrante.idInstrumento + '&idNacionalidad=' + integrante.idNacionalidad + '&idTipoDirector=' + integrante.idTipoDirector + '&idTipoIntegrante=' + integrante.idTipoIntegrante + '&idNacionalidad=' + integrante.idNacionalidad + '&strNacionalidad=' + integrante.strNacionalidad)
 		      	.then(function (response) {
-		      		console.log("pasa response");
-		       		return response;
+		      		return response;
 		      	},function(error){
 		      		console.log('error: ' + error);
 		      	});

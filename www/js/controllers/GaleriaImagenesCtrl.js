@@ -10,10 +10,10 @@ angular
 		
 		$scope.errorText = "";
 
-		/*$('#inputSearchImage').on('change', function (event, files, label) {
+		$('#inputSearchImage').on('change', function (event, files, label) {
 		    var file_name = this.value.replace(/\\/g, '/').replace(/.*\//, '')
 		   	$scope.imagenSeleccionada.imagenAgregada = file_name;
-		});*/
+		});
 
 		var uploader = $scope.uploader = new FileUploader({
             url: config.path + 'service/manager/upload.php'
@@ -26,21 +26,34 @@ angular
             }
         });
 
-		$scope.post = function(imagenSeleccionada) {
+		/*$scope.validate = function(imagenSeleccionada) {
       		console.log(imagenSeleccionada);
-      		if($scope.imagenSeleccionada.path == undefined) {
-      			$scope.errorText = "Se debe cargar alguna imágen";
-      		} else if($scope.imagenSeleccionada.texto == undefined) {
-      			$scope.errorText = "Se debe escribir alguna descripción de la imágen";
-      		} else {
-      			$scope.cleanErrorText();
-      			//$scope.imagenSeleccionada.codigoTexto = params.imagen.codigoTexto;
-				    //uploader.uploadAll();
-      		}
-      		
-		};
+    };*/
 
-		$scope.cleanFields = function() {
+    $scope.uploadImagen = function() {
+      uploader.uploadAll();
+      //$scope.postImagen();
+    }
+
+    $scope.postImagen = function() {
+      $scope.imagenSeleccionada.codigoTexto = "IMG_GALLERY_IMG_" + ($scope.imagenes.length + 1);
+      $scope.imagenSeleccionada.orden = $scope.imagenes.length + 1;
+      GaleriaImagenesService.postImagen($scope.imagenSeleccionada).then(function(response) {
+            if(response.status==200) {
+              console.log("Se agregó correctamente");
+              $scope.resetFormFields();
+              $scope.reloadImagenes();
+            }
+      });
+    }
+
+    $scope.reloadImagenes = function() {
+      GaleriaImagenesService.getImagenes().then(function(response){
+        $scope.imagenes = response;
+      });
+    }
+
+		$scope.resetFormFields = function() {
 			$scope.imagenSeleccionada = {};
 			$scope.cleanErrorText();
 			//$scope.inputSearchImage.replaceWith( $scope.inputSearchImage = $scope.inputSearchImage.clone( true ) );
@@ -87,5 +100,6 @@ angular
     };
     uploader.onCompleteAll = function() {
         console.info('onComplete');
+        $scope.postImagen();
     };
 	}]);
