@@ -3,12 +3,12 @@
 angular
 	.module('app')
 	.controller('GaleriaImagenesListCtrl',['$scope', function($scope){
-		$scope.edit = function(params) {
+		$scope.edit = function(imagen) {
+			console.log(imagen);
 			$scope.cleanErrorText();
 			$scope.onEdit();
-			//console.log(params);
-			$scope.imagenSeleccionada.path = params.imagen.path;
-			$scope.imagenSeleccionada.codigoTexto = params.imagen.codigoTexto;
-			$scope.imagenSeleccionada.texto = params.texto;
+			$scope.imagenSeleccionada.path = imagen.path;
+			$scope.imagenSeleccionada.codigoTexto = imagen.codigoTexto;
+			$scope.imagenSeleccionada.texto = imagen.texto;
 		}
 	}]);

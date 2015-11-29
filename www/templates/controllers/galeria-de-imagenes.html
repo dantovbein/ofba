@@ -31,12 +31,12 @@
 				<img src="http://ofba.com.ar/images/ofba/imageGallery/02.jpg" width="162" height="120" alt="{{ imagen.path }}" />
 			</div>
 			<div class="container-data-list-item-column imagen-codigo-texto">
-				<p class="container-data-list-item-column-value">{{ getTexto(imagen.codigoTexto) }}</p>
+				<p class="container-data-list-item-column-value">{{ imagen.texto }}</p>
 			</div>
 			<div class="imagen wrapper-controls">
 				<ul class="wrapper-controls-list">
-					<li class="wrapper-controls-list-item btn btn-edit" ng-click="edit({ imagen:imagen, texto: getTexto(imagen.codigoTexto) })">Editar</li>
-					<li class="wrapper-controls-list-item btn btn-remove" ng-click="delete(imagen.id)">Eliminar</li>
+					<li class="wrapper-controls-list-item btn btn-edit" ng-click="edit( imagen )">Editar</li>
+					<li class="wrapper-controls-list-item btn btn-remove" ng-click="delete( imagen.id )">Eliminar</li>
 				</ul>
 			</div>
 		</li>

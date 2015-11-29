@@ -60,9 +60,6 @@ angular.module('app')
 					resolve: {
 						imagenes: function(GaleriaImagenesService){
 							return GaleriaImagenesService.getImagenes();
-						},
-						textos: function(TextosService){
-							return TextosService.getTextos();
 						}
 					}
 				})

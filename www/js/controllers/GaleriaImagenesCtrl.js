@@ -2,9 +2,10 @@
 
 angular
 	.module('app')
-	.controller('GaleriaImagenesCtrl',['$scope','$http','FileUploader','config','GaleriaImagenesService','TextosService','imagenes','textos', function($scope,$http,FileUploader,config,GaleriaImagenesService,TextosService,imagenes,textos){
+	.controller('GaleriaImagenesCtrl',['$scope','$http','FileUploader','config','GaleriaImagenesService','TextosService','imagenes', function($scope,$http,FileUploader,config,GaleriaImagenesService,TextosService,imagenes){
 		$scope.imagenes = imagenes;
-		$scope.textos = textos;
+	   console.log(imagenes);
+  //	$scope.textos = textos;
 		$scope.imagenSeleccionada = {};
 		$scope.inputSearchImage = $("#inputSearchImage");
 		$scope.add = true;
@@ -27,11 +28,11 @@ angular
             }
         });
 
-        $scope.getTexto = function(codigo) {
+    /*    $scope.getTexto = function(codigo) {
 			return window._.filter(this.textos,function(t){
 				return t.codigo === codigo;
 			})[0].texto;
-		}
+		}*/
 		
 
 		$scope.post = function(imagenSeleccionada) {
