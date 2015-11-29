@@ -6,6 +6,7 @@ angular
 		
 		$scope.edit = function(integrante) {
 			console.log(integrante);
+			$scope.onEdit();
 			$scope.integranteSeleccionado.id = integrante.id;
 			$scope.integranteSeleccionado.nombres = integrante.nombres;
 			$scope.integranteSeleccionado.apellidos = integrante.apellidos;
