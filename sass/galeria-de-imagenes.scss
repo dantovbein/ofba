@@ -1,0 +1,44 @@
+.galeria-imagenes-container-filters {
+	
+	.container-filters-form-list-item-imagen {
+		width: 30% !important;
+	}
+
+	.container-filters-form-list-item-texto {
+		width: 70% !important;
+		
+		label {
+			width: 14% !important;
+		}
+
+		textarea {
+			width: 38rem;
+		    height: 8rem;
+		    padding: .5rem;
+		    font-size: .9rem;
+		}
+	}
+}
+
+.galeria-imagenes-list {
+	.galeria-imagenes-list-item {
+		width: 50%;
+		padding: 1rem 0.3rem 0.8rem 0.3rem;
+    	box-sizing: border-box;
+	
+		.imagen {
+			float: left;
+		}
+
+		.imagen-codigo-texto {
+			float: left;
+			width: 22rem;
+    		padding: 0 .8rem;
+		}
+
+		.wrapper-controls {
+			padding: .28rem;
+		}
+	}
+}
+
