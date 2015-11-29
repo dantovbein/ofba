@@ -2,28 +2,47 @@
 
 angular
 	.module('app')
-	.controller('IntegrantesFiltersCtrl',['$scope','$state','IntegrantesService',function($scope,$state,IntegrantesService){
+	.controller('IntegrantesFiltersCtrl',['$scope','$state','IntegrantesService','NacionalidadesService',function($scope,$state,IntegrantesService,NacionalidadesService){
 		$scope.postIntegrante = function(integrante) {
-			console.log(integrante)
-			if(integrante.id == undefined) {
-				console.log("entra post")
-				IntegrantesService.postIntegrante(integrante).success(function(response) {
-					console.log("integrante agregado: " + response);
-					//$state.go("main.integrantes",{id:Number(response)});
-					$state.go("main.integrantes");
-				});
+			
+			if(integrante.nombres == undefined) {
+				$scope.errorText = "El campo de nombre es obligatorio";
+				return false;
+			} else if (integrante.apellidos == undefined) {
+				$scope.errorText = "El campo de apellido es obligatorio";
+				return false;
+			} else if (integrante.idNacionalidad == undefined) {
+				$scope.errorText = "El campo de nacionalidad es obligatorio";
+				return false;
 			} else {
-				console.log("entra edit", console.log(integrante.id))
-				IntegrantesService.editIntegrante(integrante).success(function(response) {
-					console.log("integrante editado: " + response);
-					$state.go("main.integrantes",{id:response});
-				});
-			}
+				
+				$scope.errorText = "";
+				integrante.nombres = integrante.nombres;
+				integrante.apellidos = integrante.apellidos;
+				integrante.idNacionalidad = integrante.idNacionalidad;
+				integrante.idInstrumento = integrante.idInstrumento || "";
+				integrante.idTipoIntegrante = integrante.idTipoIntegrante || "";
+				integrante.idTipoDirector = integrante.idTipoDirector || "";
+				integrante.strNacionalidad = (integrante.idNacionalidad != "") ? NacionalidadesService.getStrNacionalidad(integrante.idNacionalidad) : "";
+				
+				if(integrante.id == undefined) {
+					IntegrantesService.postIntegrante(integrante).then(function(response) {
+						if(response.status==200) {
+							console.log("Se agregó correctamente");
+							$scope.cleanFields();
+							$scope.reloadIntegrantes();
+						}
+					});
+				} else {
+					IntegrantesService.editIntegrante(integrante).then(function(response) {
+						if(response.status==200) {
+							console.log("Se editó correctamente");
+							$scope.cleanFields();
+							$scope.reloadIntegrantes();
+						}
+					});
+				}
+
+			}			
 		}
-
-
-		$scope.onCleanFields = function() {
-			$scope.integranteSeleccionado = {};
-		}
-
 	}]);

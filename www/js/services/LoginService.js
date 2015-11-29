@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('app')
 	.factory('LoginService',['$state',function($state){
 		return {

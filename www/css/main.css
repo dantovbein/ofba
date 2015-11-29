@@ -5,7 +5,7 @@
   font-weight: normal;
   font-style: normal; }
 
-body, div, p, span, ul, li, h1, h2, h3, h4, h5, h6, aside, figure, figcaption, label, input {
+body, div, p, span, ul, li, h1, h2, h3, h4, h5, h6, aside, figure, figcaption, label, input, textarea {
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
@@ -101,6 +101,13 @@ select {
         #container .sub-section .container-filters-form .container-filters-form-wrapper-controls .wrapper-controls-list {
           float: none;
           display: inline-block; }
+          #container .sub-section .container-filters-form .container-filters-form-wrapper-controls .wrapper-controls-list .wrapper-controls-list-item {
+            font-size: 1rem; }
+      #container .sub-section .container-filters-form .error {
+        display: inline-block;
+        width: 100%;
+        float: left;
+        text-align: center; }
 
 #main_nav {
   float: left;
@@ -116,6 +123,9 @@ select {
   font-size: 0.85rem; }
   .btn:hover {
     background-color: #7e0a08; }
+
+.error {
+  color: #FFC000; }
 
 .container-data-list-header, .container-data-list {
   width: 100%;
@@ -143,6 +153,11 @@ select {
     border-bottom: 3px solid #560311; }
     .container-data-list-header .container-data-list-item:hover, .container-data-list .container-data-list-item:hover {
       background-color: #fceac3; }
+    .container-data-list-header .container-data-list-item.selected, .container-data-list .container-data-list-item.selected {
+      background-color: #FDD680; }
+    .container-data-list-header .container-data-list-item .wrapper-controls-list, .container-data-list .container-data-list-item .wrapper-controls-list {
+      float: left;
+      width: 100%; }
 
 .container-data-list-header {
   background-color: #fceac3; }
@@ -151,10 +166,12 @@ select {
   width: 100%;
   float: left; }
   .wrapper-controls .wrapper-controls-list {
-    float: left;
-    width: 100%; }
+    float: none;
+    display: inline-block;
+    width: auto; }
     .wrapper-controls .wrapper-controls-list .wrapper-controls-list-item {
-      float: left; }
+      float: left;
+      margin: 0 .2rem; }
 
 .error-message {
   color: red; }
@@ -210,3 +227,29 @@ select {
     text-align: right; }
     .integrantes-list .integrantes-list-item .integrante.wrapper-controls .wrapper-controls-list .wrapper-controls-list-item {
       margin: 0 0 0 4%; }
+
+.galeria-imagenes-container-filters .container-filters-form-list-item-imagen {
+  width: 30% !important; }
+
+.galeria-imagenes-container-filters .container-filters-form-list-item-texto {
+  width: 70% !important; }
+  .galeria-imagenes-container-filters .container-filters-form-list-item-texto label {
+    width: 14% !important; }
+  .galeria-imagenes-container-filters .container-filters-form-list-item-texto textarea {
+    width: 38rem;
+    height: 8rem;
+    padding: .5rem;
+    font-size: .9rem; }
+
+.galeria-imagenes-list .galeria-imagenes-list-item {
+  width: 50%;
+  padding: 1rem 0.3rem 0.8rem 0.3rem;
+  box-sizing: border-box; }
+  .galeria-imagenes-list .galeria-imagenes-list-item .imagen {
+    float: left; }
+  .galeria-imagenes-list .galeria-imagenes-list-item .imagen-codigo-texto {
+    float: left;
+    width: 22rem;
+    padding: 0 .8rem; }
+  .galeria-imagenes-list .galeria-imagenes-list-item .wrapper-controls {
+    padding: .28rem; }

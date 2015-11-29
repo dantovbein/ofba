@@ -4,7 +4,7 @@ angular
 	.module('app')
 	.controller('IntegrantesListCtrl',['$scope',function($scope){
 		
-		$scope.editIntegrante = function(integrante) {
+		$scope.edit = function(integrante) {
 			console.log(integrante);
 			$scope.integranteSeleccionado.id = integrante.id;
 			$scope.integranteSeleccionado.nombres = integrante.nombres;

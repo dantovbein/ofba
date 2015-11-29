@@ -8,14 +8,14 @@ angular.module('app')
 					url:'/',
 					views: {
 						'': {
-							templateUrl:'/templates/controllers/main.html',
+							templateUrl:'templates/controllers/main.html',
 							controller: 'MainCtrl'
 						},
 						'header@main': {
-							templateUrl: './templates/directives/header-component.html'
+							templateUrl: 'templates/directives/header-component.html'
 						},
 						'mainNav@main': {
-							templateUrl: './templates/controllers/main-nav.html',
+							templateUrl: 'templates/controllers/main-nav.html',
 							controller: 'MainNavCtrl'
 						}
 					}
@@ -26,7 +26,7 @@ angular.module('app')
 					url: 'integrantes/:id',
 					views: {
 						'container': {
-							templateUrl: "./templates/controllers/integrantes.html",
+							templateUrl: "templates/controllers/integrantes.html",
 							controller: "IntegrantesCtrl"
 						}
 					},
@@ -34,17 +34,17 @@ angular.module('app')
 						integrantes: function(IntegrantesService) {
 							return IntegrantesService.getIntegrantes();
 						},
-						instrumentos: function(IntegrantesService) {
-							return IntegrantesService.getInstrumentos();
-						},
-						tiposDirector: function(IntegrantesService) {
-							return IntegrantesService.getTiposDirector();
-						},
 						tiposIntegrante: function(IntegrantesService) {
 							return IntegrantesService.getTiposIntegrante();
 						},
-						nacionalidades: function(IntegrantesService) {
-							return IntegrantesService.getNacionalidades();
+						instrumentos: function(InstrumentosService) {
+							return InstrumentosService.getInstrumentos();
+						},
+						tiposDirector: function(DirectoresService) {
+							return DirectoresService.getTiposDirector();
+						},						
+						nacionalidades: function(NacionalidadesService) {
+							return NacionalidadesService.getNacionalidades();
 						}
 					}
 				})
@@ -53,8 +53,16 @@ angular.module('app')
 					url: 'galeria-de-imagenes/',
 					views: {
 						'container': {
-							templateUrl: "./templates/controllers/galeria-de-imagenes.html",
-							controller: "IntegrantesCtrl"
+							templateUrl: "templates/controllers/galeria-de-imagenes.html",
+							controller: "GaleriaImagenesCtrl"
+						}
+					},
+					resolve: {
+						imagenes: function(GaleriaImagenesService){
+							return GaleriaImagenesService.getImagenes();
+						},
+						textos: function(TextosService){
+							return TextosService.getTextos();
 						}
 					}
 				})
@@ -63,7 +71,7 @@ angular.module('app')
 					url: 'conciertos/temporadas/',
 					views: {
 						'container': {
-							templateUrl: "./templates/controllers/temporadas.html",
+							templateUrl: "templates/controllers/temporadas.html",
 							controller: "TemporadasCtrl"
 						}
 					}
@@ -73,7 +81,7 @@ angular.module('app')
 					url: 'conciertos/directores/',
 					views: {
 						'container': {
-							templateUrl: "./templates/controllers/directores.html",
+							templateUrl: "templates/controllers/directores.html",
 							controller: "TemporadasCtrl"
 						}
 					}
@@ -83,7 +91,7 @@ angular.module('app')
 					url: 'conciertos/solistas/',
 					views: {
 						'container': {
-							templateUrl: "./templates/controllers/solistas.html",
+							templateUrl: "templates/controllers/solistas.html",
 							controller: "SolistaCtrl"
 						}
 					}
@@ -93,7 +101,7 @@ angular.module('app')
 					url: 'conciertos/compositores-obras/',
 					views: {
 						'container': {
-							templateUrl: "./templates/controllers/compositores-obras.html",
+							templateUrl: "templates/controllers/compositores-obras.html",
 							controller: "CompositoresObrasCtrl"
 						}
 					}
@@ -103,7 +111,7 @@ angular.module('app')
 					url: 'conciertos/giras/',
 					views: {
 						'container': {
-							templateUrl: "./templates/controllers/giras.html",
+							templateUrl: "templates/controllers/giras.html",
 							controller: "GirasCtrl"
 						}
 					}
@@ -111,7 +119,7 @@ angular.module('app')
 
 				.state('login',{
 					url:'/login',
-					templateUrl:'./templates/controllers/login.html',
+					templateUrl:'templates/controllers/login.html',
 					controller: 'LoginCtrl'
 				})
 		});

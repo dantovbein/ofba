@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html lang="es" ng-app="app">
 <head>
 	<title>Orquesta Filarmónica de Buenos Aires - Panel Administrador</title>
 	<link rel="stylesheet" type="text/css" href="css/main.css"/>
 	
+	<script src="./js/3rdparty/jquery.min.js"></script>
 	<script src="./js/3rdparty/underscore-min.js"></script>
 	<script src="./js/bundle.js"></script>
 	<script src="./js/app.js"></script>
 	<script src="./js/route.js"></script>
+	<script src="./js/config.js"></script>
 
 	<!-- Services -->
-	<!--<script src="./js/services/underscore.js"></script>-->
 	<script src="./js/services/LoginService.js"></script>
-	<script src="./js/services/IntegrantesService.js"></script>	
+	<script src="./js/services/IntegrantesService.js"></script>
+	<script src="./js/services/DirectoresService.js"></script>
+	<script src="./js/services/InstrumentosService.js"></script>
+	<script src="./js/services/NacionalidadesService.js"></script>
+	<script src="./js/services/GaleriaImagenesService.js"></script>
+	<script src="./js/services/TextosService.js"></script>	
 
 	<!-- Directives -->
 	<script src="./js/directives/HeaderComponent.js"></script>
@@ -24,9 +30,10 @@
 	<script src="./js/controllers/IntegrantesCtrl.js"></script>
 	<script src="./js/controllers/IntegrantesFiltersCtrl.js"></script>
 	<script src="./js/controllers/IntegrantesListCtrl.js"></script>
+	<script src="./js/controllers/GaleriaImagenesCtrl.js"></script>
+	<script src="./js/controllers/GaleriaImagenesFiltersCtrl.js"></script>
+	<script src="./js/controllers/GaleriaImagenesListCtrl.js"></script>
 	<script src="./js/controllers/TemporadasCtrl.js"></script>
-	<!--<script src="./js/controllers/DirectoresCtrl.js"></script>
-	<script src="./js/controllers/SolistasCtrl.js"></script>-->
 
 </head>
 <body>

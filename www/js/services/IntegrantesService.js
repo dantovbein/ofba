@@ -2,79 +2,61 @@
 
 angular
 	.module('app')
-	.factory('IntegrantesService',['$http',function($http){
+	.factory('IntegrantesService',['$http','config',function($http,config){
 		var integrantesService = {};
 
 		integrantesService.getIntegrantes = function() {
-			return $http({
-				url: 'http://localhost/ofba_service/service/manager/getIntegrantes.php'
-			}).success(function(response) {
-				return response;
-			}).error(function(error){
-				console.log('error: ' + error);
-			});
+			return $http
+				.get(config.path + 'service/manager/getIntegrantes.php')
+				.then(function(response) {
+					return response.data;
+				}, function(error) {
+					console.log('error: ' + error);
+				});
 		}
 
 		integrantesService.postIntegrante = function(integrante) {
-			return $http({
-				method: 'GET',
-				url: 'http://localhost/ofba_service/service/manager/postIntegrante.php?nombres=' + integrante.nombres + '&apellidos=' + integrante.apellidos + '&idInstrumento=' + integrante.idInstrumento + '&idNacionalidad=' + integrante.idNacionalidad + '&idTipoDirector=' + integrante.idTipoDirector + '&idTipoIntegrante=' + integrante.idTipoIntegrante + '&idNacionalidad=' + integrante.idNacionalidad
-			}).error(function(error) {
-				console.log('error: ' + error);
-			});
-		}
+			return $http
+		      	.get(config.path + 'service/manager/postIntegrante.php?nombres=' + integrante.nombres + '&apellidos=' + integrante.apellidos + '&idInstrumento=' + integrante.idInstrumento + '&idNacionalidad=' + integrante.idNacionalidad + '&idTipoDirector=' + integrante.idTipoDirector + '&idTipoIntegrante=' + integrante.idTipoIntegrante + '&idNacionalidad=' + integrante.idNacionalidad + '&strNacionalidad=' + integrante.strNacionalidad)
+		      	.then(function (response) {
+		      		console.log("pasa response");
+		       		return response;
+		      	},function(error){
+		      		console.log('error: ' + error);
+		      	});
+	    }
 
 		integrantesService.editIntegrante = function(integrante) {
-			return $http({
-				method: 'GET',
-				url: 'http://localhost/ofba_service/service/manager/editIntegrante.php?id=' + integrante.id + '&nombres=' + integrante.nombres + '&apellidos=' + integrante.apellidos + '&idInstrumento=' + integrante.idInstrumento + '&idNacionalidad=' + integrante.idNacionalidad + '&idTipoDirector=' + integrante.idTipoDirector + '&idTipoIntegrante=' + integrante.idTipoIntegrante + '&idNacionalidad=' + integrante.idNacionalidad
-			}).error(function(error) {
-				console.log('error: ' + error);
-			});
+			return $http
+				.get(config.path + 'service/manager/editIntegrante.php?id=' + integrante.id + '&nombres=' + integrante.nombres + '&apellidos=' + integrante.apellidos + '&idInstrumento=' + integrante.idInstrumento + '&idNacionalidad=' + integrante.idNacionalidad + '&idTipoDirector=' + integrante.idTipoDirector + '&idTipoIntegrante=' + integrante.idTipoIntegrante + '&idNacionalidad=' + integrante.idNacionalidad + '&strNacionalidad=' + integrante.strNacionalidad)
+				.then(function(response) {
+					return response;
+				},function(error) {
+					console.log('error: ' + error);
+				});
 		}
 
 		integrantesService.deleteIntegrante = function(id) {
 			return $http({
 					method: 'GET',
-					url: 'http://localhost/ofba_service/service/manager/deleteIntegrante.php?id=' + id,
+					url: config.path + 'service/manager/deleteIntegrante.php?id=' + id,
 				}).error(function(error) {
 					console.log('error: ' + error);
 				});
 		}
 
-		integrantesService.getInstrumentos = function() {
-			return $http({
-				url: 'http://localhost/ofba_service/service/manager/getInstrumentos.php'
-			}).success(function(response) {
-				return response;
-			}).error(function(error){
-				console.log('error: ' + error);
-			});
-		}
-
-		integrantesService.getTiposDirector = function() {
-			return $http({
-				url: 'http://localhost/ofba_service/service/manager/getTiposDirector.php'
-			}).success(function(response) {
-				return response;
-			}).error(function(error){
-				console.log('error: ' + error);
-			});
-		}
-
 		integrantesService.getTiposIntegrante = function() {
-			return $http({
-				url: 'http://localhost/ofba_service/service/manager/getTiposIntegrante.php'
-			}).success(function(response) {
-				return response;
-			}).error(function(error){
-				console.log('error: ' + error);
-			});
+			return $http
+				.get(config.path + 'service/manager/getTiposIntegrante.php')
+				.then(function(response) {
+					return response.data;
+				},function(error) {
+					console.log('error: ' + error);
+				});
 		}
 
-		integrantesService.getNacionalidades = function() {
-			return [{ idNacionalidad: 1, strNacionalidad: 'Argentino' },
-					{ idNacionalidad: 2, strNacionalidad: 'Extranjero' }];
+		integrantesService.parseTipoIntegrante = function(str) {
+			return str.substring('TIPO_INTEGRANTE_'.length).replace(/_/g,' ').toLowerCase();
 		}
 
 		return integrantesService;

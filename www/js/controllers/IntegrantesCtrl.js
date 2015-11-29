@@ -2,20 +2,22 @@
 
 angular
 	.module('app')
-	.controller('IntegrantesCtrl',[ '$scope','$stateParams','$http','_','IntegrantesService','integrantes','instrumentos','tiposDirector','tiposIntegrante', 'nacionalidades',
-		function($scope, $stateParams, $http, _ ,IntegrantesService,integrantes,instrumentos,tiposDirector,tiposIntegrante,nacionalidades ){
+	.controller('IntegrantesCtrl',[ '$scope','$stateParams','$http','_','IntegrantesService','DirectoresService','NacionalidadesService','integrantes','tiposIntegrante','instrumentos','tiposDirector','nacionalidades',
+		function($scope, $stateParams, $http, _ ,IntegrantesService,DirectoresService,NacionalidadesService,integrantes,tiposIntegrante,instrumentos,tiposDirector,nacionalidades ){
 
 			$scope.params = $stateParams;
 
-			$scope.integrantes = integrantes.data;
-			$scope.instrumentos = instrumentos.data;
-			$scope.tiposDirector = tiposDirector.data;
-			$scope.tiposIntegrante = tiposIntegrante.data;
+			$scope.integrantes = integrantes;
+			$scope.instrumentos = instrumentos;
+			$scope.tiposDirector = tiposDirector;
+			$scope.tiposIntegrante = tiposIntegrante;
 			$scope.nacionalidades = nacionalidades;
 
 			$scope.integranteSeleccionado = window._.filter($scope.integrantes,function(i){
 				return 	i.id == $scope.params.id;
 			})[0] || {};
+
+			$scope.errorText = "";
 
 			$scope.getInstrumento = function(idInstrumento) {
 				if(idInstrumento === null || idInstrumento === undefined)  {
@@ -46,7 +48,7 @@ angular
 			}
 
 			$scope.parseTipoDirector = function(str) {
-				return str.substring('TIPO_DIRECTOR_'.length).replace(/_/g,' ').toLowerCase();;
+				return DirectoresService.parseTipoDirector(str);
 			}
 
 			$scope.getTipoIntegrante = function(idTipoIntegrante) {
@@ -64,10 +66,10 @@ angular
 			}
 
 			$scope.parseTipoIntegrante = function(str) {
-				return str.substring('TIPO_INTEGRANTE_'.length).replace(/_/g,' ').toLowerCase();
+				return IntegrantesService.parseTipoIntegrante(str);
 			}
 
-			$scope.deleteIntegrante = function(id) {
+			$scope.delete = function(id) {
 				$scope.idToDelete = id;
 				
 				IntegrantesService.deleteIntegrante(id).success(function(response) {
@@ -75,5 +77,15 @@ angular
 			 			return integrante.id == $scope.idToDelete;
 					});
 				});
+			}
+
+			$scope.reloadIntegrantes = function() {
+				IntegrantesService.getIntegrantes().then(function(response){
+					$scope.integrantes = response;
+				});
+			}
+
+			$scope.cleanFields = function() {
+				$scope.integranteSeleccionado = {};
 			}
 	}]);

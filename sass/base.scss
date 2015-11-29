@@ -1,4 +1,4 @@
-body,div,p,span,ul,li,h1,h2,h3,h4,h5,h6,aside,figure,figcaption,label,input {
+body,div,p,span,ul,li,h1,h2,h3,h4,h5,h6,aside,figure,figcaption,label,input,textarea {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -126,9 +126,22 @@ select {
 
 				.wrapper-controls-list {
 					float: none;
-					display: inline-block;
+					display: inline-block; 
+
+					.wrapper-controls-list-item {
+						font: {
+							size: 1rem;
+						}
+					}
 				}
-			}	
+			}
+
+			.error {
+				display: inline-block;
+				width: 100%;
+				float: left;
+				text-align: center;
+			}
 		}
 	}
 }
@@ -150,6 +163,10 @@ select {
 	&:hover {
 		background-color: $app-first-color;
 	}
+}
+
+.error {
+	color: $text-error-color;
 }
 
 .container-data-list-header, .container-data-list {
@@ -196,6 +213,15 @@ select {
 		&:hover {
 			background-color: $app-third-color;
 		}
+
+		&.selected {
+			background-color: $app-third-color-dark;
+		}
+
+		.wrapper-controls-list {
+			float: left;
+			width: 100%;
+		}
 	}
 }
 
@@ -208,11 +234,13 @@ select {
 	float: left;
 	
 	.wrapper-controls-list {
-		float: left;
-		width: 100%;
+		float: none;
+    	display: inline-block;
+    	width: auto;
 				
 		.wrapper-controls-list-item {
 			float: left;
+			margin: 0 .2rem;
 		}
 	}
 }
