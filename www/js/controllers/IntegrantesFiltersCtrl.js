@@ -4,7 +4,7 @@ angular
 	.module('app')
 	.controller('IntegrantesFiltersCtrl',['$scope','$state','IntegrantesService','NacionalidadesService',function($scope,$state,IntegrantesService,NacionalidadesService){
 		$scope.postIntegrante = function(integrante) {
-			
+			console.log(integrante);
 			if(integrante.nombres == undefined) {
 				$scope.errorText = "El campo de nombre es obligatorio";
 				return false;

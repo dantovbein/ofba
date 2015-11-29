@@ -19,7 +19,7 @@ angular
 
 			$scope.errorText = "";
 
-			$scope.getInstrumento = function(idInstrumento) {
+			/*$scope.getInstrumento = function(idInstrumento) {
 				if(idInstrumento === null || idInstrumento === undefined)  {
 					return "";
 				} else {
@@ -31,9 +31,9 @@ angular
 					});
 				}
 				return instrumento;
-			}
+			}*()
 
-			$scope.getTipoDirector = function(idTipoDirector) {
+			/*$scope.getTipoDirector = function(idTipoDirector) {
 				if(idTipoDirector === null || idTipoDirector === undefined) {
 					return "";
 				} else {
@@ -45,13 +45,13 @@ angular
 					});
 				}
 				return $scope.parseTipoDirector(tipoDirector);
-			}
+			}*/
 
 			$scope.parseTipoDirector = function(str) {
 				return DirectoresService.parseTipoDirector(str);
 			}
 
-			$scope.getTipoIntegrante = function(idTipoIntegrante) {
+			/*$scope.getTipoIntegrante = function(idTipoIntegrante) {
 				if(idTipoIntegrante === null || idTipoIntegrante === undefined) {
 					return "";
 				} else {
@@ -63,7 +63,7 @@ angular
 					});
 				}
 				return $scope.parseTipoIntegrante(tipoIntegrante);
-			}
+			}*/
 
 			$scope.parseTipoIntegrante = function(str) {
 				return IntegrantesService.parseTipoIntegrante(str);

@@ -16,7 +16,7 @@ angular
 		},
 		
 		directoresService.parseTipoDirector = function(str) {
-			return str.substring('TIPO_DIRECTOR_'.length).replace(/_/g,' ').toLowerCase();;
+			return (str!=null) ? str.substring('TIPO_DIRECTOR_'.length).replace(/_/g,' ').toLowerCase() : "";
 		}
 
 		return directoresService;

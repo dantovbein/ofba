@@ -83,13 +83,13 @@
 				<span class="container-data-list-item-column-value">{{ integrante.apellidos }}</span>
 			</div>
 			<div class="container-data-list-item-column integrante integrante-instrumento">
-				<span class="container-data-list-item-column-value">{{ getInstrumento(integrante.idInstrumento) }}</span>
+				<span class="container-data-list-item-column-value">{{ integrante.codigoTextoInstrumento }}</span>
 			</div>
 			<div class="container-data-list-item-column integrante integrante-tipo-integrante">
-				<span class="container-data-list-item-column-value">{{ getTipoIntegrante(integrante.idTipoIntegrante) }}</span>
+				<span class="container-data-list-item-column-value">{{ parseTipoIntegrante(integrante.codigoTextoTipoIntegrante) }}</span>
 			</div>
 			<div class="container-data-list-item-column integrante integrante-tipo-director">
-				<span class="container-data-list-item-column-value">{{ getTipoDirector(integrante.idTipoDirector) }}</span>
+				<span class="container-data-list-item-column-value">{{ parseTipoDirector(integrante.codigoTipoDirector) }}</span>
 			</div>
 			<div class="container-data-list-item-column integrante integrante-nacionalidad">
 				<span class="container-data-list-item-column-value">{{ integrante.strNacionalidad }}</span>

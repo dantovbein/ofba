@@ -56,7 +56,7 @@ angular
 		}
 
 		integrantesService.parseTipoIntegrante = function(str) {
-			return str.substring('TIPO_INTEGRANTE_'.length).replace(/_/g,' ').toLowerCase();
+			return (str!=null) ? str.substring('TIPO_INTEGRANTE_'.length).replace(/_/g,' ').toLowerCase() : "";
 		}
 
 		return integrantesService;
