@@ -27,8 +27,8 @@ angular
         });
 
     $scope.uploadImagen = function() {
-      //uploader.uploadAll();
-      $scope.postImagen();
+      uploader.uploadAll();
+      //$scope.postImagen();
     }
 
     $scope.postImagen = function() {
@@ -54,13 +54,7 @@ angular
     }
 
     $scope.deleteImagen = function(id) {
-        //$scope.idToDelete = id;
-        console.log(id);
         GaleriaImagenesService.deleteImagen(id).success(function(response) {
-          /*$scope.integrantes = window._.reject($scope.integrantes, function(integrante){
-            return integrante.id == $scope.idToDelete;
-          });*/
-          console.log(response);
           $scope.reloadImagenes();
         });
       }
@@ -75,8 +69,7 @@ angular
 			$scope.imagenSeleccionada = {};
 			$scope.cleanErrorText();
 			//$scope.inputSearchImage.replaceWith( $scope.inputSearchImage = $scope.inputSearchImage.clone( true ) );
-			//$scope.add = true;
-      $scope.add(true);
+			$scope.add(true);
 		}
 
     $scope.add = function(value){
@@ -119,6 +112,6 @@ angular
     };
     uploader.onCompleteAll = function() {
         console.info('onComplete');
-        //$scope.postImagen();
+        $scope.postImagen();
     };
 	}]);

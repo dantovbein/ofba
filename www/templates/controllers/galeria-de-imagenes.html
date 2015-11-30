@@ -14,7 +14,7 @@
 		</ul>
 		<div class="container-filters-form-wrapper-controls wrapper-controls">
 			<ul class="wrapper-controls-list">
-				<li class="wrapper-controls-list-item btn btn-clean" ng-click="resetFormFields()">Limpiar</li>
+				<li class="wrapper-controls-list-item btn btn-clean" ng-click="resetFormFields()">Cancelar</li>
 				<li class="wrapper-controls-list-item btn btn-save" ng-click="postImagen()">Guardar</li>
 			</ul>
 		</div>
@@ -26,7 +26,7 @@
 	<ul class="container-data-list galeria-imagenes-list">
 		<li class="container-data-list-item galeria-imagenes-list-item" ng-class="{ 'selected':(imagen.codigoTexto===imagenSeleccionada.codigoTexto) }" ng-repeat="imagen in imagenes">
 			<div class="container-data-list-item-column imagen">
-				<img src="{{ imagen.path }}" width="162" height="120" alt="{{ imagen.path }}" />
+				<img src="{{ imagen.path }}" width="162" height="120" alt="{{ imagen.texto }}" />
 			</div>
 			<div class="container-data-list-item-column imagen-codigo-texto">
 				<p class="container-data-list-item-column-value">{{ imagen.texto }}</p>
