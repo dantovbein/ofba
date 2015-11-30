@@ -19,13 +19,7 @@ angular
       				$scope.errorText = "Se debe escribir alguna descripción de la imágen";
       				return false;
       			} else {
-      				GaleriaImagenesService.editImagen($scope.imagenSeleccionada).then(function(response) {
-						if(response.status==200) {
-							console.log("Se editó correctamente");
-							$scope.resetFormFields();
-							//$scope.reloadIntegrantes();
-						}
-					});
+      				$scope.editImagen();
       			}
 			}
 		}

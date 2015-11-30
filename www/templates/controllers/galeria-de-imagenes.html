@@ -1,11 +1,11 @@
 <h1 class="section-title">Galeria de imágenes</h1>
 <section class="sub-section container-filters galeria-imagenes-container-filters" ng-controller="GaleriaImagenesFiltersCtrl">
-	<h2 class="sub-section-title">{{ add ? 'Agregar' : 'Editar' }}</h2>
+	<h2 class="sub-section-title">{{ addImagen ? 'Agregar' : 'Editar' }}</h2>
 	<form name="integrantesFiltersForm" class="container-filters-form">
 		<ul class="container-filters-form-list">
 			<li class="container-filters-form-list-item container-filters-form-list-item-imagen">
-				<img id="imageSelected" src="{{ imagenSeleccionada.path }}" ng-show="!add" width="162" height="120" />
-				<input id="inputSearchImage" type="file" nv-file-select="" ng-show="add" ng-model="imagenSeleccionada.imagenAgregada" uploader="uploader" />
+				<img id="imageSelected" src="{{ imagenSeleccionada.path }}" ng-show="!addImagen" width="220" height="163" />
+				<input id="inputSearchImage" type="file" nv-file-select="" ng-show="addImagen" ng-model="imagenSeleccionada.imagenAgregada" uploader="uploader" />
 			</li>
 			<li class="container-filters-form-list-item container-filters-form-list-item-texto">
 				<label>Descripción:</label>
@@ -14,7 +14,7 @@
 		</ul>
 		<div class="container-filters-form-wrapper-controls wrapper-controls">
 			<ul class="wrapper-controls-list">
-				<li class="wrapper-controls-list-item btn btn-clean" ng-click="cleanFields()">Limpiar</li>
+				<li class="wrapper-controls-list-item btn btn-clean" ng-click="resetFormFields()">Limpiar</li>
 				<li class="wrapper-controls-list-item btn btn-save" ng-click="postImagen()">Guardar</li>
 			</ul>
 		</div>
@@ -27,7 +27,6 @@
 		<li class="container-data-list-item galeria-imagenes-list-item" ng-class="{ 'selected':(imagen.codigoTexto===imagenSeleccionada.codigoTexto) }" ng-repeat="imagen in imagenes">
 			<div class="container-data-list-item-column imagen">
 				<img src="{{ imagen.path }}" width="162" height="120" alt="{{ imagen.path }}" />
-				<!--<img src="http://ofba.com.ar/images/ofba/imageGallery/02.jpg" width="162" height="120" alt="{{ imagen.path }}" />-->
 			</div>
 			<div class="container-data-list-item-column imagen-codigo-texto">
 				<p class="container-data-list-item-column-value">{{ imagen.texto }}</p>
@@ -35,7 +34,7 @@
 			<div class="imagen wrapper-controls">
 				<ul class="wrapper-controls-list">
 					<li class="wrapper-controls-list-item btn btn-edit" ng-click="edit( imagen )">Editar</li>
-					<li class="wrapper-controls-list-item btn btn-remove" ng-click="delete( imagen.id )">Eliminar</li>
+					<li class="wrapper-controls-list-item btn btn-remove" ng-click="deleteImagen( imagen.id )">Eliminar</li>
 				</ul>
 			</div>
 		</li>

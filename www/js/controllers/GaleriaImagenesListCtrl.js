@@ -6,7 +6,7 @@ angular
 		$scope.edit = function(imagen) {
 			console.log(imagen);
 			$scope.cleanErrorText();
-			$scope.onEdit();
+			$scope.add(false);
 			$scope.imagenSeleccionada.id = imagen.id;
 			$scope.imagenSeleccionada.orden = imagen.orden;
 			$scope.imagenSeleccionada.path = imagen.path;

@@ -6,7 +6,7 @@ angular
 		$scope.imagenes = imagenes;
 	  $scope.imagenSeleccionada = {};
 		$scope.inputSearchImage = $("#inputSearchImage");
-		$scope.add = true;
+		$scope.addImagen = true;
 		
 		$scope.errorText = "";
 
@@ -26,17 +26,13 @@ angular
             }
         });
 
-		/*$scope.validate = function(imagenSeleccionada) {
-      		console.log(imagenSeleccionada);
-    };*/
-
     $scope.uploadImagen = function() {
-      uploader.uploadAll();
-      //$scope.postImagen();
+      //uploader.uploadAll();
+      $scope.postImagen();
     }
 
     $scope.postImagen = function() {
-      $scope.imagenSeleccionada.codigoTexto = "IMG_GALLERY_IMG_" + ($scope.imagenes.length + 1);
+      //$scope.imagenSeleccionada.codigoTexto = "IMG_GALLERY_IMG_" + $scope.imagenSeleccionada.id;
       $scope.imagenSeleccionada.orden = $scope.imagenes.length + 1;
       GaleriaImagenesService.postImagen($scope.imagenSeleccionada).then(function(response) {
             if(response.status==200) {
@@ -46,6 +42,28 @@ angular
             }
       });
     }
+
+    $scope.editImagen = function() {
+      GaleriaImagenesService.editImagen($scope.imagenSeleccionada).then(function(response) {
+            if(response.status==200) {
+              console.log("Se editó correctamente");
+              $scope.resetFormFields();
+              $scope.reloadImagenes();
+            }
+          });
+    }
+
+    $scope.deleteImagen = function(id) {
+        //$scope.idToDelete = id;
+        console.log(id);
+        GaleriaImagenesService.deleteImagen(id).success(function(response) {
+          /*$scope.integrantes = window._.reject($scope.integrantes, function(integrante){
+            return integrante.id == $scope.idToDelete;
+          });*/
+          console.log(response);
+          $scope.reloadImagenes();
+        });
+      }
 
     $scope.reloadImagenes = function() {
       GaleriaImagenesService.getImagenes().then(function(response){
@@ -57,15 +75,16 @@ angular
 			$scope.imagenSeleccionada = {};
 			$scope.cleanErrorText();
 			//$scope.inputSearchImage.replaceWith( $scope.inputSearchImage = $scope.inputSearchImage.clone( true ) );
-			$scope.add = true;
+			//$scope.add = true;
+      $scope.add(true);
 		}
+
+    $scope.add = function(value){
+      $scope.addImagen = value;
+    }
 
 		$scope.cleanErrorText = function() {
 			$scope.errorText = "";
-		}
-
-		$scope.onEdit = function() {
-			$scope.add = false;
 		}
 
 		uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
@@ -100,6 +119,6 @@ angular
     };
     uploader.onCompleteAll = function() {
         console.info('onComplete');
-        $scope.postImagen();
+        //$scope.postImagen();
     };
 	}]);
