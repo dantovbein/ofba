@@ -1,0 +1,105 @@
+<h1 class="section-title">Seccion Obras</h1>
+<section class="sub-section container-filters" ng-controller="ObrasFiltersCtrl">
+	<h2 class="sub-section-title">{{ add ? 'Agregar' : 'Editar' }} obra</h2>
+	<form name="obrasFiltersForm" class="container-filters-form">
+		<ul class="container-filters-form-list">
+			<!--<li class="container-filters-form-list-item">
+				<label>Evento:</label>
+				<input name="integranteNombre" type="text" placeholder="Ingrese el nombre" ng-model="integranteSeleccionado.nombres" value="{{ integranteSeleccionado.nombres }}" />
+			</li>
+			<li class="container-filters-form-list-item">
+				<label>Apellido:</label>
+				<input name="integranteApellido" type="text" placeholder="Ingrese el apellido" ng-model="integranteSeleccionado.apellidos" value="{{ integranteSeleccionado.apellidos }}" />
+			</li>
+			<li class="container-filters-form-list-item">
+				<label>Instrumento:</label>
+				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idInstrumento">
+					<option value="" default selected>Selecciona el instrumento</option>
+					<option ng-repeat="instrumento in instrumentos" value="{{ instrumento.id }}">{{ instrumento.codigoTexto }}</option>
+				</select>
+			</li>
+			<li class="container-filters-form-list-item">
+				<label>Tipo integrante:</label>
+				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idTipoIntegrante">
+					<option value="" default selected>Selecciona el tipo de integrante</option>
+					<option ng-repeat="integrante in tiposIntegrante" value="{{ integrante.id }}">{{ parseTipoIntegrante(integrante.codigoTexto) }}</option>
+				</select>
+			</li>
+			<li class="container-filters-form-list-item">
+				<label>Tipo director:</label>
+				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idTipoDirector">
+					<option value="" default selected>Selecciona el tipo de director</option>
+					<option ng-repeat="director in tiposDirector" value="{{ director.id }}">{{ parseTipoDirector(director.codigoTipo) }}</option>
+				</select>
+			</li>
+			<li class="container-filters-form-list-item">
+				<label>Nacionalidad:</label>
+				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idNacionalidad">
+					<option value="" default selected>Selecciona la nacionalidad</option>
+					<option ng-repeat="nacionalidad in nacionalidades" value="{{ nacionalidad.idNacionalidad }}">{{ nacionalidad.strNacionalidad }}</option>
+				</select>
+			</li>-->
+		</ul>
+		<div class="container-filters-form-wrapper-controls wrapper-controls">
+			<ul class="wrapper-controls-list">
+				<li class="wrapper-controls-list-item btn btn-clean" ng-click="cleanFields()">Cancelar</li>
+				<li class="wrapper-controls-list-item btn btn-save" ng-click="postObra(obraSeleccionada)">Guardar</li>
+			</ul>
+		</div>
+		<span class="error">{{ errorText }}</span>
+	</form>
+</section>
+<section class="sub-section container-data" ng-controller="ObrasListCtrl">
+	<h2 class="sub-section-title">Totál de obras ({{ obras.length }})</h2>
+	<ul class="container-data-list-header obras-list-header">
+		<li class="container-data-list-header-item-column obras-evento-header">
+			<span class="container-data-list-header-item-column-value">Evento</span>
+		</li>
+		<li class="container-data-list-header-item-column obras-compositor-header">
+			<span class="container-data-list-header-item-column-value">Compositor</span>
+		</li>
+		<li class="container-data-list-header-item-column obras-descripcion-header">
+			<span class="container-data-list-header-item-column-value">Descripcion</span>
+		</li>
+		<li class="container-data-list-header-item-column obras-tipo-orden-header">
+			<span class="container-data-list-header-item-column-value">Orden</span>
+		</li>
+		<li class="container-data-list-header-item-column wrapper-controls-header">
+			<span class="container-data-list-header-item-column-value"></span>
+		</li>		
+	</ul>
+	<ul class="container-data-list obras-list">
+		<li class="container-data-list-item obras-list-item" ng-class="{ 'selected':(obra.idObra===obraSeleccionada.idObra) }" ng-repeat="obra in obras">
+			<div class="container-data-list-item-column obras obras-titulo">
+				<span class="container-data-list-item-column-value">{{ obra.strTitulo }}</span>
+			</div>
+			<div class="container-data-list-item-column obras obras-compositor">
+				<span class="container-data-list-item-column-value">{{ obra.strCompositor }}</span>
+			</div>
+			<div class="container-data-list-item-column obras obras-str-obra">
+				<span class="container-data-list-item-column-value">{{ obra.strObra }}</span>
+			</div>
+			<div class="container-data-list-item-column obras obras-locacion">
+				<span class="container-data-list-item-column-value">{{ obra.strLocacion }}</span>
+			</div>
+			<div class="container-data-list-item-column obras obras-fecha">
+				<span class="container-data-list-item-column-value">{{ obra.fecha }}</span>
+			</div>
+			<div class="container-data-list-item-column obras obras-horario">
+				<span class="container-data-list-item-column-value">{{ obra.horaInicio }}</span>
+			</div>
+			<div class="container-data-list-item-column obras obras-ciclo">
+				<span class="container-data-list-item-column-value">{{ obra.strCiclo }}</span>
+			</div>
+			<div class="container-data-list-item-column obras obras-link">
+				<span class="container-data-list-item-column-value">{{ obra.link }}</span>
+			</div>
+			<div class="obras wrapper-controls">
+				<ul class="wrapper-controls-list">
+					<li class="wrapper-controls-list-item btn btn-edit" ng-click="edit(obra)">Editar</li>
+					<li class="wrapper-controls-list-item btn btn-remove" ng-click="delete(obra.id)">Eliminar</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</section>

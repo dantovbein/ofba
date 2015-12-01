@@ -74,7 +74,23 @@ angular.module('app')
 					}
 				})
 
-				.state('main.directores',{
+				.state('main.obras',{
+					url: 'obras/',
+					views: {
+						'container': {
+							templateUrl: "templates/controllers/obras.html",
+							controller: "ObrasCtrl"
+						}
+					},
+					resolve: {
+						obras: function(ObrasService){
+							return ObrasService.getObras();
+						}
+					}
+					
+				})
+
+				/*.state('main.directores',{
 					url: 'conciertos/directores/',
 					views: {
 						'container': {
@@ -102,7 +118,7 @@ angular.module('app')
 							controller: "CompositoresObrasCtrl"
 						}
 					}
-				})
+				})*/
 
 				.state('main.giras',{
 					url: 'conciertos/giras/',

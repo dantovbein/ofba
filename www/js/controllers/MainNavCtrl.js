@@ -28,7 +28,7 @@ angular
 								 	'id': 1,
 								 	'name': 'Temporadas',
 								 	'state': 'main.temporadas'
-								},{
+								},/*{
 									'id': 1,
 								 	'name': 'Directores',
 								 	'state': 'main.directores'
@@ -36,10 +36,10 @@ angular
 									'id': 1,
 								 	'name': 'Solistas',
 								 	'state': 'main.solistas'
-								},{
+								},*/{
 									'id': 1,
-								 	'name': 'Compositores y obras',
-								 	'state': 'main.compositores-obras'
+								 	'name': 'Obras',
+								 	'state': 'main.obras'
 								},{
 									'id': 1,
 								 	'name': 'Giras',

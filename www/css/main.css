@@ -246,10 +246,61 @@ select {
   padding: 1rem 0.3rem 0.8rem 0.3rem;
   box-sizing: border-box; }
   .galeria-imagenes-list .galeria-imagenes-list-item .imagen {
-    float: left; }
+    float: left;
+    width: 24%; }
   .galeria-imagenes-list .galeria-imagenes-list-item .imagen-codigo-texto {
     float: left;
-    width: 22rem;
+    width: 76%;
     padding: 0 .8rem; }
   .galeria-imagenes-list .galeria-imagenes-list-item .wrapper-controls {
-    padding: .28rem; }
+    padding: .28rem;
+    float: left;
+    width: 100%; }
+
+.obras-list-header .integrante-nombre-header {
+  width: 20%; }
+
+.obras-list-header .integrante-apellido-header {
+  width: 14%; }
+
+.obras-list-header .integrante-instrumento-header {
+  width: 10%; }
+
+.obras-list-header .integrante-tipo-integrante-header {
+  width: 18%; }
+
+.obras-list-header .integrante-tipo-director-header {
+  width: 18%; }
+
+.obras-list-header .integrante-nacionalidad-header {
+  width: 7%; }
+
+.obras-list-header .integrante-wrapper-controls-header {
+  width: 13%; }
+
+.obras-list .obras-list-item .obras {
+  float: left;
+  box-sizing: border-box;
+  min-height: .25rem; }
+  .obras-list .obras-list-item .obras.obras-titulo {
+    width: 12%; }
+  .obras-list .obras-list-item .obras.obras-compositor {
+    width: 10%; }
+  .obras-list .obras-list-item .obras.obras-str-obra {
+    width: 16%; }
+  .obras-list .obras-list-item .obras.obras-locacion {
+    width: 10%; }
+  .obras-list .obras-list-item .obras.obras-fecha {
+    width: 6%; }
+  .obras-list .obras-list-item .obras.obras-horario {
+    width: 6%; }
+  .obras-list .obras-list-item .obras.obras-ciclo {
+    width: 6%; }
+  .obras-list .obras-list-item .obras.obras-link {
+    width: 14%; }
+  .obras-list .obras-list-item .obras.wrapper-controls {
+    width: 13%;
+    float: right;
+    text-align: right; }
+    .obras-list .obras-list-item .obras.wrapper-controls .wrapper-controls-list .wrapper-controls-list-item {
+      margin: 0 0 0 4%; }

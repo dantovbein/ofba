@@ -28,16 +28,19 @@
 	
 		.imagen {
 			float: left;
+			width:24%;
 		}
 
 		.imagen-codigo-texto {
 			float: left;
-			width: 22rem;
+			width: 76%;
     		padding: 0 .8rem;
 		}
 
 		.wrapper-controls {
 			padding: .28rem;
+			float: left;
+    		width: 100%;
 		}
 	}
 }

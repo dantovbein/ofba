@@ -1,0 +1,97 @@
+$columnaTitulo: 12%;
+$columnaCompositor: 10%;
+$columnaStrObra: 16%;
+$columnaLocacion: 10%;
+$columnaFecha: 6%;
+$columnaHorario: 6%;
+$columnaCiclo: 6%;
+$columnaLink: 14%;
+$columnaControls: 13%;
+
+.obras-list-header {
+	.integrante-nombre-header {
+		width: $columnaNombre;
+	}
+
+	.integrante-apellido-header {
+		width: $columnaApellido;
+	}
+
+	.integrante-instrumento-header {
+		width: $columnaInstrumemto;
+	}
+
+	.integrante-tipo-integrante-header {
+		width: $columnaTipoIntegrante;
+	}
+
+	.integrante-tipo-director-header {
+		width: $columnaTipoDirector;
+	}
+
+	.integrante-nacionalidad-header {
+		width: $columnaNacionalidad;
+	}
+
+	.integrante-wrapper-controls-header {
+		width: $columnaControls;
+	}
+}
+
+.obras-list {
+	
+	.obras-list-item {
+
+		.obras {
+			float:left;
+			box-sizing: border-box;
+			min-height: .25rem;
+
+			&.obras-titulo {
+				width: $columnaTitulo;
+			}
+
+			&.obras-compositor {
+				width: $columnaCompositor;
+			}
+
+			&.obras-str-obra {
+				width: $columnaStrObra;
+			}
+
+			&.obras-locacion {
+				width: $columnaLocacion;
+			}
+
+			&.obras-fecha {
+				width: $columnaFecha;
+			}
+
+			&.obras-horario {
+				width: $columnaHorario;
+			}
+
+			&.obras-ciclo {
+				width: $columnaCiclo;
+			}
+
+			&.obras-link {
+				width: $columnaLink;
+			}
+
+			&.wrapper-controls {
+				width: $columnaControls;
+				float: right;
+				text-align: right;
+			
+				.wrapper-controls-list {
+
+					.wrapper-controls-list-item {
+					    margin: 0 0 0 4%;
+					}
+				}
+			}
+		}		
+		
+	}
+}

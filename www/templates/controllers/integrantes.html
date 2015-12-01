@@ -25,7 +25,7 @@
 					<option ng-repeat="integrante in tiposIntegrante" value="{{ integrante.id }}">{{ parseTipoIntegrante(integrante.codigoTexto) }}</option>
 				</select>
 			</li>
-			<li class="container-filters-form-list-item">
+			<li class="container-filters-form-list-item" ng-show="integranteSeleccionado.idTipointegrante=2">
 				<label>Tipo director:</label>
 				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idTipoDirector">
 					<option value="" default selected>Selecciona el tipo de director</option>
