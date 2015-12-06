@@ -19,24 +19,24 @@
 				</select>
 			</li>
 			<li class="container-filters-form-list-item">
+				<label>Nacionalidad:</label>
+				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idNacionalidad">
+					<option value="" default selected>Selecciona la nacionalidad</option>
+					<option ng-repeat="nacionalidad in nacionalidades" value="{{ nacionalidad.idNacionalidad }}">{{ nacionalidad.strNacionalidad }}</option>
+				</select>
+			</li>
+			<li class="container-filters-form-list-item">
 				<label>Tipo integrante:</label>
 				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idTipoIntegrante">
 					<option value="" default selected>Selecciona el tipo de integrante</option>
 					<option ng-repeat="integrante in tiposIntegrante" value="{{ integrante.id }}">{{ parseTipoIntegrante(integrante.codigoTexto) }}</option>
 				</select>
 			</li>
-			<li class="container-filters-form-list-item" ng-show="integranteSeleccionado.idTipointegrante=2">
-				<label>Tipo director:</label>
+			<li class="container-filters-form-list-item" ng-if="showDirector(integranteSeleccionado.idTipoIntegrante)">
+				<label>Tipo director: {{ integranteSeleccionado.idTipointegrante }}</label>
 				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idTipoDirector">
 					<option value="" default selected>Selecciona el tipo de director</option>
 					<option ng-repeat="director in tiposDirector" value="{{ director.id }}">{{ parseTipoDirector(director.codigoTipo) }}</option>
-				</select>
-			</li>
-			<li class="container-filters-form-list-item">
-				<label>Nacionalidad:</label>
-				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idNacionalidad">
-					<option value="" default selected>Selecciona la nacionalidad</option>
-					<option ng-repeat="nacionalidad in nacionalidades" value="{{ nacionalidad.idNacionalidad }}">{{ nacionalidad.strNacionalidad }}</option>
 				</select>
 			</li>
 		</ul>

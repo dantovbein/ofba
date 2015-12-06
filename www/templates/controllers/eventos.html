@@ -1,0 +1,47 @@
+<h1 class="section-title">Seccion Giras y Eventos</h1>
+<section class="sub-section container-filters" ng-controller="EventosFiltersCtrl">
+	<h2 class="sub-section-title">{{ add ? 'Agregar' : 'Editar' }}</h2>
+	<form name="EventosFiltersForm" class="container-filters-form">
+		<ul class="container-filters-form-list">
+			<li class="container-filters-form-list-item">
+				<label>Titulo:</label>
+				<input name="eventoTitulo" type="text" placeholder="Ingrese el Titulo" ng-model="eventoSeleccionado.titulo" value="{{ eventoSeleccionado.titulo }}" />
+			</li>
+			<li class="container-filters-form-list-item">
+				<label>Ciclo:</label>
+				<select name="selectCiclo" ng-model="eventoSeleccionado.idCiclo">
+					<option value="" default selected>Selecciona el tipo de ciclo</option>
+					<!--<option ng-repeat="ciclo in ciclos" value="{{ ciclo.idCiclo }}">{{ ciclo.codigoCiclo) }}</option>-->
+				</select>
+			</li>
+		</ul>
+		<div class="container-filters-form-wrapper-controls wrapper-controls">
+			<ul class="wrapper-controls-list">
+				<li class="wrapper-controls-list-item btn btn-clean" ng-click="cleanFields()">Cancelar</li>
+				<li class="wrapper-controls-list-item btn btn-save" ng-click="postEvento(eventoSeleccionado)">Guardar</li>
+			</ul>
+		</div>
+		<span class="error">{{ errorText }}</span>
+	</form>
+</section>
+<section class="sub-section container-data" ng-controller="EventosListCtrl">
+	<h2 class="sub-section-title">Totál de eventos ({{ eventos.length }})</h2>
+	<ul class="container-data-list-header eventos-list-header">
+		<li class="container-data-list-header-item-column eventos-titulo-header">
+			<span class="container-data-list-header-item-column-value">Titulo</span>
+		</li>		
+	</ul>
+	<ul class="container-data-list eventos-list">
+		<li class="container-data-list-item eventos-list-item" ng-class="{ 'selected':(evento.idEvento===eventoSeleccionado.idEvento) }" ng-repeat="evento in eventos">
+			<div class="container-data-list-item-column eventos eventos-titulo">
+				<span class="container-data-list-item-column-value">{{ evento.strTitulo }}</span>
+			</div>
+			<div class="eventos wrapper-controls">
+				<ul class="wrapper-controls-list">
+					<li class="wrapper-controls-list-item btn btn-edit" ng-click="edit(evento)">Editar</li>
+					<li class="wrapper-controls-list-item btn btn-remove" ng-click="delete(evento.id)">Eliminar</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</section>

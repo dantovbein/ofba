@@ -4,6 +4,13 @@ angular.module('app')
 			$urlRouterProvider.otherwise('login');
 			
 			$stateProvider
+				
+				.state('login',{
+					url:'/login',
+					templateUrl:'templates/controllers/login.html',
+					controller: 'LoginCtrl'
+				})
+
 				.state('main',{
 					url:'/',
 					views: {
@@ -21,7 +28,6 @@ angular.module('app')
 					}
 				})
 				
-
 				.state('main.integrantes',{
 					url: 'integrantes/:id',
 					views: {
@@ -90,49 +96,18 @@ angular.module('app')
 					
 				})
 
-				/*.state('main.directores',{
-					url: 'conciertos/directores/',
+				.state('main.eventos',{
+					url: 'conciertos/giras-y-eventos/:id',
 					views: {
 						'container': {
-							templateUrl: "templates/controllers/directores.html",
-							controller: "TemporadasCtrl"
+							templateUrl: "templates/controllers/eventos.html",
+							controller: "EventosCtrl"
+						}
+					},
+					resolve: {
+						eventos: function() {
+							return [];
 						}
 					}
 				})
-
-				.state('main.solistas',{
-					url: 'conciertos/solistas/',
-					views: {
-						'container': {
-							templateUrl: "templates/controllers/solistas.html",
-							controller: "SolistaCtrl"
-						}
-					}
-				})
-
-				.state('main.compositores-obras',{
-					url: 'conciertos/compositores-obras/',
-					views: {
-						'container': {
-							templateUrl: "templates/controllers/compositores-obras.html",
-							controller: "CompositoresObrasCtrl"
-						}
-					}
-				})*/
-
-				.state('main.giras',{
-					url: 'conciertos/giras/',
-					views: {
-						'container': {
-							templateUrl: "templates/controllers/giras.html",
-							controller: "GirasCtrl"
-						}
-					}
-				})
-
-				.state('login',{
-					url:'/login',
-					templateUrl:'templates/controllers/login.html',
-					controller: 'LoginCtrl'
-				})
-		});
+			});

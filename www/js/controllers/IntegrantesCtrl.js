@@ -49,5 +49,14 @@ angular
 
 			$scope.onEdit = function() {
 				$scope.add = false;
-			}	
+			}
+
+			$scope.showDirector = function(idTipoIntegrante) {
+			if(idTipoIntegrante == '2') {
+				return true;
+			} else {
+				$scope.integranteSeleccionado.idTipoDirector = '';
+				return false;
+			}
+        }
 	}]);

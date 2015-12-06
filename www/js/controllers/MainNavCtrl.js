@@ -40,15 +40,15 @@ angular
 									'id': 1,
 								 	'name': 'Obras',
 								 	'state': 'main.obras'
-								},{
+								}/*,{
 									'id': 1,
 								 	'name': 'Giras',
 								 	'state': 'main.giras'
-								}]
+								}*/]
 							}]
 						},{
-							'name': 'Calendario de eventos',
-							'state': 'main.calendario-de-eventos'
+							'name': 'Giras y Eventos',
+							'state': 'main.eventos'
 						}];
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
     		$scope.state = toState.name;
