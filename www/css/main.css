@@ -90,12 +90,34 @@ select {
           width: 50%;
           margin: 0 0 1rem 0; }
           #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item label {
-            width: 30%;
+            width: 25%;
             text-align: right; }
           #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item input {
-            width: 70%; }
+            width: 75%; }
           #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item select {
-            width: 70%; }
+            width: 75%; }
+          #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item .container-filters-form-list-item-title {
+            float: left;
+            width: 100%; }
+          #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item .container-filters-form-list-item-holder {
+            float: left;
+            width: 100%; }
+          #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item.item-subitem {
+            float: left;
+            width: 50%; }
+            #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item.item-subitem label {
+              width: 25% !important; }
+            #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item.item-subitem input {
+              width: 75% !important; }
+          #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item.full-width {
+            width: 100%; }
+            #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item.full-width label {
+              width: 12%; }
+            #container .sub-section .container-filters-form .container-filters-form-list .container-filters-form-list-item.full-width input {
+              width: 88%; }
+      #container .sub-section .container-filters-form .container-filters-form-extra-information {
+        float: left;
+        width: 100%; }
       #container .sub-section .container-filters-form .container-filters-form-wrapper-controls {
         text-align: center; }
         #container .sub-section .container-filters-form .container-filters-form-wrapper-controls .wrapper-controls-list {
@@ -109,6 +131,26 @@ select {
         float: left;
         text-align: center; }
 
+.multi-data {
+  float: left;
+  width: 100%;
+  margin: .5rem 0 0 0; }
+  .multi-data .header-multi-data .title-multi-data {
+    display: inline-block;
+    float: left;
+    margin: 0 1rem 0 0; }
+  .multi-data .header-multi-data .btn {
+    float: left; }
+  .multi-data .holder-content-multi-data {
+    width: 100%;
+    float: left; }
+    .multi-data .holder-content-multi-data .item-multi-data {
+      width: 100%;
+      float: left;
+      margin: 0 0 .5rem 0; }
+      .multi-data .holder-content-multi-data .item-multi-data:first-child {
+        margin-top: .5rem; }
+
 #main_nav {
   float: left;
   width: 18%;
@@ -120,9 +162,14 @@ select {
   background-color: #560311;
   color: #fff;
   padding: .35rem .6rem;
-  font-size: 0.85rem; }
+  font-size: 0.85rem;
+  float: left; }
   .btn:hover {
     background-color: #7e0a08; }
+
+.btn-icon {
+  font-size: 1rem;
+  margin: 0 0 0 .25rem; }
 
 .error {
   color: #FFC000; }
@@ -170,7 +217,6 @@ select {
     display: inline-block;
     width: auto; }
     .wrapper-controls .wrapper-controls-list .wrapper-controls-list-item {
-      float: left;
       margin: 0 .2rem; }
 
 .error-message {
@@ -304,3 +350,13 @@ select {
     text-align: right; }
     .obras-list .obras-list-item .obras.wrapper-controls .wrapper-controls-list .wrapper-controls-list-item {
       margin: 0 0 0 4%; }
+
+.item-musico-evento select {
+  float: right; }
+
+.item-musico-evento .btn {
+  float: right;
+  margin: 0 0 0 1rem; }
+
+.item-fecha-evento .item-subitem {
+  width: 27rem !important; }

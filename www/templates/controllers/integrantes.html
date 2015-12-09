@@ -22,7 +22,7 @@
 				<label>Nacionalidad:</label>
 				<select name="selectNacionalidad" ng-model="integranteSeleccionado.idNacionalidad">
 					<option value="" default selected>Selecciona la nacionalidad</option>
-					<option ng-repeat="nacionalidad in nacionalidades" value="{{ nacionalidad.idNacionalidad }}">{{ nacionalidad.strNacionalidad }}</option>
+					<option ng-repeat="nacionalidad in nacionalidades" value="{{ nacionalidad.id }}">{{ nacionalidad.codigoNacionalidad }}</option>
 				</select>
 			</li>
 			<li class="container-filters-form-list-item">
@@ -41,10 +41,12 @@
 			</li>
 		</ul>
 		<div class="container-filters-form-wrapper-controls wrapper-controls">
-			<ul class="wrapper-controls-list">
-				<li class="wrapper-controls-list-item btn btn-clean" ng-click="cleanFields()">Cancelar</li>
-				<li class="wrapper-controls-list-item btn btn-save" ng-click="postIntegrante(integranteSeleccionado)">Guardar</li>
-			</ul>
+			<nav class="wrapper-controls-nav">
+				<ul class="wrapper-controls-list">
+					<li class="wrapper-controls-list-item btn btn-clean" ng-click="cleanFields()">Cancelar</li>
+					<li class="wrapper-controls-list-item btn btn-save" ng-click="postIntegrante(integranteSeleccionado)">Guardar</li>
+				</ul>
+			</nav>
 		</div>
 		<span class="error">{{ errorText }}</span>
 	</form>
@@ -95,10 +97,12 @@
 				<span class="container-data-list-item-column-value">{{ integrante.strNacionalidad }}</span>
 			</div>
 			<div class="integrante wrapper-controls">
-				<ul class="wrapper-controls-list">
-					<li class="wrapper-controls-list-item btn btn-edit" ng-click="edit(integrante)">Editar</li>
-					<li class="wrapper-controls-list-item btn btn-remove" ng-click="delete(integrante.id)">Eliminar</li>
-				</ul>
+				<nav class="wrapper-controls-nav">
+					<ul class="wrapper-controls-list">
+						<li class="wrapper-controls-list-item btn btn-edit" ng-click="edit(integrante)">Editar</li>
+						<li class="wrapper-controls-list-item btn btn-remove" ng-click="delete(integrante.id)">Eliminar</li>
+					</ul>
+				</nav>
 			</div>
 		</li>
 	</ul>

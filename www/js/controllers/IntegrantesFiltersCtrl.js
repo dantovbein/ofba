@@ -2,7 +2,7 @@
 
 angular
 	.module('app')
-	.controller('IntegrantesFiltersCtrl',['$scope','$state','IntegrantesService','NacionalidadesService',function($scope,$state,IntegrantesService,NacionalidadesService){
+	.controller('IntegrantesFiltersCtrl',['$scope','$state','IntegrantesService',function($scope,$state,IntegrantesService){
 		$scope.postIntegrante = function(integrante) {
 			if(integrante.nombres == undefined) {
 				$scope.errorText = "El campo de nombre es obligatorio";
@@ -18,11 +18,12 @@ angular
 				$scope.errorText = "";
 				integrante.nombres = integrante.nombres;
 				integrante.apellidos = integrante.apellidos;
-				integrante.idNacionalidad = integrante.idNacionalidad;
 				integrante.idInstrumento = integrante.idInstrumento || "";
 				integrante.idTipoIntegrante = integrante.idTipoIntegrante || "";
 				integrante.idTipoDirector = integrante.idTipoDirector || "";
-				integrante.strNacionalidad = (integrante.idNacionalidad != "") ? NacionalidadesService.getStrNacionalidad(integrante.idNacionalidad) : "";
+				integrante.idNacionalidad = integrante.idNacionalidad;
+				debugger;
+				integrante.strNacionalidad = (integrante.idNacionalidad != "") ? $scope.getStrNacionalidad(integrante.idNacionalidad) : "";
 				
 				if(integrante.id == undefined) {
 					IntegrantesService.postIntegrante(integrante).then(function(response) {

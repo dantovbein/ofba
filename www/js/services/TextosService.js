@@ -25,5 +25,7 @@ angular
 						});
 		}
 
+
+
 		return textosService;
 	}]);

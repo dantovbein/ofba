@@ -1,0 +1,6 @@
+<div class="item-multi-data item-texto-evento">
+	<div class="btn btn-remove-item-texto" ng-click="removeItem()">Eliminar<span class="btn-icon">⨂</span></div>
+	<div class="btn btn-add-item-musico" ng-click="confirmItem()">Confirmar<span class="btn-icon">⨁</span></div>	
+	<input type="text" ng-model="texto" ng-disabled="isConfirmed" placeholder="Ingrese un texto para la función"/>
+	{{ texto }} {{ isConfirmed }}						
+</div>

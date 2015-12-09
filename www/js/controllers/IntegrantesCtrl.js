@@ -2,8 +2,8 @@
 
 angular
 	.module('app')
-	.controller('IntegrantesCtrl',[ '$scope','$stateParams','$http','_','IntegrantesService','DirectoresService','NacionalidadesService','integrantes','tiposIntegrante','instrumentos','tiposDirector','nacionalidades',
-		function($scope, $stateParams, $http, _ ,IntegrantesService,DirectoresService,NacionalidadesService,integrantes,tiposIntegrante,instrumentos,tiposDirector,nacionalidades ){
+	.controller('IntegrantesCtrl',[ '$scope','$stateParams','$http','_','IntegrantesService','TiposDirectorService','NacionalidadesService','integrantes','tiposIntegrante','instrumentos','tiposDirector','nacionalidades',
+		function($scope, $stateParams, $http, _ ,IntegrantesService,TiposDirectorService,NacionalidadesService,integrantes,tiposIntegrante,instrumentos,tiposDirector,nacionalidades ){
 			$scope.params = $stateParams;
 			$scope.integrantes = integrantes;
 			$scope.instrumentos = instrumentos;
@@ -19,7 +19,7 @@ angular
 			$scope.add = true;
 
 			$scope.parseTipoDirector = function(str) {
-				return DirectoresService.parseTipoDirector(str);
+				return TiposDirectorService.parseTipoDirector(str);
 			}
 
 			$scope.parseTipoIntegrante = function(str) {
@@ -57,6 +57,14 @@ angular
 			} else {
 				$scope.integranteSeleccionado.idTipoDirector = '';
 				return false;
+			}
+
+			$scope.getStrNacionalidad = function(idNacionalidad) {
+				return window._.filter($scope.nacionalidades,function(nacionalidad){
+					if(nacionalidad.id == idNacionalidad) {
+						return nacionalidad.codigoNacionalidad;
+					}
+				});
 			}
         }
 	}]);

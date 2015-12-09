@@ -104,21 +104,62 @@ select {
 					float: left;
 					width: 50%;
 					margin: 0 0 1rem 0; 
+					
 					label {
-						width: 30%;
+						width: 25%;
 						text: {
 							align: right;
 						}
 					}
 
 					input {
-						width: 70%;
+						width: 75%;
 					}
 
 					select {
-						width: 70%;
+						width: 75%;
+					}
+
+					.container-filters-form-list-item-title {
+						float: left;
+						width: 100%;
+					}
+
+					.container-filters-form-list-item-holder {
+						float: left;
+						width: 100%;
+					}
+
+					&.item-subitem {
+						float:left;
+						width: 50%;
+
+						label {
+							width: 25% !important;
+						}
+
+						input {
+							width: 75% !important;
+						}
+					}
+
+					&.full-width {
+						width: 100%;
+
+						label {
+							width: 12%;
+						}
+
+						input {
+							width: 88%;
+						}
 					}
 				}
+			}
+
+			.container-filters-form-extra-information {
+				float: left;
+				width: 100%;
 			}
 
 			.container-filters-form-wrapper-controls {
@@ -146,6 +187,42 @@ select {
 	}
 }
 
+.multi-data {
+	float:left;
+	width: 100%;
+	margin: .5rem 0 0 0;
+
+	.header-multi-data {
+		
+		.title-multi-data {
+			display: inline-block;
+			float: left;
+			margin: 0 1rem 0 0;
+		}
+		
+		.btn {
+			float: left;
+		}
+	}
+
+	.holder-content-multi-data {
+		width: 100%;
+		float: left;
+
+		.item-multi-data {
+			width: 100%;
+			float: left;
+			margin: 0 0 .5rem 0;
+
+			&:first-child {
+				margin-top: .5rem;
+			}
+		}
+	}
+}
+
+
+
 #main_nav {
 	float: left;
 	width: 18%;
@@ -159,10 +236,16 @@ select {
 	color: #fff;
 	padding: .35rem .6rem;
     font-size: 0.85rem;
+    float: left;
 
 	&:hover {
 		background-color: $app-first-color;
 	}
+}
+
+.btn-icon {
+	font-size: 1rem;
+	margin: 0 0 0 .25rem;
 }
 
 .error {
@@ -239,7 +322,6 @@ select {
     	width: auto;
 				
 		.wrapper-controls-list-item {
-			float: left;
 			margin: 0 .2rem;
 		}
 	}

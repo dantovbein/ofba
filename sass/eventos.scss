@@ -1,0 +1,21 @@
+.item-musico-evento {
+	select {
+		float: right;
+	}
+
+	.btn {
+		float: right;		
+	}
+}
+
+.item-fecha-evento {
+	.item-subitem {
+		width: 27rem !important;
+	}
+}
+
+.item-musico-evento, .item-fecha-evento {
+	.btn {
+		margin: 0 0 0 1rem;
+	}
+} 

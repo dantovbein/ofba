@@ -2,10 +2,10 @@
 
 angular
 	.module('app')
-	.factory('DirectoresService',['$http','config', function($http,config){
-		var directoresService = {};
+	.factory('TiposDirectorService',['$http','config', function($http,config){
+		var tiposDirectorService = {};
 
-		directoresService.getTiposDirector = function() {
+		tiposDirectorService.getTiposDirector = function() {
 			return $http
 				.get(config.path + 'service/manager/getTiposDirector.php')
 				.then(function(response) {
@@ -15,9 +15,9 @@ angular
 				});
 		},
 		
-		directoresService.parseTipoDirector = function(str) {
+		tiposDirectorService.parseTipoDirector = function(str) {
 			return (str!=null) ? str.substring('TIPO_DIRECTOR_'.length).replace(/_/g,' ').toLowerCase() : "";
 		}
 
-		return directoresService;
+		return tiposDirectorService;
 	}])

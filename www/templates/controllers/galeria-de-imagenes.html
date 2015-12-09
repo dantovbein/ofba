@@ -13,10 +13,12 @@
 			</li>
 		</ul>
 		<div class="container-filters-form-wrapper-controls wrapper-controls">
-			<ul class="wrapper-controls-list">
-				<li class="wrapper-controls-list-item btn btn-clean" ng-click="resetFormFields()">Cancelar</li>
-				<li class="wrapper-controls-list-item btn btn-save" ng-click="postImagen()">Guardar</li>
-			</ul>
+			<nav class="wrapper-controls-nav">
+				<ul class="wrapper-controls-list">
+					<li class="wrapper-controls-list-item btn btn-clean" ng-click="resetFormFields()">Cancelar</li>
+					<li class="wrapper-controls-list-item btn btn-save" ng-click="postImagen()">Guardar</li>
+				</ul>
+			</nav>
 		</div>
 		<span class="error">{{ errorText }}</span>
 	</form>
@@ -32,10 +34,12 @@
 				<p class="container-data-list-item-column-value">{{ imagen.texto }}</p>
 			</div>
 			<div class="imagen wrapper-controls">
-				<ul class="wrapper-controls-list">
-					<li class="wrapper-controls-list-item btn btn-edit" ng-click="edit( imagen )">Editar</li>
-					<li class="wrapper-controls-list-item btn btn-remove" ng-click="deleteImagen( imagen.id )">Eliminar</li>
-				</ul>
+				<nav class="wrapper-controls-nav">
+					<ul class="wrapper-controls-list">
+						<li class="wrapper-controls-list-item btn btn-edit" ng-click="edit( imagen )">Editar</li>
+						<li class="wrapper-controls-list-item btn btn-remove" ng-click="deleteImagen( imagen.id )">Eliminar</li>
+					</ul>
+				</nav>
 			</div>
 		</li>
 	</ul>

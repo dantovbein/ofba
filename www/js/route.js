@@ -19,7 +19,7 @@ angular.module('app')
 							controller: 'MainCtrl'
 						},
 						'header@main': {
-							templateUrl: 'templates/directives/header-component.html'
+							templateUrl: 'templates/controllers/header-component.html'
 						},
 						'mainNav@main': {
 							templateUrl: 'templates/controllers/main-nav.html',
@@ -46,8 +46,8 @@ angular.module('app')
 						instrumentos: function(InstrumentosService) {
 							return InstrumentosService.getInstrumentos();
 						},
-						tiposDirector: function(DirectoresService) {
-							return DirectoresService.getTiposDirector();
+						tiposDirector: function(TiposDirectorService) {
+							return TiposDirectorService.getTiposDirector();
 						},						
 						nacionalidades: function(NacionalidadesService) {
 							return NacionalidadesService.getNacionalidades();
@@ -107,6 +107,30 @@ angular.module('app')
 					resolve: {
 						eventos: function() {
 							return [];
+						},
+						ciclos: function(CiclosService) {
+							return CiclosService.getCiclos();
+						},
+						temporadas: function(TemporadasService) {
+							return TemporadasService.getTemporadas();
+						},
+						textos: function(TextosService) {
+							return TextosService.getTextos();
+						},
+						nacionalidades: function(NacionalidadesService) {
+							return NacionalidadesService.getNacionalidades();
+						},
+						integrantes: function(IntegrantesService) {
+							return IntegrantesService.getIntegrantes();
+						},
+						locaciones: function(LocacionesService) {
+							return LocacionesService.getLocaciones();
+						},
+						paises: function(PaisesService) {
+							return PaisesService.getPaises();
+						},
+						ciudades: function(CiudadesService) {
+							return CiudadesService.getCiudades();
 						}
 					}
 				})
