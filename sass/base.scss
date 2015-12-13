@@ -193,11 +193,14 @@ select {
 	margin: .5rem 0 0 0;
 
 	.header-multi-data {
+		float: left;
+   		margin: 0 0 .75rem 0;
 		
 		.title-multi-data {
 			display: inline-block;
 			float: left;
 			margin: 0 1rem 0 0;
+			line-height: 200%;
 		}
 		
 		.btn {

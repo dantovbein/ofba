@@ -1,8 +1,11 @@
-<div class="item-multi-data item-coreografia-evento">
-	<div class="btn btn-remove-item-coreografia" ng-click="removeItem()">Eliminar<span class="btn-icon">⨂</span></div>
-	<div class="btn btn-add-item-coreografia" ng-click="confirmItem()">Confirmar<span class="btn-icon">⨁</span></div>	
-	<select name="selectCoreografia" ng-model="coreografo" ng-disabled="isConfirmed"> <!-- agregarle un identificador -->
+<div class="item-multi-data item-multi-data-evento item-coreografia-evento">
+	<label>Coreografía:</label>
+	<select ng-model="coreografo" ng-disabled="isConfirmed"> <!-- agregarle un identificador -->
 		<option value="" default selected>Selecciona coreografo</option>
 		<option ng-repeat="integrante in integrantes" value="{{ integrante.id }}">{{ integrante.nombres + " " + integrante.apellidos }}</option>
 	</select>
+	<nav class="item-multi-data-nav-controls">
+		<div class="btn btn-add-item-coreografia" ng-click="confirmItem()">Confirmar<span class="btn-icon">⨁</span></div>	
+		<div class="btn btn-remove-item-coreografia" ng-click="removeItem()">Eliminar<span class="btn-icon">⨂</span></div>
+	</nav>
 </div>

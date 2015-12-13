@@ -135,12 +135,16 @@ select {
   float: left;
   width: 100%;
   margin: .5rem 0 0 0; }
-  .multi-data .header-multi-data .title-multi-data {
-    display: inline-block;
+  .multi-data .header-multi-data {
     float: left;
-    margin: 0 1rem 0 0; }
-  .multi-data .header-multi-data .btn {
-    float: left; }
+    margin: 0 0 .75rem 0; }
+    .multi-data .header-multi-data .title-multi-data {
+      display: inline-block;
+      float: left;
+      margin: 0 1rem 0 0;
+      line-height: 200%; }
+    .multi-data .header-multi-data .btn {
+      float: left; }
   .multi-data .holder-content-multi-data {
     width: 100%;
     float: left; }
@@ -351,12 +355,20 @@ select {
     .obras-list .obras-list-item .obras.wrapper-controls .wrapper-controls-list .wrapper-controls-list-item {
       margin: 0 0 0 4%; }
 
-.item-musico-evento select {
-  float: right; }
-
-.item-musico-evento .btn {
-  float: right;
-  margin: 0 0 0 1rem; }
-
-.item-fecha-evento .item-subitem {
-  width: 27rem !important; }
+.item-multi-data-evento {
+  margin: 0 0 1rem 0; }
+  .item-multi-data-evento label {
+    float: left;
+    width: 20% !important; }
+  .item-multi-data-evento select {
+    float: left;
+    width: 50% !important; }
+  .item-multi-data-evento input {
+    float: left;
+    width: 50% !important; }
+  .item-multi-data-evento .item-multi-data-nav-controls {
+    float: left;
+    width: 20% !important;
+    margin: 0 0 0 2%; }
+    .item-multi-data-evento .item-multi-data-nav-controls .btn {
+      margin: 0 0 0 3%; }

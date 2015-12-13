@@ -1,21 +1,33 @@
-.item-musico-evento {
+$widthLabel: 20%;
+$widthInput: 50%;
+$widthSelect: $widthInput;
+$widthNavControls: 20%;
+
+.item-multi-data-evento {
+	margin: 0 0 1rem 0;
+
+	label {
+		float: left;
+		width: $widthLabel !important;
+	}
+
 	select {
-		float: right;
+		float: left;
+		width: $widthSelect !important;
 	}
 
-	.btn {
-		float: right;		
+	input {
+		float: left;
+		width: $widthInput !important;
+	}
+
+	.item-multi-data-nav-controls {
+		float: left;
+		width: $widthNavControls !important;
+		margin: 0 0 0 2%;
+
+		.btn {
+			margin: 0 0 0 3%;
+		}
 	}
 }
-
-.item-fecha-evento {
-	.item-subitem {
-		width: 27rem !important;
-	}
-}
-
-.item-musico-evento, .item-fecha-evento {
-	.btn {
-		margin: 0 0 0 1rem;
-	}
-} 

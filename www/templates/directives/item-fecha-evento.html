@@ -1,11 +1,16 @@
-<div class="item-multi-data item-fecha-evento">
-	<div class="container-filters-form-list-item item-subitem">
-		<label>Desde:</label>
-		<input type="datetime-local" />
-	</div>
-	<div class="container-filters-form-list-item item-subitem">
+<div class="item-multi-data item-multi-data-evento item-fecha-evento">
+	<!--<div class="container-filters-form-list-item item-subitem">-->
+
+	<!--<div class="container-filters-form-list-item">-->
+		<label>Seleccione el día:</label>
+		<input ng-model="fecha" type="datetime-local" />
+	<!--</div>-->
+	<!--<div class="container-filters-form-list-item item-subitem">
 		<label>Hasta:</label>
 		<input type="datetime-local" />
-	</div>
-	<div class="btn btn-remove-item-fecha" ng-click="removeItem()">Eliminar función<span class="btn-icon">⨂</span></div>
+	</div>-->
+	<nav class="item-multi-data-nav-controls">
+		<div class="btn btn-add-item-fecha" ng-click="confirmItem()">Confirmar<span class="btn-icon">⨂</span></div>
+		<div class="btn btn-remove-item-fecha" ng-click="removeItem()">Eliminar<span class="btn-icon">⨂</span></div>
+	</nav>
 </div>
