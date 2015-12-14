@@ -6,8 +6,10 @@ angular
 		function($scope,$compile,eventos,ciclos,temporadas,textos,nacionalidades,integrantes,locaciones,paises,ciudades){
 			$scope.evento = {};
 			
-			//$scope.evento.funciones = [];
-			$scope.evento.fechas = [];
+			//$scope.evento.fechas = [];
+			//$scope.evento.fechaDesde = "";
+			//$scope.evento.fechaHasta = "";
+			//$scope.html = "";
 			$scope.evento.extra = {};
 			$scope.evento.extra.textos = [];
 			$scope.evento.extra.musicos = [];
@@ -166,5 +168,149 @@ angular
 						return;
 					}
 				});
+			}
+
+			$scope.postEvento = function() {
+				$scope.html = '';
+				$scope.html += '<p>';
+				$scope.html += '<div class="row-fluid">';
+				$scope.html += '<div class="span12">';
+				$scope.html += '<img class="pull-right img-ofba" src="images/ofba/events/thumbs/"' + "" + ' alt="" />';
+				
+				$scope.html += '<h4>' + $scope.evento.titulo + '</h4>';
+				
+				$scope.html += '<h5>' + $scope.evento.tipo + '</h5>';
+				
+				$scope.html += '<h5>' + $scope.evento.locacion + '</h5>';
+				
+				/*$scope.html += '<p>';
+				$scope.html += '<strong>';
+				$scope.html += $scope.evento.fechaDesde;
+				$scope.html += '</strong>';
+				$scope.html += '</p>';*/
+
+				$scope.html += '<p>';
+				$scope.html += '<strong>Director:';
+				$scope.html += '<a href="' + "" + '">';
+				$scope.html += $scope.evento.idDirector;
+				$scope.html += '</a>';
+				$scope.html += '</strong>';
+				$scope.html += '</p>';
+
+				if($scope.evento.extra.textos.length > 0) {
+					$scope.html += '<p>';
+					window._.each($scope.evento.extra.textos, function(t,i){
+						$scope.html += '<strong>' + t + '</strong></br>';
+					});
+					$scope.html += '</p>';
+				}
+
+				if($scope.evento.extra.musicos.length > 0) {
+					$scope.html += '<p>';
+					$scope.html += '<strong>Musicos: ';
+					window._.each($scope.evento.extra.musicos, function(m,i){
+						$scope.html += m;
+						$scope.html += (i != $scope.evento.extra.musicos.length-1) ? ', ' : '';
+					});
+					$scope.html += '</strong>';
+					$scope.html += '</p>';
+				}
+
+				if($scope.evento.extra.coreografos.length > 0) {
+					$scope.html += '<p>';
+					$scope.html += '<strong>Coreografos: ';
+					window._.each($scope.evento.extra.coreografos, function(c,i){
+						$scope.html += c;
+						$scope.html += (i != $scope.evento.extra.coreografos.length-1) ? ', ' : '';
+					});
+					$scope.html += '</strong>';
+					$scope.html += '</p>';
+				}
+
+				if($scope.evento.extra.bailarinesSolistas.length > 0) {
+					$scope.html += '<p>';
+					$scope.html += '<strong>Bailarines solistas: ';
+					window._.each($scope.evento.extra.bailarinesSolistas, function(bs,i){
+						$scope.html += bs;
+						$scope.html += (i != $scope.evento.extra.bailarinesSolistas.length-1) ? ', ' : '';
+					});
+					$scope.html += '</strong>';
+					$scope.html += '</p>';
+				}
+
+				if($scope.evento.extra.reposicionesCoreograficas.length > 0) {
+					$scope.html += '<p>';
+					$scope.html += '<strong>Reposiciones coreograficas: ';
+					window._.each($scope.evento.extra.reposicionesCoreograficas, function(rc,i){
+						$scope.html += rc;
+						$scope.html += (i != $scope.evento.extra.reposicionesCoreograficas.length-1) ? ', ' : '';
+					});
+					$scope.html += '</strong>';
+					$scope.html += '</p>';
+				}
+				
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '<div class="row-fluid">';
+				$scope.html += '<div class="span12">';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '<div class="row-fluid">';
+				$scope.html += '<div class="span4">';
+				$scope.html += '<div id="mnuProgramaMano" class="accordion">';
+				$scope.html += '<div class="accordion-inner">';
+				$scope.html += '<span style="color: #FCEAC3;">Programa de mano</span>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '<div class="span4">';
+				$scope.html += '<div id="mnuGaleriaImagenes" class="accordion">';
+				$scope.html += '<div class="accordion-inner">';
+				$scope.html += '<span style="color: #FCEAC3;">Galería de imágenes</span>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '<div class="span4">';
+				$scope.html += '<div id="mnuRegistroFonografico" class="accordion">';
+				$scope.html += '<div class="accordion-inner">'; 
+				$scope.html += '<span style="color: #FCEAC3;">Registro fonográfico</span>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '<div class="row-fluid">';
+				$scope.html += '<div class="span4">';
+				$scope.html += '<div id="mnuAnuncios" class="accordion">';
+				$scope.html += '<div class="accordion-inner">';
+				$scope.html += '<span style="color: #FCEAC3;">Anuncios</span>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '<div class="span4">';
+				$scope.html += '<div id="mnuGacetillaPrensa" class="accordion">';
+				$scope.html += '<div class="accordion-inner">'; 
+				$scope.html += '<span style="color: #FCEAC3;">Gacetilla de prensa</span>';
+				$scope.html += '</div>';
+				$scope.html += '</div>'; 
+				$scope.html += '</div>';
+				$scope.html += '<div class="span4">';
+				$scope.html += '<div id="mnuRegistroFilmografico" class="accordion">';
+				$scope.html += '<div class="accordion-inner">';
+				$scope.html += '<span style="color: #FCEAC3;">Registro filmográfico</span>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '<div class="row-fluid">';
+				$scope.html += '<div class="span4">';
+				$scope.html += '<div id="mnuCriticas" class="accordion">';
+				$scope.html += '<div class="accordion-inner">';
+				$scope.html += '<span style="color: #FCEAC3;">Críticas</span>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '</div>';
+				$scope.html += '</p>';
+
 			}
 		}])

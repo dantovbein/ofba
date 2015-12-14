@@ -12,7 +12,8 @@
 			</li>
 			<li class="container-filters-form-list-item">
 				<label>Tipo de evento:</label>
-				<select name="selectUbicacion" ng-model="evento.ubicacion">
+				<select ng-model="evento.tipo">
+					<!-- CORREGIR -->
 					<option value="" default selected>Selecciona el tipo de evento</option>
 					<option ng-repeat="ubicacion in ubicaciones" value="{{ ubicacion.id }}">{{ ubicacion.id }}</option>
 				</select>
@@ -53,13 +54,23 @@
 				</select>
 			</li>
 			<li class="container-filters-form-list-item full-width">
+				<div class="container-filters-form-list-item item-subitem">
+					<label>Desde:</label>
+					<input ng-model="evento.fechaDesde" type="datetime-local" />
+				</div>
+				<div class="container-filters-form-list-item item-subitem">
+					<label>Hasta:</label>
+					<input ng-model="evento.fechaHasta" type="datetime-local" />
+				</div>
+				<!--
 				<div class="multi-data">
 					<header class="header-multi-data">
 						<h4 class="title-multi-data"></h4>
 						<div class="btn btn-add-fechas" ng-click="addElement('item-fecha-evento','.multi-data-fechas')">Agregar fecha<span class="btn-icon">⨁</span></div>
 					</header>
 					<div class="holder-content-multi-data multi-data-fechas"></div>
-				</div>			
+				</div>
+				-->			
 			</li>
 			<li class="container-filters-form-list-item full-width">
 				<h4 class="container-filters-form-list-item-title">Director:</h4>
@@ -127,12 +138,13 @@
 			<nav class="wrapper-controls-nav">
 				<ul class="wrapper-controls-list">
 					<li class="wrapper-controls-list-item btn btn-clean" ng-click="cleanFields()">Cancelar</li>
-					<li class="wrapper-controls-list-item btn btn-save" ng-click="postEvento(evento)">Guardar</li>
+					<li class="wrapper-controls-list-item btn btn-save" ng-click="postEvento()">Guardar</li>
 				</ul>
 			</nav>
 		</div>
 		<span class="error">{{ errorText }}</span>
 		{{ evento }}
+		{{ html }}
 	</form>
 </section>
 <section class="sub-section container-data" ng-controller="EventosListCtrl">

@@ -35,7 +35,7 @@ label {
   line-height: 220%;
   float: left; }
 
-input, select {
+input, select, textarea {
   padding: .4rem 0 .4rem .8rem;
   font-size: 1rem; }
 
@@ -366,6 +366,10 @@ select {
   .item-multi-data-evento input {
     float: left;
     width: 50% !important; }
+  .item-multi-data-evento textarea {
+    float: left;
+    width: 50% !important;
+    height: 7rem; }
   .item-multi-data-evento .item-multi-data-nav-controls {
     float: left;
     width: 20% !important;

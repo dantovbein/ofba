@@ -1,6 +1,7 @@
 $widthLabel: 20%;
 $widthInput: 50%;
 $widthSelect: $widthInput;
+$widthTextarea: $widthInput;
 $widthNavControls: 20%;
 
 .item-multi-data-evento {
@@ -19,6 +20,12 @@ $widthNavControls: 20%;
 	input {
 		float: left;
 		width: $widthInput !important;
+	}
+
+	textarea {
+		float: left;
+		width: $widthTextarea !important;
+		height: 7rem;
 	}
 
 	.item-multi-data-nav-controls {
