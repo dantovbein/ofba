@@ -10,6 +10,15 @@ angular
 			} else if (integrante.apellidos == undefined) {
 				$scope.errorText = "El campo de apellido es obligatorio";
 				return false;
+			} else if (integrante.idTipoIntegrante == undefined) {
+				$scope.errorText = "El campo de integrante es obligatorio";
+				return false;
+			} else if (integrante.idTipoIntegrante != 2 && integrante.idTipoIntegrante != 9 && integrante.idInstrumento == undefined) {
+				$scope.errorText = "El campo de instrumento es obligatorio";
+				return false;
+			} else if (integrante.idTipoIntegrante == 2 &&  integrante.idTipoDirector == "") {
+				$scope.errorText = "Se debe seleccionar el tipo de director";
+				return false; 
 			} else if (integrante.idNacionalidad == undefined) {
 				$scope.errorText = "El campo de nacionalidad es obligatorio";
 				return false;
@@ -22,9 +31,10 @@ angular
 				integrante.idTipoIntegrante = integrante.idTipoIntegrante || "";
 				integrante.idTipoDirector = integrante.idTipoDirector || "";
 				integrante.idNacionalidad = integrante.idNacionalidad;
-				debugger;
 				integrante.strNacionalidad = (integrante.idNacionalidad != "") ? $scope.getStrNacionalidad(integrante.idNacionalidad) : "";
 				
+
+
 				if(integrante.id == undefined) {
 					IntegrantesService.postIntegrante(integrante).then(function(response) {
 						if(response.status==200) {

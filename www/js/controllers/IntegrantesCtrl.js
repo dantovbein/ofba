@@ -10,6 +10,9 @@ angular
 			$scope.tiposDirector = tiposDirector;
 			$scope.tiposIntegrante = tiposIntegrante;
 			$scope.nacionalidades = nacionalidades;
+
+			console.log($scope.integrantes);
+			console.log($scope.tiposDirector);
 			
 			$scope.integranteSeleccionado = window._.filter($scope.integrantes,function(i){
 				return 	i.id == $scope.params.id;
@@ -18,12 +21,43 @@ angular
 			$scope.errorText = "";
 			$scope.add = true;
 
-			$scope.parseTipoDirector = function(str) {
+			/*$scope.parseTipoDirector = function(str) {
 				return TiposDirectorService.parseTipoDirector(str);
+			}*/
+
+			/*$scope.parseTipoIntegrante = function(str) {
+				return IntegrantesService.parseTipoIntegrante(str);
+			}*/
+
+			$scope.getInstrumento = function(idInstrumento) {
+				if(idInstrumento == "" || idInstrumento == null) {
+					return "";
+				} else {
+					return window._.filter($scope.instrumentos,function(instrumento){
+						return instrumento.id === idInstrumento;
+					})[0].codigoTexto;
+				}				
 			}
 
-			$scope.parseTipoIntegrante = function(str) {
-				return IntegrantesService.parseTipoIntegrante(str);
+			$scope.getTipoIntegrante = function(idTipoIntegrante) {
+				if(idTipoIntegrante == "" || idTipoIntegrante == null) {
+					return "";
+				} else {
+					return IntegrantesService.parseTipoIntegrante(window._.filter($scope.tiposIntegrante,function(tipoIntegrante){
+						return tipoIntegrante.id === idTipoIntegrante;
+					})[0].codigoTexto);
+				}				
+			}
+
+			$scope.getTipoDirector = function(idTipoDirector) {
+				console.log(idTipoDirector)
+				if(idTipoDirector == "" || idTipoDirector == null || idTipoDirector == 0) {
+					return "";
+				} else {
+					return TiposDirectorService.parseTipoDirector(window._.filter($scope.tiposDirector,function(tipoDirector){
+						return tipoDirector.id === idTipoDirector;
+					})[0].codigoTipo);
+				}				
 			}
 
 			$scope.delete = function(id) {
@@ -51,12 +85,22 @@ angular
 				$scope.add = false;
 			}
 
-			$scope.showDirector = function(idTipoIntegrante) {
-			if(idTipoIntegrante == '2') {
-				return true;
-			} else {
-				$scope.integranteSeleccionado.idTipoDirector = '';
-				return false;
+			$scope.disabledTipoDirector = function(idTipoIntegrante) {
+				if(idTipoIntegrante != '2') {
+					$scope.integranteSeleccionado.idTipoDirector = '';
+					return true;
+				} else {
+					return false;
+				}
+			}
+
+			$scope.disabledInstrumentos = function(idTipoIntegrante) {
+				if(idTipoIntegrante == '2' || idTipoIntegrante == '9') {
+					$scope.integranteSeleccionado.idInstrumento = '';
+					return true;
+				} else {
+					return false;
+				}
 			}
 
 			$scope.getStrNacionalidad = function(idNacionalidad) {
@@ -64,7 +108,7 @@ angular
 					if(nacionalidad.id == idNacionalidad) {
 						return nacionalidad.codigoNacionalidad;
 					}
-				});
+				})[0].codigoNacionalidad;
 			}
         }
-	}]);
+	]);

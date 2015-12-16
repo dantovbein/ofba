@@ -32,6 +32,16 @@ angular
 			$scope.paises = paises;
 			$scope.ciudades = ciudades;
 
+			/*getIntegrante= function(idIntegrante) {
+				window._.each($scope.integrantes,function(integrante){
+					if(integrante.id==idIntegrante){
+
+					}
+					console.log(integrante);
+
+				})
+			}*/
+
 			$scope.addElement = function(element,container) {
 				var compileFunction = $compile('<' + element + '></' + element + '>');
 				var htmlOuputFromDirective = compileFunction($scope);
@@ -248,7 +258,7 @@ angular
 					$scope.html += '</strong>';
 					$scope.html += '</p>';
 				}
-				
+
 				$scope.html += '</div>';
 				$scope.html += '</div>';
 				$scope.html += '<div class="row-fluid">';

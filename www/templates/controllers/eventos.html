@@ -11,7 +11,7 @@
 				<label>Imágen:</label>
 			</li>
 			<li class="container-filters-form-list-item">
-				<label>Tipo de evento:</label>
+				<label>Ciclos:</label>
 				<select ng-model="evento.tipo">
 					<!-- CORREGIR -->
 					<option value="" default selected>Selecciona el tipo de evento</option>
@@ -102,12 +102,26 @@
 							</div>
 							<div class="multi-data">
 								<header class="header-multi-data">
-									<h4 class="title-multi-data">Música:</h4>
+									<h4 class="title-multi-data">Directores:</h4>
+									<div class="btn btn-add-musicos" ng-click="addElement('item-musico-evento','.multi-data-musicos')">Agregar director<span class="btn-icon">⨁</span></div>
+								</header>
+								<div class="holder-content-multi-data multi-data-musicos"></div>
+							</div>
+							<div class="multi-data">
+								<header class="header-multi-data">
+									<h4 class="title-multi-data">Solistas:</h4>
 									<div class="btn btn-add-musicos" ng-click="addElement('item-musico-evento','.multi-data-musicos')">Agregar músico<span class="btn-icon">⨁</span></div>
 								</header>
 								<div class="holder-content-multi-data multi-data-musicos"></div>
 							</div>
 							<div class="multi-data">
+								<header class="header-multi-data">
+									<h4 class="title-multi-data">Música / compositor:</h4>
+									<div class="btn btn-add-musicos" ng-click="addElement('item-musico-evento','.multi-data-musicos')">Agregar músico<span class="btn-icon">⨁</span></div>
+								</header>
+								<div class="holder-content-multi-data multi-data-musicos"></div>
+							</div>
+							<!--<div class="multi-data">
 								<header class="header-multi-data">
 									<h4 class="title-multi-data">Coreografías:</h4>
 									<div class="btn btn-add-coreografia" ng-click="addElement('item-coreografia-evento','.multi-data-coreografia')">Agregar coreografia<span class="btn-icon">⨁</span></div>
@@ -127,7 +141,7 @@
 									<div class="btn btn-add-bailarin-solista" ng-click="addElement('item-bailarin-solista-evento','.multi-data-bailarin-solista')">Agregar bailarin solista<span class="btn-icon">⨁</span></div>
 								</header>
 								<div class="holder-content-multi-data multi-data-bailarin-solista"></div>
-							</div>							 
+							</div>-->						 
 						</li>
 					</ul>
 					<div class="btn btn-remove" ng-click="removeItem()">Cancelar información extra</div>
