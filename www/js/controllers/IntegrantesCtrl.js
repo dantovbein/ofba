@@ -21,14 +21,6 @@ angular
 			$scope.errorText = "";
 			$scope.add = true;
 
-			/*$scope.parseTipoDirector = function(str) {
-				return TiposDirectorService.parseTipoDirector(str);
-			}*/
-
-			/*$scope.parseTipoIntegrante = function(str) {
-				return IntegrantesService.parseTipoIntegrante(str);
-			}*/
-
 			$scope.getInstrumento = function(idInstrumento) {
 				if(idInstrumento == "" || idInstrumento == null) {
 					return "";

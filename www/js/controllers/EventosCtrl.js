@@ -12,10 +12,10 @@ angular
 			//$scope.html = "";
 			$scope.evento.extra = {};
 			$scope.evento.extra.textos = [];
-			$scope.evento.extra.musicos = [];
-			$scope.evento.extra.coreografos = [];
-			$scope.evento.extra.bailarinesSolistas = [];	
-			$scope.evento.extra.reposicionesCoreograficas = [];
+			$scope.evento.extra.directores = [];
+			//$scope.evento.extra.coreografos = [];
+			//$scope.evento.extra.bailarinesSolistas = [];	
+			//$scope.evento.extra.reposicionesCoreograficas = [];
 
 			$scope.errorText = "";
 			$scope.add = true;
@@ -92,12 +92,12 @@ angular
 				});
 			}
 
-			$scope.addMusico = function(integrante) {
-				var data = window._.filter($scope.evento.extra.musicos,function(m,i){
+			$scope.addDirector = function(integrante) {
+				var data = window._.filter($scope.evento.extra.directores,function(m,i){
 					return m == integrante
 				});
 				if(data.length==0) {
-					$scope.evento.extra.musicos.push(integrante);
+					$scope.evento.extra.directores.push(integrante);
 					return true;
 				} else {
 					alert("Ya existe este integrante");
@@ -105,16 +105,16 @@ angular
 				}
 			}
 
-			$scope.removeMusico = function(integrante) {
-				window._.each($scope.evento.extra.musicos,function(m,i){
+			$scope.removeDirector = function(integrante) {
+				window._.each($scope.evento.extra.directores,function(m,i){
 					if(m == integrante){
-						$scope.evento.extra.musicos.splice(i,1);
+						$scope.evento.extra.directores.splice(i,1);
 						return;
 					}
 				});
 			}
 
-			$scope.addCoreografo = function(integrante) {
+			/*$scope.addCoreografo = function(integrante) {
 				var data = window._.filter($scope.evento.extra.coreografos,function(c,i){
 					return c == integrante
 				});
@@ -178,9 +178,10 @@ angular
 						return;
 					}
 				});
-			}
+			}*/
 
 			$scope.postEvento = function() {
+				// Deberia ser [[/]]
 				$scope.html = '';
 				$scope.html += '<p>';
 				$scope.html += '<div class="row-fluid">';
