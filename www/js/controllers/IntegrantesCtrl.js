@@ -11,9 +11,6 @@ angular
 			$scope.tiposIntegrante = tiposIntegrante;
 			$scope.nacionalidades = nacionalidades;
 
-			console.log($scope.integrantes);
-			console.log($scope.tiposDirector);
-			
 			$scope.integranteSeleccionado = window._.filter($scope.integrantes,function(i){
 				return 	i.id == $scope.params.id;
 			})[0] || {};
@@ -42,7 +39,6 @@ angular
 			}
 
 			$scope.getTipoDirector = function(idTipoDirector) {
-				console.log(idTipoDirector)
 				if(idTipoDirector == "" || idTipoDirector == null || idTipoDirector == 0) {
 					return "";
 				} else {

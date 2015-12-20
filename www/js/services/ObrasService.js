@@ -9,12 +9,11 @@ angular
 			return $http
 				.get(config.path + 'service/manager/getObras.php')
 				.then(function(response) {
-					console.log(response);
 					return response.data;
 				}, function(error) {
 					console.log('error: ' + error);
 				});
 		}
-
+		
 		return obrasService;
 	}]);

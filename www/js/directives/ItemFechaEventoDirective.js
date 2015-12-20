@@ -19,7 +19,10 @@ angular
 				
 				$scope.confirmItem = function() {
 					console.log($scope.fecha)
-					if($scope.isConfirmed || $scope.fecha == "") return;
+					if($scope.fecha == ""){
+						alert("No se seleccionó ninguna fecha")
+						return false;
+					}
 					$scope.isConfirmed = $scope.addFecha($scope.fecha);
 				}
 			}

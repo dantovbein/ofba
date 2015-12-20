@@ -2,25 +2,25 @@
 
 angular
 	.module('app')
-	.directive('itemDirectorEvento',[function(){
+	.directive('itemSolistaEvento',[function(){
 		return {
 			restrict: 'E',
 			scope: true,
-			templateUrl: 'templates/directives/item-director-evento.html',
+			templateUrl: 'templates/directives/item-solista-evento.html',
 			controller: function($scope, $element) {
-				$scope.integrante = "";
+				$scope.solista = "";
 				$scope.isConfirmed = false;
 				$scope.removeItem = function(e) {
-					$scope.removeDirector($scope.integrante);
+					$scope.removeSolista($scope.solista);
 					$element.remove();
         			$scope.$destroy();
 				}
 				$scope.confirmItem = function() {
-					if($scope.integrante == ""){
-						alert("No se seleccionó ningún director")
+					if($scope.solista == ""){
+						alert("No se seleccionó ningun solista")
 						return false;
 					}
-					$scope.isConfirmed = $scope.addDirector($scope.integrante);
+					$scope.isConfirmed = $scope.addSolista($scope.solista);
 				}
 			}
 		}

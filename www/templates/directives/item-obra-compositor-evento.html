@@ -1,0 +1,10 @@
+<div class="item-multi-data item-multi-data-evento item-obra-compositor-evento">
+	<select ng-model="obra" ng-disabled="isConfirmed || isConfirmedObra">
+		<option value="" default selected>Selecciona obra</option>
+		<option ng-repeat="obra in obras | filter:compositor.id" value="{{ obra.idObra }}">{{ obra.strObra }}</option>
+	</select>
+	<nav class="item-multi-data-nav-controls">
+		<div class="btn btn-add-item" ng-click="confirmItem()" ng-hide="isConfirmedObra || isConfirmed">Confirmar obra<span class="btn-icon">⨁</span></div>	
+		<div class="btn btn-remove-item" ng-click="removeItem()" ng-hide="isConfirmed">Eliminar obra<span class="btn-icon">⨂</span></div>
+	</nav>
+</div>

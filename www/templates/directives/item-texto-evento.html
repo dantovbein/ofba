@@ -1,9 +1,8 @@
 <div class="item-multi-data item-multi-data-evento item-texto-evento">
-	<label>Párrafo:</label>
-	<!--<input type="text" ng-model="texto" ng-disabled="isConfirmed" placeholder="Ingrese un texto adicional"/>-->
-	<textarea ng-model="texto" ng-disabled="isConfirmed"></textarea>
+	<!--<label>Texto:</label>-->
+	<textarea placeholder="{{ defaultText }}" ng-model="texto" ng-disabled="isConfirmed"></textarea>
 	<nav class="item-multi-data-nav-controls">
-		<div class="btn btn-add-item-texto" ng-click="confirmItem()">Confirmar<span class="btn-icon">⨁</span></div>	
-		<div class="btn btn-remove-item-texto" ng-click="removeItem()">Eliminar<span class="btn-icon">⨂</span></div>
+		<div class="btn btn-add-item" ng-click="confirmItem()" ng-hide="isConfirmed">Confirmar texto<span class="btn-icon">⨁</span></div>	
+		<div class="btn btn-remove-item" ng-click="removeItem()">Eliminar texto<span class="btn-icon">⨂</span></div>
 	</nav>
 </div>

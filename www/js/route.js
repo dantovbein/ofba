@@ -123,6 +123,9 @@ angular.module('app')
 						integrantes: function(IntegrantesService) {
 							return IntegrantesService.getIntegrantes();
 						},
+						obras: function(ObrasService) {
+							return ObrasService.getObras();
+						},
 						locaciones: function(LocacionesService) {
 							return LocacionesService.getLocaciones();
 						},

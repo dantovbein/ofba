@@ -2,8 +2,8 @@
 
 angular
 	.module('app')
-	.controller('EventosCtrl',['$scope','$compile','eventos','ciclos','temporadas','textos','nacionalidades','integrantes','locaciones','paises','ciudades',
-		function($scope,$compile,eventos,ciclos,temporadas,textos,nacionalidades,integrantes,locaciones,paises,ciudades){
+	.controller('EventosCtrl',['$scope','$element','$compile','eventos','ciclos','temporadas','textos','nacionalidades','integrantes','obras','locaciones','paises','ciudades',
+		function($scope,$element,$compile,eventos,ciclos,temporadas,textos,nacionalidades,integrantes,obras,locaciones,paises,ciudades){
 			$scope.evento = {};
 			
 			//$scope.evento.fechas = [];
@@ -13,9 +13,8 @@ angular
 			$scope.evento.extra = {};
 			$scope.evento.extra.textos = [];
 			$scope.evento.extra.directores = [];
-			//$scope.evento.extra.coreografos = [];
-			//$scope.evento.extra.bailarinesSolistas = [];	
-			//$scope.evento.extra.reposicionesCoreograficas = [];
+			$scope.evento.extra.compositores = [];
+			$scope.evento.extra.solistas = [];
 
 			$scope.errorText = "";
 			$scope.add = true;
@@ -25,8 +24,15 @@ angular
 			$scope.temporadas = temporadas;
 			$scope.nacionalidades = nacionalidades;
 			$scope.integrantes = integrantes;
+			$scope.obras = obras;
 			$scope.directores = window._.filter($scope.integrantes,function(integrante){
 				return integrante.idTipoIntegrante == '2';
+			});
+			$scope.compositores = window._.filter($scope.integrantes,function(integrante){
+				return integrante.idTipoIntegrante == '9';
+			});
+			$scope.solistas = window._.filter($scope.integrantes,function(integrante){
+				return integrante.idTipoIntegrante !== '2' && integrante.idTipoIntegrante !== '9';
 			});
 			$scope.locaciones = locaciones;
 			$scope.paises = paises;
@@ -42,10 +48,36 @@ angular
 				})
 			}*/
 
-			$scope.addElement = function(element,container) {
-				var compileFunction = $compile('<' + element + '></' + element + '>');
-				var htmlOuputFromDirective = compileFunction($scope);
-        		$(container).append(htmlOuputFromDirective);
+			getDefaultTexts();
+
+			function getDefaultTexts() {
+				var defaultTexts = [
+					"Ingrese las funciones del evento. Ejemplo: Funciones: Miércoles 5, Jueves 6, Viernes 7 y Sábado 8, 20:30; y Domingo 9 de marzo de 2014, 17:00",
+					"Ingrese otra información adicional. Ejemplo: Ballet Estable del Teatro Colón, Director: Lidia Segnis",
+					""
+				];
+
+				for(var i=0;i<defaultTexts.length;i++) {
+					addDefaultTexts('item-texto-evento','.multi-data-textos',defaultTexts[i]);
+				}
+			}
+
+			function addDefaultTexts(element,container,params) {
+				var container = $element.find(container);
+				var el = angular.element(document.createElement(element));
+				el.attr('params',params);
+				$compile(el)($scope);
+				angular.element(container.append(el));
+			}
+
+			$scope.addElement = function(element,container,params) {
+				var container = $element.find(container);
+				var el = angular.element(document.createElement(element));
+				if(params != undefined){
+					el.attr('params',params);
+				}
+				$compile(el)($scope);
+				angular.element(container.append(el));
 			}
 
 			$scope.addFecha = function(fecha) {
@@ -114,56 +146,34 @@ angular
 				});
 			}
 
-			/*$scope.addCoreografo = function(integrante) {
-				var data = window._.filter($scope.evento.extra.coreografos,function(c,i){
-					return c == integrante
+			$scope.addCompositor = function(integrante) {
+				var data = window._.filter($scope.evento.extra.compositores,function(c,i){
+					return c.id == integrante.id
 				});
 				if(data.length==0) {
-					$scope.evento.extra.coreografos.push(integrante);
+					$scope.evento.extra.compositores.push(integrante);
 					return true;
 				} else {
-					alert("Ya existe este coreografo");
+					alert("Ya existe este compositor");
 					return false;
 				}
 			}
 
-			$scope.removeCoreografo = function(integrante) {
-				window._.each($scope.evento.extra.coreografos,function(c,i){
+			$scope.removeCompositor = function(integrante) {
+				window._.each($scope.evento.extra.compositores,function(c,i){
 					if(c == integrante){
-						$scope.evento.extra.coreografos.splice(i,1);
+						$scope.evento.extra.compositores.splice(i,1);
 						return;
 					}
 				});
 			}
 
-			$scope.addBailarinSolista = function(integrante) {
-				var data = window._.filter($scope.evento.extra.bailarinesSolistas,function(c,i){
+			$scope.addSolista = function(integrante) {
+				var data = window._.filter($scope.evento.extra.solistas,function(c,i){
 					return c == integrante
 				});
 				if(data.length==0) {
-					$scope.evento.extra.bailarinesSolistas.push(integrante);
-					return true;
-				} else {
-					alert("Ya existe este bailarin solista");
-					return false;
-				}
-			}
-
-			$scope.removeBailarinSolista = function(integrante) {
-				window._.each($scope.evento.extra.bailarinesSolistas,function(c,i){
-					if(c == integrante){
-						$scope.evento.extra.bailarinesSolistas.splice(i,1);
-						return;
-					}
-				});
-			}
-
-			$scope.addReposicionCoreografica = function(integrante) {
-				var data = window._.filter($scope.evento.extra.reposicionesCoreograficas,function(c,i){
-					return c == integrante
-				});
-				if(data.length==0) {
-					$scope.evento.extra.reposicionesCoreograficas.push(integrante);
+					$scope.evento.extra.solistas.push(integrante);
 					return true;
 				} else {
 					alert("Ya existe este bailarin solista");
@@ -171,14 +181,14 @@ angular
 				}
 			}
 
-			$scope.removeReposicionCoreografica = function(integrante) {
-				window._.each($scope.evento.extra.reposicionesCoreograficas,function(c,i){
+			$scope.removeSolista = function(integrante) {
+				window._.each($scope.evento.extra.solistas,function(c,i){
 					if(c == integrante){
-						$scope.evento.extra.reposicionesCoreograficas.splice(i,1);
+						$scope.evento.extra.solistas.splice(i,1);
 						return;
 					}
 				});
-			}*/
+			}
 
 			$scope.postEvento = function() {
 				// Deberia ser [[/]]

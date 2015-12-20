@@ -1,0 +1,11 @@
+<div class="item-multi-data item-multi-data-evento item-solista-evento">
+	<!--<label>Solista:</label>-->
+	<select ng-model="solista" ng-disabled="isConfirmed">
+		<option value="" default selected>Selecciona el solista</option>
+		<option ng-repeat="solista in solistas" value="{{ solista.id }}">{{ solista.nombres + " " + solista.apellidos }}</option>
+	</select>
+	<nav class="item-multi-data-nav-controls">
+		<div class="btn btn-add-item-solista-evento" ng-click="confirmItem()" ng-hide="isConfirmed">Confirmar solista<span class="btn-icon">⨁</span></div>
+		<div class="btn btn-remove-item-solista-evento" ng-click="removeItem()">Eliminar solista<span class="btn-icon">⨂</span></div>
+	</nav>
+</div>

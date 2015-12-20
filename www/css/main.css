@@ -14,14 +14,7 @@ body {
   font-size: 100%;
   color: #fff;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: #7e0a08;
-  background: -moz-linear-gradient(left, #7e0a08 20%, #a60a0a 50%, #7e0a08 80%);
-  background: -webkit-gradient(linear, left top, right top, color-stop(20%, #7e0a08), color-stop(50%, #a60a0a), color-stop(80%, #7e0a08));
-  background: -webkit-linear-gradient(left, #7e0a08 20%, #a60a0a 50%, #7e0a08 80%);
-  background: -o-linear-gradient(left, #7e0a08 20%, #a60a0a 50%, #7e0a08 80%);
-  background: -ms-linear-gradient(left, #7e0a08 20%, #a60a0a 50%, #7e0a08 80%);
-  background: linear-gradient(to right, #7e0a08 20%, #a60a0a 50%, #7e0a08 80%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$app-first-color', endColorstr='$app-first-color',GradientType=1 ); }
+  background: #7e0a08; }
 
 a {
   text-decoration: none;
@@ -36,7 +29,7 @@ label {
   float: left; }
 
 input, select, textarea {
-  padding: .4rem 0 .4rem .8rem;
+  padding: .4rem .8rem;
   font-size: 1rem; }
 
 select {
@@ -134,7 +127,11 @@ select {
 .multi-data {
   float: left;
   width: 100%;
-  margin: .5rem 0 0 0; }
+  margin: .5rem 0 .5rem 0;
+  padding: .5rem 0 .5rem 0;
+  border-bottom: solid 1px #fff; }
+  .multi-data:first-child {
+    border-top: solid 1px #fff; }
   .multi-data .header-multi-data {
     float: left;
     margin: 0 0 .75rem 0; }
@@ -154,6 +151,10 @@ select {
       margin: 0 0 .5rem 0; }
       .multi-data .holder-content-multi-data .item-multi-data:first-child {
         margin-top: .5rem; }
+  .multi-data .subitem-multi-data {
+    float: left;
+    width: 100%;
+    padding: 0.5rem 1.5rem 0 1.5rem; }
 
 #main_nav {
   float: left;
@@ -372,7 +373,7 @@ select {
     height: 7rem; }
   .item-multi-data-evento .item-multi-data-nav-controls {
     float: left;
-    width: 20% !important;
+    width: 35% !important;
     margin: 0 0 0 2%; }
     .item-multi-data-evento .item-multi-data-nav-controls .btn {
       margin: 0 0 0 3%; }

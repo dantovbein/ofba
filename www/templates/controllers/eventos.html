@@ -54,15 +54,14 @@
 				</select>
 			</li>
 			<li class="container-filters-form-list-item full-width">
-				<div class="container-filters-form-list-item item-subitem">
+				<!--<div class="container-filters-form-list-item item-subitem">
 					<label>Desde:</label>
 					<input ng-model="evento.fechaDesde" type="datetime-local" />
 				</div>
 				<div class="container-filters-form-list-item item-subitem">
 					<label>Hasta:</label>
-					<input ng-model="evento.fechaHasta" type="datetime-local" />
-				</div>
-				<!--
+					<input ng-model="evento.fechaHasta" type="datetime-local" ng-disabled="true" />
+				</div>-->
 				<div class="multi-data">
 					<header class="header-multi-data">
 						<h4 class="title-multi-data"></h4>
@@ -70,7 +69,6 @@
 					</header>
 					<div class="holder-content-multi-data multi-data-fechas"></div>
 				</div>
-				-->			
 			</li>
 			<li class="container-filters-form-list-item full-width">
 				<h4 class="container-filters-form-list-item-title">Director:</h4>
@@ -107,44 +105,23 @@
 								</header>
 								<div class="holder-content-multi-data multi-data-directores"></div>
 							</div>
-							<div class="multi-datqa">
+							<div class="multi-data">
+								<header class="header-multi-data">
+									<h4 class="title-multi-data">Compositores:</h4>
+									<div class="btn btn-add-compositores" ng-click="addElement('item-compositor-evento','.multi-data-compositores')">Agregar compositor<span class="btn-icon">⨁</span></div>
+								</header>
+								<div class="holder-content-multi-data multi-data-compositores"></div>
+							</div>
+							<div class="multi-data">
 								<header class="header-multi-data">
 									<h4 class="title-multi-data">Solistas:</h4>
-									<div class="btn btn-add-musicos" ng-click="addElement('item-musico-evento','.multi-data-musicos')">Agregar músico<span class="btn-icon">⨁</span></div>
+									<div class="btn btn-add-solistas" ng-click="addElement('item-solista-evento','.multi-data-solistas')">Agregar solista<span class="btn-icon">⨁</span></div>
 								</header>
-								<div class="holder-content-multi-data multi-data-musicos"></div>
-							</div>
-							<div class="multi-data">
-								<header class="header-multi-data">
-									<h4 class="title-multi-data">Música / compositor:</h4>
-									<div class="btn btn-add-musicos" ng-click="addElement('item-musico-evento','.multi-data-musicos')">Agregar músico<span class="btn-icon">⨁</span></div>
-								</header>
-								<div class="holder-content-multi-data multi-data-musicos"></div>
-							</div>
-							<!--<div class="multi-data">
-								<header class="header-multi-data">
-									<h4 class="title-multi-data">Coreografías:</h4>
-									<div class="btn btn-add-coreografia" ng-click="addElement('item-coreografia-evento','.multi-data-coreografia')">Agregar coreografia<span class="btn-icon">⨁</span></div>
-								</header>
-								<div class="holder-content-multi-data multi-data-coreografia"></div>
-							</div>
-							<div class="multi-data">
-								<header class="header-multi-data">
-									<h4 class="title-multi-data">Reposiciónes coreográficas:</h4>
-									<div class="btn btn-add-reposicion-coreografia" ng-click="addElement('item-reposicion-coreografica-evento','.multi-data-reposición-coreografica')">Agregar reposición coreográfica<span class="btn-icon">⨁</span></div>
-								</header>
-								<div class="holder-content-multi-data multi-data-reposición-coreografica"></div>
-							</div>
-							<div class="multi-data">
-								<header class="header-multi-data">
-									<h4 class="title-multi-data">Bailarines solistas:</h4>
-									<div class="btn btn-add-bailarin-solista" ng-click="addElement('item-bailarin-solista-evento','.multi-data-bailarin-solista')">Agregar bailarin solista<span class="btn-icon">⨁</span></div>
-								</header>
-								<div class="holder-content-multi-data multi-data-bailarin-solista"></div>
-							</div>-->						 
+								<div class="holder-content-multi-data multi-data-solistas"></div>
+							</div>					 
 						</li>
 					</ul>
-					<div class="btn btn-remove" ng-click="removeItem()">Cancelar información extra</div>
+					<!--<div class="btn btn-remove" ng-click="removeItem()">Cancelar información extra</div>-->
 				</li>
 			</ul>
 		</div>
@@ -157,8 +134,9 @@
 			</nav>
 		</div>
 		<span class="error">{{ errorText }}</span>
-		{{ evento }}
-		{{ html }}
+		
+		{{ evento }}</br></br>
+		
 	</form>
 </section>
 <section class="sub-section container-data" ng-controller="EventosListCtrl">
@@ -184,4 +162,3 @@
 		</li>
 	</ul>
 </section>
-
