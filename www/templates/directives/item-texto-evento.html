@@ -1,5 +1,5 @@
 <div class="item-multi-data item-multi-data-evento item-texto-evento">
-	<textarea placeholder="{{ defaultText }}" ng-model="texto" ng-disabled="isConfirmed"></textarea>
+	<textarea placeholder="{{ defaultText }}" wrap="hard" ng-model="texto" ng-disabled="isConfirmed"></textarea>
 	<nav class="item-multi-data-nav-controls">
 		<div class="btn btn-add-item" ng-click="confirmItem()" ng-hide="isConfirmed">Confirmar texto<span class="btn-icon">⨁</span></div>	
 		<div class="btn btn-remove-item" ng-click="removeItem()">Eliminar texto<span class="btn-icon">⨂</span></div>

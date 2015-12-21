@@ -5,6 +5,8 @@ angular
 	.controller('EventosCtrl',['$scope','$element','$compile','eventos','ciclos','temporadas','textos','nacionalidades','integrantes','obras','locaciones','paises','ciudades',
 		function($scope,$element,$compile,eventos,ciclos,temporadas,textos,nacionalidades,integrantes,obras,locaciones,paises,ciudades){
 			
+			$scope.prueba = "";
+
 			$scope.evento = {};
 			$scope.evento.titulo = "";
 			$scope.evento.imagen = "";
@@ -113,11 +115,20 @@ angular
 			}
 
 			$scope.addTexto = function(texto) {
+				//texto.replace(/\n/g,'</br>');
+				//texto.replace(/\n/g, "<br />");
+			//	console.log(texto)
+			//	texto.replace(/\n/g, "<br />");
+			//	texto.replace(/\\r\\n/g, "<br />");
+			//	console.log(texto)
+				
+				//texto.replace(new RegExp('\r?\n','g'), '<br />');
 				var data = window._.filter($scope.evento.extra.textos,function(t,i){
 					return t == texto
 				});
 				if(data.length==0) {
 					$scope.evento.extra.textos.push(texto);
+					$scope.prueba = texto;
 					return true;
 				} else {
 					alert("Ya existe este texto");
@@ -281,7 +292,9 @@ angular
 			}
 
 			$scope.onSaveEvento = function() {
-				$element.find("#html").html($scope.getHtml());
+				if($scope.validate()) {
+					$element.find("#html").html($scope.getHtml());	
+				}				
 			}
 
 			$scope.onCancelEvento = function() {
@@ -289,7 +302,41 @@ angular
 			}
 
 			$scope.validate = function() {
-				
+				return true;
+
+				if($scope.evento.titulo=="") {
+					$scope.errorText = "Se debe escribir el título";
+					return false;
+				//} else if ($scope.evento.imagen == "") {
+					//$scope.errorText = "Se debe cargar la imágen";
+					//return false;
+				} else if ($scope.evento.ciclo == "") {
+					$scope.errorText = "Se debe seleccionar el ciclo";
+					return false;
+				} else if ($scope.evento.locacion == "") {
+					$scope.errorText = "Se debe seleccionar la locacion";
+					return false;
+				} else if ($scope.evento.nacionalidad == "") {
+					$scope.errorText = "Se debe seleccionar la nacionalidad";
+					return false;
+				} else if ($scope.evento.pais == "") {
+					$scope.errorText = "Se debe seleccionar el pais";
+					return false;
+				} else if ($scope.evento.ciudad == "") {
+					$scope.errorText = "Se debe seleccionar la ciudad";
+					return false;
+				} else if ($scope.evento.temporada == "") {
+					$scope.errorText = "Se debe seleccionar la temporada";
+					return false;
+				} else if ($scope.evento.fechas.length == 0) {
+					$scope.errorText = "Se debe cargar al menos una fecha";
+					return false;
+				} else if ($scope.evento.director == "") {
+					$scope.errorText = "Se debe seleccionar el director";
+					return false;
+				} else {
+					return true;
+				}
 			}
 
 			$scope.getHtml = function() {
@@ -307,11 +354,6 @@ angular
 				html += '<h5>' + $scope.parseLocacion($scope.evento.locacion) + '</h5>';
 				html += '<h5>' + $scope.parseCiudad($scope.evento.ciudad) + ', ' + $scope.parsePais($scope.evento.pais) + '</h5>';
 				
-				/*html += '<p>';
-				html += '<strong>';
-				html += evento.fechaDesde;
-				html += '</strong>';
-				html += '</p>';*/
 				html += '</br>';
 
 				html += '<p>';
@@ -357,12 +399,10 @@ angular
 							window._.each(c.obras, function(o,j){
 								html += "<li>";
 								html += $scope.parseObras(o);
-								//html += (j != c.obras.length-1) ? ", " : "";
 								html += "</li>";
 							});
 							html += "</ul>";
 						}
-						//html += '</br>';
 					});
 					html += '</p>';
 					html += '</br>';
@@ -371,55 +411,14 @@ angular
 				if($scope.evento.extra.textos.length > 0) {
 					window._.each($scope.evento.extra.textos, function(t,i){
 						html += '<p>';
-						html += t;
+						//console.log(t);
+						//html += t;		
+						html += t.replace(/\\r\\n/g, "<br />");
 						html += '</p>';
 						html += '</br>';
 					});
 				}
 
-				/*if(evento.extra.musicos.length > 0) {
-					html += '<p>';
-					html += '<strong>Musicos: ';
-					window._.each(evento.extra.musicos, function(m,i){
-						html += m;
-						html += (i != evento.extra.musicos.length-1) ? ', ' : '';
-					});
-					html += '</strong>';
-					html += '</p>';
-				}
-
-				if(evento.extra.coreografos.length > 0) {
-					html += '<p>';
-					html += '<strong>Coreografos: ';
-					window._.each(evento.extra.coreografos, function(c,i){
-						html += c;
-						html += (i != evento.extra.coreografos.length-1) ? ', ' : '';
-					});
-					html += '</strong>';
-					html += '</p>';
-				}
-
-				if(evento.extra.bailarinesSolistas.length > 0) {
-					html += '<p>';
-					html += '<strong>Bailarines solistas: ';
-					window._.each(evento.extra.bailarinesSolistas, function(bs,i){
-						html += bs;
-						html += (i != evento.extra.bailarinesSolistas.length-1) ? ', ' : '';
-					});
-					html += '</strong>';
-					html += '</p>';
-				}
-
-				if(evento.extra.reposicionesCoreograficas.length > 0) {
-					html += '<p>';
-					html += '<strong>Reposiciones coreograficas: ';
-					window._.each(evento.extra.reposicionesCoreograficas, function(rc,i){
-						html += rc;
-						html += (i != evento.extra.reposicionesCoreograficas.length-1) ? ', ' : '';
-					});
-					html += '</strong>';
-					html += '</p>';
-				}*/
 				html += '</div>';
 				html += '</div>';
 				
