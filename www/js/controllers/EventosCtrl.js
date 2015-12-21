@@ -4,12 +4,18 @@ angular
 	.module('app')
 	.controller('EventosCtrl',['$scope','$element','$compile','eventos','ciclos','temporadas','textos','nacionalidades','integrantes','obras','locaciones','paises','ciudades',
 		function($scope,$element,$compile,eventos,ciclos,temporadas,textos,nacionalidades,integrantes,obras,locaciones,paises,ciudades){
-			$scope.evento = {};
 			
-			//$scope.evento.fechas = [];
-			//$scope.evento.fechaDesde = "";
-			//$scope.evento.fechaHasta = "";
-			//$scope.html = "";
+			$scope.evento = {};
+			$scope.evento.titulo = "";
+			$scope.evento.imagen = "";
+			$scope.evento.ciclo = "";
+			$scope.evento.locacion = "";
+			$scope.evento.ciudad = "";
+			$scope.evento.pais = "";
+			$scope.evento.nacionalidad = "";
+			$scope.evento.temporada = "";
+			$scope.evento.fechas = [];
+			$scope.evento.director = "";
 			$scope.evento.extra = {};
 			$scope.evento.extra.textos = [];
 			$scope.evento.extra.directores = [];
@@ -18,6 +24,7 @@ angular
 
 			$scope.errorText = "";
 			$scope.add = true;
+			
 			$scope.eventos = eventos;
 			$scope.textos = textos;
 			$scope.ciclos = ciclos;
@@ -37,6 +44,9 @@ angular
 			$scope.locaciones = locaciones;
 			$scope.paises = paises;
 			$scope.ciudades = ciudades;
+			//$scope.ciudadesFiltradas = window._.filter($scope.ciudades,function(ciudad){
+			//	return ciudad.idpais == $scope.pais;
+			//});
 
 			/*getIntegrante= function(idIntegrante) {
 				window._.each($scope.integrantes,function(integrante){
@@ -190,148 +200,291 @@ angular
 				});
 			}
 
-			$scope.postEvento = function() {
-				// Deberia ser [[/]]
-				$scope.html = '';
-				$scope.html += '<p>';
-				$scope.html += '<div class="row-fluid">';
-				$scope.html += '<div class="span12">';
-				$scope.html += '<img class="pull-right img-ofba" src="images/ofba/events/thumbs/"' + "" + ' alt="" />';
-				
-				$scope.html += '<h4>' + $scope.evento.titulo + '</h4>';
-				
-				$scope.html += '<h5>' + $scope.evento.tipo + '</h5>';
-				
-				$scope.html += '<h5>' + $scope.evento.locacion + '</h5>';
-				
-				/*$scope.html += '<p>';
-				$scope.html += '<strong>';
-				$scope.html += $scope.evento.fechaDesde;
-				$scope.html += '</strong>';
-				$scope.html += '</p>';*/
+			$scope.parseIntegrante = function(id) {
+				if(id != "") {
+					var txt = window._.filter($scope.integrantes,function(s,i){
+						return s.id== id;
+					});
+					return txt[0].nombres + " " + txt[0].apellidos;
+				} else {
+					return "";
+				}
+			}
 
-				$scope.html += '<p>';
-				$scope.html += '<strong>Director:';
-				$scope.html += '<a href="' + "" + '">';
-				$scope.html += $scope.evento.idDirector;
-				$scope.html += '</a>';
-				$scope.html += '</strong>';
-				$scope.html += '</p>';
+			$scope.parseCiclo = function(id) {
+				if(id != "") {
+					var txt = window._.filter($scope.ciclos,function(s,i){
+						return s.id== id;
+					})[0].codigoCiclo;
+					return $scope.parseText(txt);
+				} else {
+					return "";
+				}
+			}
+
+			$scope.parseTemporada = function(id) {
+				if(id != "") {
+					var txt = window._.filter($scope.temporadas,function(s,i){
+						return s.id == id;
+					})[0].codigoNombre;
+					return $scope.parseText(txt);
+				} else {
+					return "";
+				}
+			}
+
+			$scope.parseLocacion = function(id) {
+				if(id != "") {
+					var txt = window._.filter($scope.locaciones,function(s,i){
+						return s.id == id;
+					})[0].codigoTexto;
+					return $scope.parseText(txt);
+				} else {
+					return "";
+				}
+			}
+
+			$scope.parseCiudad = function(id) {
+				if(id != "") {
+					return window._.filter($scope.ciudades,function(s,i){
+						return s.idciudad == id;
+					})[0].str_ciudad;
+				} else {
+					return "";
+				}
+			}
+
+			$scope.parsePais = function(id) {
+				if(id != "") {
+					return window._.filter($scope.paises,function(s,i){
+						return s.idpais == id;
+					})[0].str_pais;
+				} else {
+					return "";
+				}
+			}
+
+			$scope.parseObras = function(id) {
+				if(id != "") {
+					return window._.filter($scope.obras,function(s,i){
+						return s.idObra == id;
+					})[0].strObra;
+				} else {
+					return "";
+				}
+			}
+
+			$scope.parseText = function(str) {
+				var newStr = str!=null ? str.replace(/_/g,' ').toLowerCase() : "";
+				newStr = (newStr!="") ? newStr.replace(newStr.charAt(0),newStr.charAt(0).toUpperCase()) : "";
+				return newStr;
+			}
+
+			$scope.onSaveEvento = function() {
+				$element.find("#html").html($scope.getHtml());
+			}
+
+			$scope.onCancelEvento = function() {
+				
+			}
+
+			$scope.validate = function() {
+				
+			}
+
+			$scope.getHtml = function() {
+				// Deberia ser [[/]]
+				var html = "";
+				html = '';
+				html += '<p>';
+				html += '<div class="row-fluid">';
+				html += '<div class="span12">';
+				//html += '<img class="pull-right img-ofba" src="images/ofba/events/thumbs/"' + "" + ' alt="" />';
+				
+				//html += '<h4>' + $scope.evento.titulo + '</h4>';
+				html += '<h4>' + $scope.parseTemporada($scope.evento.temporada) + '</h4>';
+				html += '<h5>' + $scope.parseCiclo($scope.evento.ciclo) + '</h5>';
+				html += '<h5>' + $scope.parseLocacion($scope.evento.locacion) + '</h5>';
+				html += '<h5>' + $scope.parseCiudad($scope.evento.ciudad) + ', ' + $scope.parsePais($scope.evento.pais) + '</h5>';
+				
+				/*html += '<p>';
+				html += '<strong>';
+				html += evento.fechaDesde;
+				html += '</strong>';
+				html += '</p>';*/
+				html += '</br>';
+
+				html += '<p>';
+				html += '<strong>Director: ';
+				html += '<a href="' + "" + '">';
+				html += $scope.parseIntegrante($scope.evento.director);
+				html += '</a>';
+				html += '</strong>';
+				html += '</p>';
+
+				html += '</br>';
+
+				if($scope.evento.extra.directores.length > 0) {
+					html += '<p>';
+					html += '<h4>Directores:</h4>';
+					window._.each($scope.evento.extra.directores, function(d,i){
+						html += '<span>' + $scope.parseIntegrante(d) + '</span>';
+						html += (i != $scope.evento.extra.directores.length-1) ? ", " : "";
+					});
+					html += '</p>';
+					html += '</br>';
+				}
+
+				if($scope.evento.extra.solistas.length > 0) {
+					html += '<p>';
+					html += '<h4>Solistas:</h4>';
+					window._.each($scope.evento.extra.solistas, function(s,i){
+						html += '<span>' + $scope.parseIntegrante(s) + '</span>';
+						html += (i != $scope.evento.extra.solistas.length-1) ? ", " : "";
+					});
+					html += '</p>';
+					html += '</br>';
+				}
+
+				if($scope.evento.extra.compositores.length > 0) {
+					html += '<p>';
+					html += '<h4>Compositores:</h4>';
+					window._.each($scope.evento.extra.compositores, function(c,i){
+						html += '<strong>' + $scope.parseIntegrante(c.id) + '</strong>';
+						if(c.obras.length > 0) {
+							html += ": ";
+							html += "<ul>";
+							window._.each(c.obras, function(o,j){
+								html += "<li>";
+								html += $scope.parseObras(o);
+								//html += (j != c.obras.length-1) ? ", " : "";
+								html += "</li>";
+							});
+							html += "</ul>";
+						}
+						//html += '</br>';
+					});
+					html += '</p>';
+					html += '</br>';
+				}
 
 				if($scope.evento.extra.textos.length > 0) {
-					$scope.html += '<p>';
 					window._.each($scope.evento.extra.textos, function(t,i){
-						$scope.html += '<strong>' + t + '</strong></br>';
+						html += '<p>';
+						html += t;
+						html += '</p>';
+						html += '</br>';
 					});
-					$scope.html += '</p>';
 				}
 
-				if($scope.evento.extra.musicos.length > 0) {
-					$scope.html += '<p>';
-					$scope.html += '<strong>Musicos: ';
-					window._.each($scope.evento.extra.musicos, function(m,i){
-						$scope.html += m;
-						$scope.html += (i != $scope.evento.extra.musicos.length-1) ? ', ' : '';
+				/*if(evento.extra.musicos.length > 0) {
+					html += '<p>';
+					html += '<strong>Musicos: ';
+					window._.each(evento.extra.musicos, function(m,i){
+						html += m;
+						html += (i != evento.extra.musicos.length-1) ? ', ' : '';
 					});
-					$scope.html += '</strong>';
-					$scope.html += '</p>';
+					html += '</strong>';
+					html += '</p>';
 				}
 
-				if($scope.evento.extra.coreografos.length > 0) {
-					$scope.html += '<p>';
-					$scope.html += '<strong>Coreografos: ';
-					window._.each($scope.evento.extra.coreografos, function(c,i){
-						$scope.html += c;
-						$scope.html += (i != $scope.evento.extra.coreografos.length-1) ? ', ' : '';
+				if(evento.extra.coreografos.length > 0) {
+					html += '<p>';
+					html += '<strong>Coreografos: ';
+					window._.each(evento.extra.coreografos, function(c,i){
+						html += c;
+						html += (i != evento.extra.coreografos.length-1) ? ', ' : '';
 					});
-					$scope.html += '</strong>';
-					$scope.html += '</p>';
+					html += '</strong>';
+					html += '</p>';
 				}
 
-				if($scope.evento.extra.bailarinesSolistas.length > 0) {
-					$scope.html += '<p>';
-					$scope.html += '<strong>Bailarines solistas: ';
-					window._.each($scope.evento.extra.bailarinesSolistas, function(bs,i){
-						$scope.html += bs;
-						$scope.html += (i != $scope.evento.extra.bailarinesSolistas.length-1) ? ', ' : '';
+				if(evento.extra.bailarinesSolistas.length > 0) {
+					html += '<p>';
+					html += '<strong>Bailarines solistas: ';
+					window._.each(evento.extra.bailarinesSolistas, function(bs,i){
+						html += bs;
+						html += (i != evento.extra.bailarinesSolistas.length-1) ? ', ' : '';
 					});
-					$scope.html += '</strong>';
-					$scope.html += '</p>';
+					html += '</strong>';
+					html += '</p>';
 				}
 
-				if($scope.evento.extra.reposicionesCoreograficas.length > 0) {
-					$scope.html += '<p>';
-					$scope.html += '<strong>Reposiciones coreograficas: ';
-					window._.each($scope.evento.extra.reposicionesCoreograficas, function(rc,i){
-						$scope.html += rc;
-						$scope.html += (i != $scope.evento.extra.reposicionesCoreograficas.length-1) ? ', ' : '';
+				if(evento.extra.reposicionesCoreograficas.length > 0) {
+					html += '<p>';
+					html += '<strong>Reposiciones coreograficas: ';
+					window._.each(evento.extra.reposicionesCoreograficas, function(rc,i){
+						html += rc;
+						html += (i != evento.extra.reposicionesCoreograficas.length-1) ? ', ' : '';
 					});
-					$scope.html += '</strong>';
-					$scope.html += '</p>';
-				}
+					html += '</strong>';
+					html += '</p>';
+				}*/
+				html += '</div>';
+				html += '</div>';
+				
+				/*html += '<div class="row-fluid">';
+				html += '<div class="span12">';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="row-fluid">';
+				html += '<div class="span4">';
+				html += '<div id="mnuProgramaMano" class="accordion">';
+				html += '<div class="accordion-inner">';
+				html += '<span style="color: #FCEAC3;">Programa de mano</span>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="span4">';
+				html += '<div id="mnuGaleriaImagenes" class="accordion">';
+				html += '<div class="accordion-inner">';
+				html += '<span style="color: #FCEAC3;">Galería de imágenes</span>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="span4">';
+				html += '<div id="mnuRegistroFonografico" class="accordion">';
+				html += '<div class="accordion-inner">'; 
+				html += '<span style="color: #FCEAC3;">Registro fonográfico</span>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="row-fluid">';
+				html += '<div class="span4">';
+				html += '<div id="mnuAnuncios" class="accordion">';
+				html += '<div class="accordion-inner">';
+				html += '<span style="color: #FCEAC3;">Anuncios</span>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="span4">';
+				html += '<div id="mnuGacetillaPrensa" class="accordion">';
+				html += '<div class="accordion-inner">'; 
+				html += '<span style="color: #FCEAC3;">Gacetilla de prensa</span>';
+				html += '</div>';
+				html += '</div>'; 
+				html += '</div>';
+				html += '<div class="span4">';
+				html += '<div id="mnuRegistroFilmografico" class="accordion">';
+				html += '<div class="accordion-inner">';
+				html += '<span style="color: #FCEAC3;">Registro filmográfico</span>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="row-fluid">';
+				html += '<div class="span4">';
+				html += '<div id="mnuCriticas" class="accordion">';
+				html += '<div class="accordion-inner">';
+				html += '<span style="color: #FCEAC3;">Críticas</span>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';*/
+				html += '</p>';
 
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '<div class="row-fluid">';
-				$scope.html += '<div class="span12">';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '<div class="row-fluid">';
-				$scope.html += '<div class="span4">';
-				$scope.html += '<div id="mnuProgramaMano" class="accordion">';
-				$scope.html += '<div class="accordion-inner">';
-				$scope.html += '<span style="color: #FCEAC3;">Programa de mano</span>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '<div class="span4">';
-				$scope.html += '<div id="mnuGaleriaImagenes" class="accordion">';
-				$scope.html += '<div class="accordion-inner">';
-				$scope.html += '<span style="color: #FCEAC3;">Galería de imágenes</span>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '<div class="span4">';
-				$scope.html += '<div id="mnuRegistroFonografico" class="accordion">';
-				$scope.html += '<div class="accordion-inner">'; 
-				$scope.html += '<span style="color: #FCEAC3;">Registro fonográfico</span>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '<div class="row-fluid">';
-				$scope.html += '<div class="span4">';
-				$scope.html += '<div id="mnuAnuncios" class="accordion">';
-				$scope.html += '<div class="accordion-inner">';
-				$scope.html += '<span style="color: #FCEAC3;">Anuncios</span>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '<div class="span4">';
-				$scope.html += '<div id="mnuGacetillaPrensa" class="accordion">';
-				$scope.html += '<div class="accordion-inner">'; 
-				$scope.html += '<span style="color: #FCEAC3;">Gacetilla de prensa</span>';
-				$scope.html += '</div>';
-				$scope.html += '</div>'; 
-				$scope.html += '</div>';
-				$scope.html += '<div class="span4">';
-				$scope.html += '<div id="mnuRegistroFilmografico" class="accordion">';
-				$scope.html += '<div class="accordion-inner">';
-				$scope.html += '<span style="color: #FCEAC3;">Registro filmográfico</span>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '<div class="row-fluid">';
-				$scope.html += '<div class="span4">';
-				$scope.html += '<div id="mnuCriticas" class="accordion">';
-				$scope.html += '<div class="accordion-inner">';
-				$scope.html += '<span style="color: #FCEAC3;">Críticas</span>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '</div>';
-				$scope.html += '</p>';
+				return html;
 
 			}
 		}])

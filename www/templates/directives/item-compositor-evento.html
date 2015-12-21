@@ -1,5 +1,4 @@
 <div class="item-multi-data item-multi-data-evento item-compositor-evento">
-	<!--<label>Compositor:</label>-->
 	<select ng-model="compositor.id" ng-change="onChangeCompositor()" ng-disabled="isConfirmed">
 		<option value="" default selected>Selecciona compositor</option>
 		<option ng-repeat="compositor in compositores" value="{{ compositor.id }}">{{ compositor.nombres + " " + compositor.apellidos }}</option>
@@ -11,5 +10,3 @@
 	</nav>
 	<div class="subitem-multi-data multi-data-obras-compositor" ng-hide="compositor.id===''"></div>
 </div>
-
-{{ compositor }}

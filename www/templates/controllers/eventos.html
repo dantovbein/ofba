@@ -12,45 +12,44 @@
 			</li>
 			<li class="container-filters-form-list-item">
 				<label>Ciclos:</label>
-				<select ng-model="evento.tipo">
-					<!-- CORREGIR -->
+				<select ng-model="evento.ciclo">
 					<option value="" default selected>Selecciona el tipo de evento</option>
-					<option ng-repeat="ubicacion in ubicaciones" value="{{ ubicacion.id }}">{{ ubicacion.id }}</option>
+					<option ng-repeat="ciclos in ciclos" value="{{ ciclos.id }}">{{ parseText(ciclos.codigoCiclo) }}</option>
 				</select>
 			</li>
 			<li class="container-filters-form-list-item">
 				<label>Locación:</label>
-				<select name="selectLocacion" ng-model="evento.locacion">
+				<select ng-model="evento.locacion">
 					<option value="" default selected>Selecciona la ubicación</option>
-					<option ng-repeat="locacion in locaciones" value="{{ locacion.id }}">{{ locacion.codigoTexto }}</option>
-				</select>
-			</li>
-			<li class="container-filters-form-list-item">
-				<label>Ciudad:</label>
-				<select name="selectCiudad" ng-model="evento.ciudad">
-					<option value="" default selected>Selecciona la ciudad</option>
-					<option ng-repeat="ciudad in ciudades" value="{{ ciudad.idciudad }}">{{ ciudad.str_ciudad }}</option>
-				</select>
-			</li>
-			<li class="container-filters-form-list-item">
-				<label>Pais:</label>
-				<select name="selectUbicacion" ng-model="evento.pais">
-					<option value="" default selected>Selecciona el país</option>
-					<option ng-repeat="pais in paises" value="{{ pais.idpais }}">{{ pais.str_pais }}</option>
+					<option ng-repeat="locacion in locaciones" value="{{ locacion.id }}">{{ parseText(locacion.codigoTexto) }}</option>
 				</select>
 			</li>
 			<li class="container-filters-form-list-item">
 				<label>Nacionalidad:</label>
-				<select name="selectNacionalidad" ng-model="evento.idNacioalidad">
+				<select ng-model="evento.nacionalidad">
 					<option value="" default selected>Selecciona la nacionaldad</option>
 					<option ng-repeat="nacionalidad in nacionalidades" value="{{ nacionalidad.id }}">{{ nacionalidad.codigoNacionalidad }}</option>
 				</select>
 			</li>
 			<li class="container-filters-form-list-item">
+				<label>Pais:</label>
+				<select ng-model="evento.pais">
+					<option value="" default selected>Selecciona el país</option>
+					<option ng-repeat="pais in paises" value="{{ pais.idpais }}">{{ pais.str_pais }}</option>
+				</select>
+			</li>
+			<li class="container-filters-form-list-item">
+				<label>Ciudad:</label>
+				<select ng-model="evento.ciudad">
+					<option value="" default selected>Selecciona la ciudad</option>
+					<option ng-repeat="ciudad in ciudades" value="{{ ciudad.idciudad }}">{{ ciudad.str_ciudad }}</option>
+				</select>
+			</li>
+			<li class="container-filters-form-list-item">
 				<label>Temporada:</label>
-				<select name="selectTemporada" ng-model="evento.idTemporada">
+				<select ng-model="evento.temporada">
 					<option value="" default selected>Selecciona la temporada</option>
-					<option ng-repeat="temporada in temporadas" value="{{ nacionalidad.id }}">{{ temporada.codigoNombre }}</option>
+					<option ng-repeat="temporada in temporadas" value="{{ temporada.id }}">{{ parseText(temporada.codigoNombre) }}</option>
 				</select>
 			</li>
 			<li class="container-filters-form-list-item full-width">
@@ -65,16 +64,16 @@
 				<div class="multi-data">
 					<header class="header-multi-data">
 						<h4 class="title-multi-data"></h4>
-						<div class="btn btn-add-fechas" ng-click="addElement('item-fecha-evento','.multi-data-fechas')">Agregar fecha<span class="btn-icon">⨁</span></div>
+						<div class="btn btn-add-fechas" ng-click="addElement('item-fecha-evento','.multi-data-fechas')">Agregar funciones al calendario<span class="btn-icon">⨁</span></div>
 					</header>
 					<div class="holder-content-multi-data multi-data-fechas"></div>
 				</div>
 			</li>
 			<li class="container-filters-form-list-item full-width">
-				<h4 class="container-filters-form-list-item-title">Director:</h4>
+				<h4 class="container-filters-form-list-item-title">Director principal:</h4>
 				<div class="container-filters-form-list-item item-subitem">
 					<label>Nombre:</label>
-					<select name="selectDirector" ng-model="evento.idDirector">
+					<select name="selectDirector" ng-model="evento.director">
 						<option value="" default selected>Selecciona el director</option>
 						<option ng-repeat="director in directores" value="{{ director.id }}">{{ director.nombres + " " + director.apellidos }}</option>
 					</select>
@@ -128,17 +127,18 @@
 		<div class="container-filters-form-wrapper-controls wrapper-controls">
 			<nav class="wrapper-controls-nav">
 				<ul class="wrapper-controls-list">
-					<li class="wrapper-controls-list-item btn btn-clean" ng-click="cleanFields()">Cancelar</li>
-					<li class="wrapper-controls-list-item btn btn-save" ng-click="postEvento()">Guardar</li>
+					<li class="wrapper-controls-list-item btn btn-clean" ng-click="onCancelEvento()">Cancelar</li>
+					<li class="wrapper-controls-list-item btn btn-save" ng-click="onSaveEvento()">Guardar</li>
 				</ul>
 			</nav>
 		</div>
-		<span class="error">{{ errorText }}</span>
-		
-		{{ evento }}</br></br>
-		
+		<span class="error">{{ errorText }}</span>	
+		{{ evento }}</br></br>		
 	</form>
 </section>
+
+<div id="html"></div>
+
 <section class="sub-section container-data" ng-controller="EventosListCtrl">
 	<h2 class="sub-section-title">Totál de eventos ({{ eventos.length }})</h2>
 	<ul class="container-data-list-header eventos-list-header">

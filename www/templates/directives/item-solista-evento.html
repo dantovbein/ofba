@@ -1,5 +1,4 @@
 <div class="item-multi-data item-multi-data-evento item-solista-evento">
-	<!--<label>Solista:</label>-->
 	<select ng-model="solista" ng-disabled="isConfirmed">
 		<option value="" default selected>Selecciona el solista</option>
 		<option ng-repeat="solista in solistas" value="{{ solista.id }}">{{ solista.nombres + " " + solista.apellidos }}</option>

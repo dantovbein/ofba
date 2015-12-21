@@ -29,7 +29,7 @@ angular
 				}
 
 				$scope.checkConfirmedObras = function() {
-					if($element.find('.subitem-multi-data').find('item-obra-compositor-evento').length > $scope.compositor.obras) {
+					if($element.find('.subitem-multi-data').find('item-obra-compositor-evento').length > $scope.compositor.obras.length) {
 						return false;
 					} else {
 						return true;
