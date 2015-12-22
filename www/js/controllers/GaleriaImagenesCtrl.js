@@ -28,7 +28,6 @@ angular
 
     $scope.uploadImagen = function() {
       uploader.uploadAll();
-      //$scope.postImagen();
     }
 
     $scope.postImagen = function() {

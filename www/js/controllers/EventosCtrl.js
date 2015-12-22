@@ -2,8 +2,8 @@
 
 angular
 	.module('app')
-	.controller('EventosCtrl',['$scope','$element','$compile','eventos','ciclos','temporadas','textos','nacionalidades','integrantes','obras','locaciones','paises','ciudades',
-		function($scope,$element,$compile,eventos,ciclos,temporadas,textos,nacionalidades,integrantes,obras,locaciones,paises,ciudades){
+	.controller('EventosCtrl',['$scope','$element','$compile','EventosService','eventos','ciclos','temporadas','textos','nacionalidades','integrantes','obras','locaciones','paises','ciudades',
+		function($scope,$element,$compile,EventosService,eventos,ciclos,temporadas,textos,nacionalidades,integrantes,obras,locaciones,paises,ciudades){
 			
 			$scope.prueba = "";
 
@@ -23,6 +23,7 @@ angular
 			$scope.evento.extra.directores = [];
 			$scope.evento.extra.compositores = [];
 			$scope.evento.extra.solistas = [];
+			$scope.evento.desc = "";
 
 			$scope.errorText = "";
 			$scope.add = true;
@@ -93,6 +94,7 @@ angular
 			}
 
 			$scope.addFecha = function(fecha) {
+				//fecha = $scope.parseFecha(fecha);
 				var data = window._.filter($scope.evento.fechas,function(t,i){
 					return t == fecha
 				});
@@ -106,6 +108,7 @@ angular
 			}
 
 			$scope.removeFecha = function(fecha) {
+				//fecha = $scope.parseFecha(fecha);
 				window._.each($scope.evento.fechas,function(t,i){
 					if(t == fecha){
 						$scope.evento.fechas.splice(i,1);
@@ -115,13 +118,6 @@ angular
 			}
 
 			$scope.addTexto = function(texto) {
-				//texto.replace(/\n/g,'</br>');
-				//texto.replace(/\n/g, "<br />");
-			//	console.log(texto)
-			//	texto.replace(/\n/g, "<br />");
-			//	texto.replace(/\\r\\n/g, "<br />");
-			//	console.log(texto)
-				
 				//texto.replace(new RegExp('\r?\n','g'), '<br />');
 				var data = window._.filter($scope.evento.extra.textos,function(t,i){
 					return t == texto
@@ -222,6 +218,8 @@ angular
 				}
 			}
 
+			
+
 			$scope.parseCiclo = function(id) {
 				if(id != "") {
 					var txt = window._.filter($scope.ciclos,function(s,i){
@@ -293,15 +291,18 @@ angular
 
 			$scope.onSaveEvento = function() {
 				if($scope.validate()) {
-					$element.find("#html").html($scope.getHtml());	
+					EventosService.postEvento($scope.evento);
 				}				
 			}
+
+			
 
 			$scope.onCancelEvento = function() {
 				
 			}
 
 			$scope.validate = function() {
+				$scope.evento.desc = $scope.getHtmlDescription(); // BORRR DE ACA
 				return true;
 
 				if($scope.evento.titulo=="") {
@@ -335,155 +336,160 @@ angular
 					$scope.errorText = "Se debe seleccionar el director";
 					return false;
 				} else {
+					$scope.evento.desc = $sccope.getHtmlDescription();
 					return true;
 				}
 			}
 
-			$scope.getHtml = function() {
-				// Deberia ser [[/]]
-				var html = "";
-				html = '';
-				html += '<p>';
-				html += '<div class="row-fluid">';
-				html += '<div class="span12">';
-				//html += '<img class="pull-right img-ofba" src="images/ofba/events/thumbs/"' + "" + ' alt="" />';
+			$scope.getHtmlDescription = function() {
+				var desc = "";
+				var source = "";
+				desc = '';
+				desc += '<p>';
+				desc += '{source}';
+				source += '<div class="row-fluid">';
+				source += '<div class="span12">';
+				source += '<img class="pull-right img-ofba" src="images/ofba/events/thumbs/"' + $scope.evento.imagen + ' alt="" />';
 				
-				//html += '<h4>' + $scope.evento.titulo + '</h4>';
-				html += '<h4>' + $scope.parseTemporada($scope.evento.temporada) + '</h4>';
-				html += '<h5>' + $scope.parseCiclo($scope.evento.ciclo) + '</h5>';
-				html += '<h5>' + $scope.parseLocacion($scope.evento.locacion) + '</h5>';
-				html += '<h5>' + $scope.parseCiudad($scope.evento.ciudad) + ', ' + $scope.parsePais($scope.evento.pais) + '</h5>';
+				//source += '<h4>' + $scope.evento.titulo + '</h4>';
+				source += '<h4>' + $scope.parseTemporada($scope.evento.temporada) + '</h4>';
+				source += '<h5>' + $scope.parseCiclo($scope.evento.ciclo) + '</h5>';
+				source += '<h5>' + $scope.parseLocacion($scope.evento.locacion) + '</h5>';
+				source += '<h5>' + $scope.parseCiudad($scope.evento.ciudad) + ', ' + $scope.parsePais($scope.evento.pais) + '</h5>';
 				
-				html += '</br>';
+				source += '</br>';
 
-				html += '<p>';
-				html += '<strong>Director: ';
-				html += '<a href="' + "" + '">';
-				html += $scope.parseIntegrante($scope.evento.director);
-				html += '</a>';
-				html += '</strong>';
-				html += '</p>';
+				source += '<p>';
+				source += '<strong>Director: ';
+				source += '<a href="' + "" + '">';
+				source += $scope.parseIntegrante($scope.evento.director);
+				source += '</a>';
+				source += '</strong>';
+				source += '</p>';
 
-				html += '</br>';
+				source += '</br>';
 
 				if($scope.evento.extra.directores.length > 0) {
-					html += '<p>';
-					html += '<h4>Directores:</h4>';
+					source += '<p>';
+					source += '<h4>Directores:</h4>';
 					window._.each($scope.evento.extra.directores, function(d,i){
-						html += '<span>' + $scope.parseIntegrante(d) + '</span>';
-						html += (i != $scope.evento.extra.directores.length-1) ? ", " : "";
+						source += '<span>' + $scope.parseIntegrante(d) + '</span>';
+						source += (i != $scope.evento.extra.directores.length-1) ? ", " : "";
 					});
-					html += '</p>';
-					html += '</br>';
+					source += '</p>';
+					source += '</br>';
 				}
 
 				if($scope.evento.extra.solistas.length > 0) {
-					html += '<p>';
-					html += '<h4>Solistas:</h4>';
+					source += '<p>';
+					source += '<h4>Solistas:</h4>';
 					window._.each($scope.evento.extra.solistas, function(s,i){
-						html += '<span>' + $scope.parseIntegrante(s) + '</span>';
-						html += (i != $scope.evento.extra.solistas.length-1) ? ", " : "";
+						source += '<span>' + $scope.parseIntegrante(s) + '</span>';
+						source += (i != $scope.evento.extra.solistas.length-1) ? ", " : "";
 					});
-					html += '</p>';
-					html += '</br>';
+					source += '</p>';
+					source += '</br>';
 				}
 
 				if($scope.evento.extra.compositores.length > 0) {
-					html += '<p>';
-					html += '<h4>Compositores:</h4>';
+					source += '<p>';
+					source += '<h4>Compositores:</h4>';
 					window._.each($scope.evento.extra.compositores, function(c,i){
-						html += '<strong>' + $scope.parseIntegrante(c.id) + '</strong>';
+						source += '<strong>' + $scope.parseIntegrante(c.id) + '</strong>';
 						if(c.obras.length > 0) {
-							html += ": ";
-							html += "<ul>";
+							source += ": ";
+							source += "<ul>";
 							window._.each(c.obras, function(o,j){
-								html += "<li>";
-								html += $scope.parseObras(o);
-								html += "</li>";
+								source += "<li>";
+								source += $scope.parseObras(o);
+								source += "</li>";
 							});
-							html += "</ul>";
+							source += "</ul>";
 						}
 					});
-					html += '</p>';
-					html += '</br>';
+					source += '</p>';
+					source += '</br>';
 				}
 
 				if($scope.evento.extra.textos.length > 0) {
 					window._.each($scope.evento.extra.textos, function(t,i){
-						html += '<p>';
-						//console.log(t);
-						//html += t;		
-						html += t.replace(/\\r\\n/g, "<br />");
-						html += '</p>';
-						html += '</br>';
+						source += '<p>';
+						source += t.replace(/\\r\\n/g, "<br />");
+						source += '</p>';
+						source += '</br>';
 					});
 				}
 
-				html += '</div>';
-				html += '</div>';
+				source += '</div>';
+				source += '</div>';
 				
-				/*html += '<div class="row-fluid">';
-				html += '<div class="span12">';
-				html += '</div>';
-				html += '</div>';
-				html += '<div class="row-fluid">';
-				html += '<div class="span4">';
-				html += '<div id="mnuProgramaMano" class="accordion">';
-				html += '<div class="accordion-inner">';
-				html += '<span style="color: #FCEAC3;">Programa de mano</span>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '<div class="span4">';
-				html += '<div id="mnuGaleriaImagenes" class="accordion">';
-				html += '<div class="accordion-inner">';
-				html += '<span style="color: #FCEAC3;">Galería de imágenes</span>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '<div class="span4">';
-				html += '<div id="mnuRegistroFonografico" class="accordion">';
-				html += '<div class="accordion-inner">'; 
-				html += '<span style="color: #FCEAC3;">Registro fonográfico</span>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '<div class="row-fluid">';
-				html += '<div class="span4">';
-				html += '<div id="mnuAnuncios" class="accordion">';
-				html += '<div class="accordion-inner">';
-				html += '<span style="color: #FCEAC3;">Anuncios</span>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '<div class="span4">';
-				html += '<div id="mnuGacetillaPrensa" class="accordion">';
-				html += '<div class="accordion-inner">'; 
-				html += '<span style="color: #FCEAC3;">Gacetilla de prensa</span>';
-				html += '</div>';
-				html += '</div>'; 
-				html += '</div>';
-				html += '<div class="span4">';
-				html += '<div id="mnuRegistroFilmografico" class="accordion">';
-				html += '<div class="accordion-inner">';
-				html += '<span style="color: #FCEAC3;">Registro filmográfico</span>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '<div class="row-fluid">';
-				html += '<div class="span4">';
-				html += '<div id="mnuCriticas" class="accordion">';
-				html += '<div class="accordion-inner">';
-				html += '<span style="color: #FCEAC3;">Críticas</span>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';*/
-				html += '</p>';
+				/*source += '<div class="row-fluid">';
+				source += '<div class="span12">';
+				source += '</div>';
+				source += '</div>';
+				source += '<div class="row-fluid">';
+				source += '<div class="span4">';
+				source += '<div id="mnuProgramaMano" class="accordion">';
+				source += '<div class="accordion-inner">';
+				source += '<span style="color: #FCEAC3;">Programa de mano</span>';
+				source += '</div>';
+				source += '</div>';
+				source += '</div>';
+				source += '<div class="span4">';
+				source += '<div id="mnuGaleriaImagenes" class="accordion">';
+				source += '<div class="accordion-inner">';
+				source += '<span style="color: #FCEAC3;">Galería de imágenes</span>';
+				source += '</div>';
+				source += '</div>';
+				source += '</div>';
+				source += '<div class="span4">';
+				source += '<div id="mnuRegistroFonografico" class="accordion">';
+				source += '<div class="accordion-inner">'; 
+				source += '<span style="color: #FCEAC3;">Registro fonográfico</span>';
+				source += '</div>';
+				source += '</div>';
+				source += '</div>';
+				source += '</div>';
+				source += '<div class="row-fluid">';
+				source += '<div class="span4">';
+				source += '<div id="mnuAnuncios" class="accordion">';
+				source += '<div class="accordion-inner">';
+				source += '<span style="color: #FCEAC3;">Anuncios</span>';
+				source += '</div>';
+				source += '</div>';
+				source += '</div>';
+				source += '<div class="span4">';
+				source += '<div id="mnuGacetillaPrensa" class="accordion">';
+				source += '<div class="accordion-inner">'; 
+				source += '<span style="color: #FCEAC3;">Gacetilla de prensa</span>';
+				source += '</div>';
+				source += '</div>'; 
+				source += '</div>';
+				source += '<div class="span4">';
+				source += '<div id="mnuRegistroFilmografico" class="accordion">';
+				source += '<div class="accordion-inner">';
+				source += '<span style="color: #FCEAC3;">Registro filmográfico</span>';
+				source += '</div>';
+				source += '</div>';
+				source += '</div>';
+				source += '</div>';
+				source += '<div class="row-fluid">';
+				source += '<div class="span4">';
+				source += '<div id="mnuCriticas" class="accordion">';
+				source += '<div class="accordion-inner">';
+				source += '<span style="color: #FCEAC3;">Críticas</span>';
+				source += '</div>';
+				source += '</div>';
+				source += '</div>';
+				source += '</div>';*/
+				
+				source = source.replace(/</g,'[[');
+				source = source.replace(/>/g,']]');
+				desc += source;
+				desc += '{/source}';
+				desc += '</p>';
 
-				return html;
+				return desc;
 
 			}
 		}])

@@ -5,10 +5,11 @@
 		<ul class="container-filters-form-list">
 			<li class="container-filters-form-list-item full-width">
 				<label>Titulo:</label>
-				<input name="eventoTitulo" type="text" placeholder="Ingrese un nuevo titulo" ng-model="evento.titulo" value="{{ evento.titulo }}" />
+				<input type="text" placeholder="Ingrese un nuevo titulo" ng-model="evento.titulo" value="{{ evento.titulo }}" />
 			</li>
 			<li class="container-filters-form-list-item">
 				<label>Imágen:</label>
+				<!--<input type="file" nv-file-select="" ng-model="evento.imagen" uploader="uploader" />-->
 			</li>
 			<li class="container-filters-form-list-item">
 				<label>Ciclos:</label>
@@ -133,7 +134,7 @@
 			</nav>
 		</div>
 		<span class="error">{{ errorText }}</span>	
-		{{ prueba }}</br></br>		
+		{{ evento }}</br></br>		
 	</form>
 </section>
 

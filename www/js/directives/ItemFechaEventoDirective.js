@@ -12,18 +12,24 @@ angular
 				$scope.isConfirmed = false;
 				
 				$scope.removeItem = function(e) {
-					$scope.removeFecha($scope.fecha);
+					$scope.removeFecha($scope.parseFecha($scope.fecha));
 					$element.remove();
         			$scope.$destroy();
 				}
 				
 				$scope.confirmItem = function() {
-					console.log($scope.fecha)
+					
 					if($scope.fecha == ""){
 						alert("No se seleccionó ninguna fecha")
 						return false;
 					}
-					$scope.isConfirmed = $scope.addFecha($scope.fecha);
+					$scope.isConfirmed = $scope.addFecha($scope.parseFecha($scope.fecha));
+				}
+
+				$scope.parseFecha = function(date) {
+					var time = Date.parse(date).toString()
+					var epochTime = time.slice(0,time.length-3);
+					return epochTime;
 				}
 			}
 		}
