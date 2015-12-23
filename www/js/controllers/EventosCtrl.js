@@ -5,8 +5,6 @@ angular
 	.controller('EventosCtrl',['$scope','$element','$compile','EventosService','eventos','ciclos','temporadas','textos','nacionalidades','integrantes','obras','locaciones','paises','ciudades',
 		function($scope,$element,$compile,EventosService,eventos,ciclos,temporadas,textos,nacionalidades,integrantes,obras,locaciones,paises,ciudades){
 			
-			$scope.prueba = "";
-
 			$scope.evento = {};
 			$scope.evento.titulo = "";
 			$scope.evento.imagen = "";
@@ -216,9 +214,7 @@ angular
 				} else {
 					return "";
 				}
-			}
-
-			
+			}			
 
 			$scope.parseCiclo = function(id) {
 				if(id != "") {
@@ -302,7 +298,8 @@ angular
 			}
 
 			$scope.validate = function() {
-				$scope.evento.desc = $scope.getHtmlDescription(); // BORRR DE ACA
+				$scope.evento.desc = $scope.getHtmlDescription(); // BORRAR DE ACA
+				$element.find("#html").html($scope.evento.desc);
 				return true;
 
 				if($scope.evento.titulo=="") {
