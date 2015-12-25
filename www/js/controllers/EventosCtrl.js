@@ -299,7 +299,7 @@ angular
 
 			$scope.validate = function() {
 				$scope.evento.desc = $scope.getHtmlDescription(); // BORRAR DE ACA
-				$element.find("#html").html($scope.evento.desc);
+				//$element.find("#html").html($scope.evento.desc);
 				return true;
 
 				if($scope.evento.titulo=="") {

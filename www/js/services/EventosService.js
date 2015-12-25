@@ -7,9 +7,10 @@ angular
 
 		eventosService.getEventos = function() {}
 		eventosService.postEvento = function(ev) {
-			//console.log(ev);
 			return $http
-		      	.get(config.path + 'service/manager/postEvento.php?'+'titulo='+ev.titulo+'&imagen='+ev.imagen+'&ciclo='+ev.ciclo+'&locacion='+ev.locacion+'&ciudad='+ev.ciudad+'&desc='+ev.desc+'&director='+ev.director+'&compositores='+ev.extra.compositores+'&directores='+ev.extra.directores+'&solistas='+ev.extra.solistas+'&textos='+ev.extra.textos+'&fechas='+ev.extra.fechas+'&nacionalidad='+ev.nacionalidad+'&temporada='+ev.temporada)
+		      	//.get(config.path + 'service/manager/postEvento.php?'+'titulo='+ev.titulo+'&imagen='+ev.imagen+'&ciclo='+ev.ciclo+'&locacion='+ev.locacion+'&ciudad='+ev.ciudad+'&desc='+ev.desc+'&director='+ev.director+'&extra='+JSON.stringify(ev.extra)+'&compositores='+JSON.stringify(ev.extra.compositores)+'&directores='+JSON.stringify(ev.extra.directores)+'&solistas='+JSON.stringify(ev.extra.solistas)+'&textos='+JSON.stringify(ev.extra.textos)+'&fechas='+JSON.stringify(ev.fechas)+'&nacionalidad='+ev.nacionalidad+'&temporada='+ev.temporada)
+		      	//.get(config.path + 'service/manager/postEvento.php?'+'titulo='+ev.titulo+'&imagen='+ev.imagen+'&ciclo='+ev.ciclo+'&locacion='+ev.locacion+'&ciudad='+ev.ciudad+'&desc='+ev.desc+'&director='+ev.director+'&extra='+JSON.stringify(ev.extra)+'&fechas=['+ev.fechas+']&nacionalidad='+ev.nacionalidad+'&temporada='+ev.temporada)
+		      	.get(config.path + 'service/manager/postEvento.php?'+'titulo='+ev.titulo+'&imagen='+ev.imagen+'&ciclo='+ev.ciclo+'&locacion='+ev.locacion+'&ciudad='+ev.ciudad+'&desc='+ev.desc+'&director='+ev.director+'&extra='+JSON.stringify(ev.extra)+'&fechas='+JSON.stringify(ev.fechas)+'&nacionalidad='+ev.nacionalidad+'&temporada='+ev.temporada)
 		      	.then(function (response) {
 		      		console.log(response);
 		      		return response;
