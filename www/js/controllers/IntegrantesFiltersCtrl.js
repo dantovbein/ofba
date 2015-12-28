@@ -33,22 +33,36 @@ angular
 				integrante.idNacionalidad = integrante.idNacionalidad;
 				integrante.strNacionalidad = (integrante.idNacionalidad != "") ? $scope.getStrNacionalidad(integrante.idNacionalidad) : "";
 				
-
-
 				if(integrante.id == undefined) {
 					IntegrantesService.postIntegrante(integrante).then(function(response) {
 						if(response.status==200) {
-							console.log("Se agregó correctamente");
-							$scope.cleanFields();
-							$scope.reloadIntegrantes();
+							if(typeof(response.data[0])=='boolean') {
+								if(response.data[0]==false){
+									alert("Error: "+response.data[1]);
+									return false;
+								}
+							}
+							if(typeof(response.data[0])=='string') {
+								alert("Se agregó correctamente");
+								$scope.cleanFields();
+								$scope.reloadIntegrantes();
+							}						
 						}
 					});
 				} else {
 					IntegrantesService.editIntegrante(integrante).then(function(response) {
 						if(response.status==200) {
-							console.log("Se editó correctamente");
-							$scope.cleanFields();
-							$scope.reloadIntegrantes();
+							if(typeof(response.data[0])=='boolean') {
+								if(response.data[0]==false){
+									alert("Error: "+response.data[1]);
+									return false;
+								}
+							}
+							if(typeof(response.data[0])=='string') {
+								alert("Se editó correctamente");
+								$scope.cleanFields();
+								$scope.reloadIntegrantes();
+							}						
 						}
 					});
 				}

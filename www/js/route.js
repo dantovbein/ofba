@@ -105,8 +105,8 @@ angular.module('app')
 						}
 					},
 					resolve: {
-						eventos: function() {
-							return [];
+						eventos: function(EventosService) {
+							return EventosService.getEventos();
 						},
 						ciclos: function(CiclosService) {
 							return CiclosService.getCiclos();

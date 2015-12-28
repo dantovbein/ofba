@@ -50,7 +50,6 @@ angular
 
 			$scope.delete = function(id) {
 				$scope.idToDelete = id;
-				
 				IntegrantesService.deleteIntegrante(id).success(function(response) {
 					$scope.integrantes = window._.reject($scope.integrantes, function(integrante){
 			 			return integrante.id == $scope.idToDelete;

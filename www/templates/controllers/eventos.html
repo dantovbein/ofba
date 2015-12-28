@@ -129,12 +129,11 @@
 			<nav class="wrapper-controls-nav">
 				<ul class="wrapper-controls-list">
 					<li class="wrapper-controls-list-item btn btn-clean" ng-click="onCancelEvento()">Cancelar</li>
-					<li class="wrapper-controls-list-item btn btn-save" ng-click="onSaveEvento()">Guardar</li>
+					<li class="wrapper-controls-list-item btn btn-save" ng-click="postEvento()">Guardar</li>
 				</ul>
 			</nav>
 		</div>
-		<span class="error">{{ errorText }}</span>	
-		{{ evento }}</br></br>		
+		<span class="error">{{ errorText }}</span>
 	</form>
 </section>
 
@@ -146,15 +145,20 @@
 		</li>		
 	</ul>
 	<ul class="container-data-list eventos-list">
-		<li class="container-data-list-item eventos-list-item" ng-class="{ 'selected':(evento.idEvento===evento.idEvento) }" ng-repeat="evento in eventos">
+		<li class="container-data-list-item eventos-list-item" ng-class="{ 'selected':(evento.uidEvento===eventoSeleccionado.uidEvento) }" ng-repeat="evento in eventos">
 			<div class="container-data-list-item-column eventos eventos-titulo">
-				<span class="container-data-list-item-column-value">{{ evento.strTitulo }}</span>
+				<span class="container-data-list-item-column-value">{{ evento.titulo }}</span>
+			</div>
+			<div class="container-data-list-item-column eventos eventos-titulo">
+				<ul>
+					<li ng-repeat="fecha in evento.fechas">{{fecha.fecha}} - {{fecha.horaInicio}}</li>
+				</ul>
 			</div>
 			<div class="eventos wrapper-controls">
 				<nav class="wrapper-controls-nav">
 					<ul class="wrapper-controls-list">
 						<li class="wrapper-controls-list-item btn btn-edit" ng-click="edit(evento)">Editar</li>
-						<li class="wrapper-controls-list-item btn btn-remove" ng-click="delete(evento.id)">Eliminar</li>
+						<li class="wrapper-controls-list-item btn btn-remove" ng-click="deleteEvento(evento.uidEvento)">Eliminar</li>
 					</ul>
 				</nav>
 			</div>
