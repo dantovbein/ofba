@@ -4,7 +4,8 @@ angular
 	.module('app')
 	.controller('EventosCtrl',['$scope','$element','$compile','EventosService','eventos','ciclos','temporadas','textos','nacionalidades','integrantes','obras','locaciones','paises','ciudades',
 		function($scope,$element,$compile,EventosService,eventos,ciclos,temporadas,textos,nacionalidades,integrantes,obras,locaciones,paises,ciudades){
-			
+			//$scope.isLoading = false;
+			$scope.isSaving = false;
 			$scope.evento = {};
 			$scope.evento.uidEvento = "";
 			$scope.evento.titulo = "";
@@ -51,7 +52,7 @@ angular
 			$scope.paises = paises;
 			$scope.ciudades = ciudades;
 
-			//$scope.eventoSeleccionado = {};
+			$scope.eventoSeleccionado = {};
 
 			//$scope.ciudadesFiltradas = window._.filter($scope.ciudades,function(ciudad){
 			//	return ciudad.idpais == $scope.pais;
@@ -357,9 +358,14 @@ angular
 				$scope.evento.extras.compositores = [];
 				$scope.evento.extras.solistas = [];
 				$scope.evento.desc = "";
+
+				$scope.eventoSeleccionado = {};
+
+				$scope.isSaving = false;
 			}
 
 			$scope.edit = function(evento) {
+				$scope.eventoSeleccionado.uidEvento = evento.uidEvento;
 				EventosService.getEvento(evento.uidEvento).then(function(response) {
 					$scope.evento = response;
 						if($scope.evento.extras.textos.length > 0) {

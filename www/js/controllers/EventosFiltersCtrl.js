@@ -4,6 +4,7 @@ angular
 	.module('app')
 	.controller('EventosFiltersCtrl',['$scope','EventosService',function($scope,EventosService){
 		$scope.postEvento = function() {
+			$scope.isSaving = true;
 			if($scope.validate()) {
 				// Post
 				if($scope.evento.uidEvento == undefined || $scope.evento.uidEvento == "") {
@@ -22,6 +23,7 @@ angular
 								$scope.reloadEventos();
 							}						
 						}
+						$scope.isSaving = false;
 					});
 				} else {
 					// Edit
@@ -41,7 +43,8 @@ angular
 								//alert("Se editó correctamente");
 								$scope.cleanFields();
 								$scope.reloadEventos();
-							}						
+							}
+							$scope.isSaving = false;					
 						}
 					});
 				}

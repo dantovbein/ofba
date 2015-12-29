@@ -7,6 +7,14 @@ angular
 			restrict: 'E',
 			scope: true,
 			templateUrl: 'templates/directives/item-fecha-evento.html',
+			link: function(scope,element,attributes) {
+				if(attributes.data != undefined) {
+					var parsedDate = Date.parse(JSON.parse(attributes.data).fecha+" "+JSON.parse(attributes.data).horaInicio);
+					scope.fecha = new Date();
+					scope.fecha.setTime(parsedDate);
+					scope.isConfirmed = true;
+				}
+			},
 			controller: function($scope, $element) {
 				$scope.fecha = "";
 				$scope.isConfirmed = false;
@@ -23,7 +31,16 @@ angular
 						alert("No se seleccionó ninguna fecha")
 						return false;
 					}
+
+					var time = Date.parse($scope.fecha).toString();
+					var tmpFecha = new Date();
+					tmpFecha.setTime(time);
+					console.log(time);
+					var objFecha = {fecha:tmpFecha.getFullYear()+"-"+tmpFecha.getMonth()+"-"+tmpFecha.getDate(),horaInicio:tmpFecha.getHours()+":"+tmpFecha.getMinutes()+":"+tmpFecha.getSeconds()}
+					console.log(objFecha)
 					$scope.isConfirmed = $scope.addFecha($scope.parseFecha($scope.fecha));
+					//$scope.isConfirmed = $scope.addFecha($scope.fecha);
+					if($scope.isConfirmed) $element.remove();
 				}
 
 				$scope.parseFecha = function(fecha) {

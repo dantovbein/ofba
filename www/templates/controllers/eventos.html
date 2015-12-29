@@ -67,7 +67,10 @@
 						<h4 class="title-multi-data"></h4>
 						<div class="btn btn-add-fechas" ng-click="addElement('item-fecha-evento','.multi-data-fechas')">Agregar funciones al calendario<span class="btn-icon">⨁</span></div>
 					</header>
-					<div class="holder-content-multi-data multi-data-fechas"></div>
+					<div class="holder-content-multi-data multi-data-fechas">
+
+						<item-fecha-evento ng-repeat="f in evento.fechas" data="{{f}}"></item-fecha-evento>
+					</div>
 				</div>
 			</li>
 			<li class="container-filters-form-list-item full-width">
@@ -137,13 +140,17 @@
 			<nav class="wrapper-controls-nav">
 				<ul class="wrapper-controls-list">
 					<li class="wrapper-controls-list-item btn btn-clean" ng-click="onCancelEvento()">Cancelar</li>
-					<li class="wrapper-controls-list-item btn btn-save" ng-click="postEvento()">Guardar</li>
+					<li class="wrapper-controls-list-item btn btn-save" ng-click="postEvento()">Guardar
+					<div class="icon-loader" ng-show="isSaving"><img src="images/loader.gif" width="20" height="20" /></div>
+					</li>
 				</ul>
 			</nav>
 		</div>
 		<span class="error">{{ errorText }}</span>
 	</form>
 </section>
+
+{{evento}}
 
 <section class="sub-section container-data" ng-controller="EventosListCtrl">
 	<h2 class="sub-section-title">Totál de eventos ({{ eventos.length }})</h2>
