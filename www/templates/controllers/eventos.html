@@ -96,28 +96,36 @@
 									<h4 class="title-multi-data">Textos:</h4>
 									<div class="btn btn-add-textos" ng-click="addElement('item-texto-evento','.multi-data-textos')">Agregar texto<span class="btn-icon">⨁</span></div>
 								</header>
-								<div class="holder-content-multi-data multi-data-textos"></div>
+								<div class="holder-content-multi-data multi-data-textos">
+									<item-texto-evento ng-repeat="txt in evento.extras.textos" data="{{txt}}"></item-texto-evento>
+								</div>
 							</div>
 							<div class="multi-data">
 								<header class="header-multi-data">
 									<h4 class="title-multi-data">Directores:</h4>
 									<div class="btn btn-add-directores" ng-click="addElement('item-director-evento','.multi-data-directores')">Agregar director<span class="btn-icon">⨁</span></div>
 								</header>
-								<div class="holder-content-multi-data multi-data-directores"></div>
+								<div class="holder-content-multi-data multi-data-directores">
+									<item-director-evento ng-repeat="director in evento.extras.directores" data="{{ director }}"></item-director-evento>
+								</div>
 							</div>
 							<div class="multi-data">
 								<header class="header-multi-data">
 									<h4 class="title-multi-data">Compositores:</h4>
 									<div class="btn btn-add-compositores" ng-click="addElement('item-compositor-evento','.multi-data-compositores')">Agregar compositor<span class="btn-icon">⨁</span></div>
 								</header>
-								<div class="holder-content-multi-data multi-data-compositores"></div>
+								<div class="holder-content-multi-data multi-data-compositores">
+									<item-compositor-evento ng-repeat="compositor in evento.extras.compositores" data="{{ compositor }}"></item-compositor-evento>
+								</div>
 							</div>
 							<div class="multi-data">
 								<header class="header-multi-data">
 									<h4 class="title-multi-data">Solistas:</h4>
 									<div class="btn btn-add-solistas" ng-click="addElement('item-solista-evento','.multi-data-solistas')">Agregar solista<span class="btn-icon">⨁</span></div>
 								</header>
-								<div class="holder-content-multi-data multi-data-solistas"></div>
+								<div class="holder-content-multi-data multi-data-solistas">
+									<item-solista-evento ng-repeat="solista in evento.extras.solistas" data="{{ solista }}"></item-solista-evento>
+								</div>
 							</div>					 
 						</li>
 					</ul>
@@ -137,25 +145,34 @@
 	</form>
 </section>
 
-<div>{{ evento }}</div>
-
 <section class="sub-section container-data" ng-controller="EventosListCtrl">
 	<h2 class="sub-section-title">Totál de eventos ({{ eventos.length }})</h2>
 	<ul class="container-data-list-header eventos-list-header">
 		<li class="container-data-list-header-item-column eventos-titulo-header">
 			<span class="container-data-list-header-item-column-value">Titulo</span>
-		</li>		
+		</li>
+				
 	</ul>
 	<ul class="container-data-list eventos-list">
 		<li class="container-data-list-item eventos-list-item" ng-class="{ 'selected':(evento.uidEvento===eventoSeleccionado.uidEvento) }" ng-repeat="evento in eventos">
 			<div class="container-data-list-item-column eventos eventos-titulo">
-				<span class="container-data-list-item-column-value">{{ evento.titulo }}</span>
+				<h6 class="container-data-list-item-column-value">{{ evento.titulo }}</h6>
 			</div>
-			<div class="container-data-list-item-column eventos eventos-titulo">
+			<div class="container-data-list-item-column eventos eventos-fechas">
 				<ul>
-					<li ng-repeat="fecha in evento.fechas">{{fecha.fecha}} - {{fecha.horaInicio}}</li>
+					<!--<li ng-repeat="fecha in evento.fechas">{{fecha.fecha}} {{fecha.horaInicio}}</li>-->
+					<li>2015-01-02 04:01:00</li>
+					<li>2015-01-02 04:01:00</li>
+					<li>2015-01-02 04:01:00</li>
+					<li>2015-01-02 04:01:00</li>
+					<li>2015-01-02 04:01:00</li>
+					<li>2015-01-02 04:01:00</li>
+					<li>2015-01-02 04:01:00</li>
 				</ul>
 			</div>
+			<div class="container-data-list-item-column eventos eventos-link">
+				<span class="container-data-list-item-column-value">{{evento.link}}</span>
+			</div>			
 			<div class="eventos wrapper-controls">
 				<nav class="wrapper-controls-nav">
 					<ul class="wrapper-controls-list">

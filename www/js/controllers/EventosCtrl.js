@@ -6,7 +6,9 @@ angular
 		function($scope,$element,$compile,EventosService,eventos,ciclos,temporadas,textos,nacionalidades,integrantes,obras,locaciones,paises,ciudades){
 			
 			$scope.evento = {};
+			$scope.evento.uidEvento = "";
 			$scope.evento.titulo = "";
+			$scope.evento.link = "";
 			$scope.evento.imagen = "";
 			$scope.evento.ciclo = "";
 			$scope.evento.locacion = "";
@@ -16,18 +18,21 @@ angular
 			$scope.evento.temporada = "";
 			$scope.evento.fechas = [];
 			$scope.evento.director = "";
-			$scope.evento.extra = {};
-			$scope.evento.extra.textos = [];
-			$scope.evento.extra.directores = [];
-			$scope.evento.extra.compositores = [];
-			$scope.evento.extra.solistas = [];
+			$scope.evento.extras = {};
+			$scope.evento.extras.textos = [];
+
+			$scope.evento.extras.directores = [];
+			$scope.evento.extras.compositores = [];
+			$scope.evento.extras.solistas = [];
 			$scope.evento.desc = "";
 
 			$scope.errorText = "";
 			$scope.add = true;
-			
 			$scope.eventos = eventos;
-			$scope.textos = textos;
+			
+			
+			//$scope.textos = textos;
+			
 			$scope.ciclos = ciclos;
 			$scope.temporadas = temporadas;
 			$scope.nacionalidades = nacionalidades;
@@ -46,7 +51,7 @@ angular
 			$scope.paises = paises;
 			$scope.ciudades = ciudades;
 
-			$scope.eventoSeleccionado = {};
+			//$scope.eventoSeleccionado = {};
 
 			//$scope.ciudadesFiltradas = window._.filter($scope.ciudades,function(ciudad){
 			//	return ciudad.idpais == $scope.pais;
@@ -62,27 +67,35 @@ angular
 				})
 			}*/
 
-			getDefaultTexts();
+			//alert($scope.evento.extras.textos.length);
+			
 
-			function getDefaultTexts() {
-				var defaultTexts = [
-					"Ingrese las funciones del evento. Ejemplo: Funciones: Miércoles 5, Jueves 6, Viernes 7 y Sábado 8, 20:30; y Domingo 9 de marzo de 2014, 17:00",
-					"Ingrese otra información adicional. Ejemplo: Ballet Estable del Teatro Colón, Director: Lidia Segnis",
-					""
-				];
+			//if($scope.evento.extras.textos.length == 0) {
 
-				for(var i=0;i<defaultTexts.length;i++) {
-					addDefaultTexts('item-texto-evento','.multi-data-textos',defaultTexts[i]);
+				
+				/*getDefaultTexts();
+
+				function getDefaultTexts() {
+					var defaultTexts = [
+						"Ingrese las funciones del evento. Ejemplo: Funciones: Miércoles 5, Jueves 6, Viernes 7 y Sábado 8, 20:30; y Domingo 9 de marzo de 2014, 17:00",
+						"Ingrese otra información adicional. Ejemplo: Ballet Estable del Teatro Colón, Director: Lidia Segnis",
+						""
+					];
+
+					for(var i=0;i<defaultTexts.length;i++) {
+						addDefaultTexts('item-texto-evento','.multi-data-textos',defaultTexts[i]);
+					}
 				}
-			}
 
-			function addDefaultTexts(element,container,params) {
-				var container = $element.find(container);
-				var el = angular.element(document.createElement(element));
-				el.attr('params',params);
-				$compile(el)($scope);
-				angular.element(container.append(el));
-			}
+				function addDefaultTexts(element,container,params) {
+					var container = $element.find(container);
+					var el = angular.element(document.createElement(element));
+					el.attr('params',params);
+					$compile(el)($scope);
+					angular.element(container.append(el));
+				}*/
+
+			//}
 
 			$scope.addElement = function(element,container,params) {
 				var container = $element.find(container);
@@ -116,14 +129,15 @@ angular
 				});
 			}
 
-			$scope.addTexto = function(texto) {
+			$scope.addTexto = function(txt) {
+				console.log(txt);
 				//texto.replace(new RegExp('\r?\n','g'), '<br />');
-				var data = window._.filter($scope.evento.extra.textos,function(t,i){
-					return t == texto
+				var data = window._.filter($scope.evento.extras.textos,function(t,i){
+					return t.texto == txt.texto;
 				});
+				console.log(data);
 				if(data.length==0) {
-					$scope.evento.extra.textos.push(texto);
-					$scope.prueba = texto;
+					$scope.evento.extras.textos.push(txt);
 					return true;
 				} else {
 					alert("Ya existe este texto");
@@ -131,21 +145,18 @@ angular
 				}
 			}
 
-			$scope.removeTexto = function(texto) {
-				window._.each($scope.evento.extra.textos,function(t,i){
-					if(t == texto){
-						$scope.evento.extra.textos.splice(i,1);
-						return;
-					}
+			$scope.removeTexto = function(txt) {
+				$scope.evento.extras.textos = window._.filter($scope.evento.extras.textos,function(t,i){
+					return t.texto != txt.texto;
 				});
 			}
 
-			$scope.addDirector = function(integrante) {
-				var data = window._.filter($scope.evento.extra.directores,function(m,i){
-					return m == integrante
+			$scope.addDirector = function(idDirector) {
+				var data = window._.filter($scope.evento.extras.directores,function(m,i){
+					return m.idDirector == idDirector
 				});
 				if(data.length==0) {
-					$scope.evento.extra.directores.push(integrante);
+					$scope.evento.extras.directores.push({ idDirector:idDirector });
 					return true;
 				} else {
 					alert("Ya existe este integrante");
@@ -153,21 +164,18 @@ angular
 				}
 			}
 
-			$scope.removeDirector = function(integrante) {
-				window._.each($scope.evento.extra.directores,function(m,i){
-					if(m == integrante){
-						$scope.evento.extra.directores.splice(i,1);
-						return;
-					}
+			$scope.removeDirector = function(idDirector) {
+				$scope.evento.extras.directores = window._.filter($scope.evento.extras.directores,function(m,i){
+					return m.idDirector != idDirector;
 				});
 			}
 
-			$scope.addCompositor = function(integrante) {
-				var data = window._.filter($scope.evento.extra.compositores,function(c,i){
+			/*$scope.addCompositor = function(integrante) {
+				var data = window._.filter($scope.evento.extras.compositores,function(c,i){
 					return c.id == integrante.id
 				});
 				if(data.length==0) {
-					$scope.evento.extra.compositores.push(integrante);
+					$scope.evento.extras.compositores.push(integrante);
 					return true;
 				} else {
 					alert("Ya existe este compositor");
@@ -176,20 +184,58 @@ angular
 			}
 
 			$scope.removeCompositor = function(integrante) {
-				window._.each($scope.evento.extra.compositores,function(c,i){
+				window._.each($scope.evento.extras.compositores,function(c,i){
 					if(c == integrante){
-						$scope.evento.extra.compositores.splice(i,1);
+						$scope.evento.extras.compositores.splice(i,1);
 						return;
 					}
 				});
+			}*/
+
+			$scope.addCompositor = function(compositor) {
+				var data = window._.filter($scope.evento.extras.compositores,function(m,i){
+					return m.idCompositor == compositor.idCompositor;
+				});
+				if(data.length==0) {
+					$scope.evento.extras.compositores.push(compositor);
+					return true;
+				} else {
+					alert("Ya existe este integrante");
+					return false;
+				}
 			}
 
-			$scope.addSolista = function(integrante) {
-				var data = window._.filter($scope.evento.extra.solistas,function(c,i){
+			$scope.removeCompositor = function(compositor) {
+				$scope.evento.extras.compositores = window._.filter($scope.evento.extras.compositores,function(m,i){
+					return m.idCompositor != compositor.idCompositor;
+				});
+			}
+
+			$scope.addSolista = function(idSolista) {
+				var data = window._.filter($scope.evento.extras.solistas,function(m,i){
+					return m.idSolista == idSolista
+				});
+				if(data.length==0) {
+					$scope.evento.extras.solistas.push({ idSolista:idSolista });
+					return true;
+				} else {
+					alert("Ya existe este integrante");
+					return false;
+				}
+			}
+
+			$scope.removeSolista = function(idSolista) {
+				$scope.evento.extras.solistas = window._.filter($scope.evento.extras.solistas,function(m,i){
+					return m.idSolista != idSolista;
+				});
+			}
+
+			/*$scope.addSolista = function(integrante) {
+				var data = window._.filter($scope.evento.extras.solistas,function(c,i){
 					return c == integrante
 				});
 				if(data.length==0) {
-					$scope.evento.extra.solistas.push(integrante);
+					$scope.evento.extras.solistas.push(integrante);
 					return true;
 				} else {
 					alert("Ya existe este bailarin solista");
@@ -198,13 +244,13 @@ angular
 			}
 
 			$scope.removeSolista = function(integrante) {
-				window._.each($scope.evento.extra.solistas,function(c,i){
+				window._.each($scope.evento.extras.solistas,function(c,i){
 					if(c == integrante){
-						$scope.evento.extra.solistas.splice(i,1);
+						$scope.evento.extras.solistas.splice(i,1);
 						return;
 					}
 				});
-			}
+			}*/
 
 			$scope.parseIntegrante = function(id) {
 				if(id != "") {
@@ -292,7 +338,48 @@ angular
 				});
 			}
 
-			$scope.cleanFields = function() {}
+			$scope.cleanFields = function() {
+				$scope.evento.uidEvento = "";
+				$scope.evento.titulo = "";
+				$scope.evento.link = "";
+				$scope.evento.imagen = "";
+				$scope.evento.ciclo = "";
+				$scope.evento.locacion = "";
+				$scope.evento.ciudad = "";
+				$scope.evento.pais = "";
+				$scope.evento.nacionalidad = "";
+				$scope.evento.temporada = "";
+				$scope.evento.fechas = [];
+				$scope.evento.director = "";
+				$scope.evento.extras = {};
+				$scope.evento.extras.textos = [];
+				$scope.evento.extras.directores = [];
+				$scope.evento.extras.compositores = [];
+				$scope.evento.extras.solistas = [];
+				$scope.evento.desc = "";
+			}
+
+			$scope.edit = function(evento) {
+				EventosService.getEvento(evento.uidEvento).then(function(response) {
+					$scope.evento = response;
+						if($scope.evento.extras.textos.length > 0) {
+							$element.find(".default-item-texto-evento").remove();
+						}
+					/*if(response.status==200) {
+						if(typeof(response.data[0])=='boolean') {
+							if(response.data[0]==false){
+								alert("Error: "+response.data[1]);
+								return false;
+							}
+						}
+						if(typeof(response.data[0])=='string') {
+							alert("Se agregó correctamente");
+							$scope.cleanFields();
+							$scope.reloadEventos();
+						}						
+					}*/
+				});
+			}
 
 			$scope.deleteEvento = function(uidEvento) {
 				$scope.uidEventoToDelete = uidEvento;

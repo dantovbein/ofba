@@ -7,6 +7,12 @@ angular
 			restrict: 'E',
 			scope: true,
 			templateUrl: 'templates/directives/item-director-evento.html',
+			link: function(scope,element,attributes) {
+				if(attributes.data != undefined) {
+					scope.integrante = JSON.parse(attributes.data).idDirector;
+					scope.isConfirmed = true;
+				}
+			},
 			controller: function($scope, $element) {
 				$scope.integrante = "";
 				$scope.isConfirmed = false;
@@ -17,10 +23,11 @@ angular
 				}
 				$scope.confirmItem = function() {
 					if($scope.integrante == ""){
-						alert("No se seleccionó ningún director")
+						alert("No se seleccionó ningún director");
 						return false;
 					}
 					$scope.isConfirmed = $scope.addDirector($scope.integrante);
+					if($scope.isConfirmed) $element.remove();
 				}
 			}
 		}

@@ -1,12 +1,14 @@
 <div class="item-multi-data item-multi-data-evento item-compositor-evento">
-	<select ng-model="compositor.id" ng-change="onChangeCompositor()" ng-disabled="isConfirmed">
+	<select ng-model="integrante.idCompositor" ng-change="onChangeCompositor()" ng-disabled="isConfirmed">
 		<option value="" default selected>Selecciona compositor</option>
 		<option ng-repeat="compositor in compositores" value="{{ compositor.id }}">{{ compositor.nombres + " " + compositor.apellidos }}</option>
 	</select>
-	<div ng-hide="compositor.id==='' || isConfirmed" class="btn btn-agregar-obra" ng-click="addElement('item-obra-compositor-evento','.multi-data-obras-compositor',compositor.id)">Agregar obras<span class="btn-icon">⨁</span></div>
+	<div ng-hide="integrante.idCompositor==='' || isConfirmed" class="btn btn-agregar-obra" ng-click="addElement('item-obra-compositor-evento','.multi-data-obras-compositor',integrante.idCompositor)">Agregar obras<span class="btn-icon">⨁</span></div>
 	<nav class="item-multi-data-nav-controls">
 		<div class="btn btn-add-item" ng-hide="isConfirmed" ng-click="confirmItem()">Confirmar compositor<span class="btn-icon">⨁</span></div>	
 		<div class="btn btn-remove-item" ng-click="removeItem()">Eliminar compositor<span class="btn-icon">⨂</span></div>
 	</nav>
-	<div class="subitem-multi-data multi-data-obras-compositor" ng-hide="compositor.id===''"></div>
+	<div class="subitem-multi-data multi-data-obras-compositor" ng-hide="integrante.idCompositor===''">
+		<item-obra-compositor-evento ng-repeat="ob in integrante.obras" data="{{ ob }}"></item-obra-compositor-evento>
+	</div>
 </div>

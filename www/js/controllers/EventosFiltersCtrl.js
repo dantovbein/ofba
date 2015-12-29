@@ -5,21 +5,46 @@ angular
 	.controller('EventosFiltersCtrl',['$scope','EventosService',function($scope,EventosService){
 		$scope.postEvento = function() {
 			if($scope.validate()) {
-				EventosService.postEvento($scope.evento).then(function(response) {
-					if(response.status==200) {
-						if(typeof(response.data[0])=='boolean') {
-							if(response.data[0]==false){
-								alert("Error: "+response.data[1]);
-								return false;
+				// Post
+				if($scope.evento.uidEvento == undefined || $scope.evento.uidEvento == "") {
+					console.log("Postear evento");
+					EventosService.postEvento($scope.evento).then(function(response) {
+						if(response.status==200) {
+							if(typeof(response.data[0])=='boolean') {
+								if(response.data[0]==false){
+									alert("Error: "+response.data[1]);
+									return false;
+								}
 							}
+							if(typeof(response.data[0])=='string') {
+								//alert("Se agregó correctamente");
+								$scope.cleanFields();
+								$scope.reloadEventos();
+							}						
 						}
-						if(typeof(response.data[0])=='string') {
-							alert("Se agregó correctamente");
-							$scope.cleanFields();
-							$scope.reloadEventos();
-						}						
-					}
-				});
+					});
+				} else {
+					// Edit
+					console.log("Editar evento",$scope.evento.uidEvento);
+					$scope.evento.fechas = [1420171200];// BORRARR
+
+					EventosService.editEvento($scope.evento).then(function(response) {
+						console.log(response);
+						if(response.status==200) {
+							if(typeof(response.data[0])=='boolean') {
+								if(response.data[0]==false){
+									alert("Error: "+response.data[1]);
+									return false;
+								}
+							}
+							if(typeof(response.data[0])=='string') {
+								//alert("Se editó correctamente");
+								$scope.cleanFields();
+								$scope.reloadEventos();
+							}						
+						}
+					});
+				}
 			}				
 		}
 
@@ -95,33 +120,33 @@ angular
 
 			source += '</br>';
 
-			if($scope.evento.extra.directores.length > 0) {
+			if($scope.evento.extras.directores.length > 0) {
 				source += '<p>';
 				source += '<h4>Directores:</h4>';
-				window._.each($scope.evento.extra.directores, function(d,i){
-					source += '<span>' + $scope.parseIntegrante(d) + '</span>';
-					source += (i != $scope.evento.extra.directores.length-1) ? ", " : "";
+				window._.each($scope.evento.extras.directores, function(d,i){
+					source += '<span>' + $scope.parseIntegrante(d.idDirector) + '</span>';
+					source += (i != $scope.evento.extras.directores.length-1) ? ", " : "";
 				});
 				source += '</p>';
 				source += '</br>';
 			}
 
-			if($scope.evento.extra.solistas.length > 0) {
+			if($scope.evento.extras.solistas.length > 0) {
 				source += '<p>';
 				source += '<h4>Solistas:</h4>';
-				window._.each($scope.evento.extra.solistas, function(s,i){
-					source += '<span>' + $scope.parseIntegrante(s) + '</span>';
-					source += (i != $scope.evento.extra.solistas.length-1) ? ", " : "";
+				window._.each($scope.evento.extras.solistas, function(s,i){
+					source += '<span>' + $scope.parseIntegrante(s.idSolista) + '</span>';
+					source += (i != $scope.evento.extras.solistas.length-1) ? ", " : "";
 				});
 				source += '</p>';
 				source += '</br>';
 			}
 
-			if($scope.evento.extra.compositores.length > 0) {
+			if($scope.evento.extras.compositores.length > 0) {
 				source += '<p>';
 				source += '<h4>Compositores:</h4>';
-				window._.each($scope.evento.extra.compositores, function(c,i){
-					source += '<strong>' + $scope.parseIntegrante(c.id) + '</strong>';
+				window._.each($scope.evento.extras.compositores, function(c,i){
+					source += '<strong>' + $scope.parseIntegrante(c.idCompositor) + '</strong>';
 					if(c.obras.length > 0) {
 						source += ": ";
 						source += "<ul>";
@@ -137,10 +162,10 @@ angular
 				source += '</br>';
 			}
 
-			if($scope.evento.extra.textos.length > 0) {
-				window._.each($scope.evento.extra.textos, function(t,i){
+			if($scope.evento.extras.textos.length > 0) {
+				window._.each($scope.evento.extras.textos, function(t,i){
 					source += '<p>';
-					source += t.replace(/\\r\\n/g, "<br />");
+					source += t.texto.replace(/\\r\\n/g, "<br />");
 					source += '</p>';
 					source += '</br>';
 				});

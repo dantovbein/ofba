@@ -38,3 +38,28 @@ $widthNavControls: 35%;
 		}
 	}
 }
+
+.eventos-list {
+	.eventos-list-item {
+		.eventos-titulo {
+			width: 50%;
+			float: left;
+			h6 {
+				font-size: 0.9rem;
+			}
+		}
+		.eventos-fechas {
+			width: 20%;
+			float: left;
+			font-size: .9rem;
+		}
+		.eventos-link {
+			width: 20%;
+			float: left;
+			font-size: .9rem;
+		}
+		.wrapper-controls {
+			width: 10%;
+		}
+	}
+}

@@ -7,14 +7,21 @@ angular
 			restrict: 'E',
 			scope: true,
 			templateUrl: 'templates/directives/item-compositor-evento.html',
+			link: function(scope,element,attributes) {
+				if(attributes.data != undefined) {
+					scope.integrante.idCompositor = JSON.parse(attributes.data).idCompositor;
+					scope.integrante.obras = JSON.parse(attributes.data).obras;					
+					//scope.isConfirmed = true;
+				}
+			},
 			controller: function($scope, $element, $compile) {
-				$scope.compositor = {};
+				$scope.integrante = {};
 				$scope.isConfirmed = false;
-				$scope.compositor.id = "";
-				$scope.compositor.obras = [];
+				$scope.integrante.idCompositor = "";
+				$scope.integrante.obras = [];
 				
 				$scope.removeItem = function(e) {
-					$scope.removeCompositor($scope.compositor);
+					$scope.removeCompositor($scope.integrante);
 					$element.remove();
         			$scope.$destroy();
 				}
@@ -23,13 +30,14 @@ angular
 					if(!$scope.checkConfirmedObras()) {
 						alert("Hay obras que no fueron confirmadas");
 					} else {
-						if($scope.isConfirmed || $scope.compositor.id == "") return;
-						$scope.isConfirmed = $scope.addCompositor($scope.compositor);
+						if($scope.isConfirmed || $scope.integrante.idCompositor == "") return;
+						$scope.isConfirmed = $scope.addCompositor($scope.integrante);
+						if($scope.isConfirmed) $element.remove();
 					}
 				}
 
 				$scope.checkConfirmedObras = function() {
-					if($element.find('.subitem-multi-data').find('item-obra-compositor-evento').length > $scope.compositor.obras.length) {
+					if($element.find('.subitem-multi-data').find('item-obra-compositor-evento').length > $scope.integrante.obras.length) {
 						return false;
 					} else {
 						return true;
@@ -37,11 +45,11 @@ angular
 				}
 
 				$scope.addObra = function(obra) {
-					var data = window._.filter($scope.compositor.obras,function(c,i){
+					var data = window._.filter($scope.integrante.obras,function(c,i){
 						return c == obra
 					});
 					if(data.length==0) {
-						$scope.compositor.obras.push(obra);
+						$scope.integrante.obras.push(obra);
 						return true;
 					} else {
 						alert("Esta obra ya fué agregada");
@@ -50,14 +58,14 @@ angular
 				}
 
 				$scope.onChangeCompositor = function() {
-					$scope.compositor.obras = [];
+					$scope.integrante.obras = [];
 					$element.find(".subitem-multi-data").empty()
 				}
 
 				$scope.removeObra = function(obra) {
-					window._.each($scope.compositor.obras,function(m,i){
+					window._.each($scope.integrante.obras,function(m,i){
 						if(m == obra){
-							$scope.compositor.obras.splice(i,1);
+							$scope.integrante.obras.splice(i,1);
 							return;
 						}
 					});
