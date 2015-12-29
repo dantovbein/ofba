@@ -151,7 +151,7 @@
 		<li class="container-data-list-header-item-column eventos-titulo-header">
 			<span class="container-data-list-header-item-column-value">Titulo</span>
 		</li>
-				
+
 	</ul>
 	<ul class="container-data-list eventos-list">
 		<li class="container-data-list-item eventos-list-item" ng-class="{ 'selected':(evento.uidEvento===eventoSeleccionado.uidEvento) }" ng-repeat="evento in eventos">
@@ -160,14 +160,7 @@
 			</div>
 			<div class="container-data-list-item-column eventos eventos-fechas">
 				<ul>
-					<!--<li ng-repeat="fecha in evento.fechas">{{fecha.fecha}} {{fecha.horaInicio}}</li>-->
-					<li>2015-01-02 04:01:00</li>
-					<li>2015-01-02 04:01:00</li>
-					<li>2015-01-02 04:01:00</li>
-					<li>2015-01-02 04:01:00</li>
-					<li>2015-01-02 04:01:00</li>
-					<li>2015-01-02 04:01:00</li>
-					<li>2015-01-02 04:01:00</li>
+					<li ng-repeat="fecha in evento.fechas">{{fecha.fecha}} {{fecha.horaInicio}}</li>
 				</ul>
 			</div>
 			<div class="container-data-list-item-column eventos eventos-link">
