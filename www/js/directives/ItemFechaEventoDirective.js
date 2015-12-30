@@ -45,15 +45,16 @@ angular
 
 				$scope.parseFecha = function(fecha) {
 					//console.log(fecha);
-					var time = Date.parse(fecha).toString();
+					//var time = Date.parse(fecha).toString();
+					return Date.parse(fecha).toString();
 					//return Date.parse(fecha).toString();
-					var tmpDate = new Date();
-					tmpDate.setTime(time);
+					//var tmpDate = new Date();
+					//tmpDate.setTime(time);
 
-					var epochTime = new Date(tmpDate.getFullYear(),tmpDate.getMonth(),tmpDate.getDate(),tmpDate.getHours(),tmpDate.getMinutes(),tmpDate.getSeconds(),tmpDate.getMilliseconds()) / 1000;
+					//var epochTime = new Date(tmpDate.getFullYear(),tmpDate.getMonth(),tmpDate.getDate(),tmpDate.getHours(),tmpDate.getMinutes(),tmpDate.getSeconds(),tmpDate.getMilliseconds()) / 1000;
 					//var epochTime = new Date(tmpDate.getFullYear(),tmpDate.getMonth(),tmpDate.getDate(),tmpDate.getHours(),tmpDate.getMinutes(),tmpDate.getSeconds()) / 1000;
 					
-					return epochTime;
+					//return epochTime;
 					//console.log(time);
 					//return Math.round(tmpDate.getTime()/1000.0);
 					//return Math.round(new Date().getTime()/1000.0)
