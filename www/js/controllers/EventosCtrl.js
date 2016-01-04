@@ -4,7 +4,6 @@ angular
 	.module('app')
 	.controller('EventosCtrl',['$scope','$element','$compile','EventosService','eventos','ciclos','temporadas','textos','nacionalidades','integrantes','obras','locaciones','paises','ciudades',
 		function($scope,$element,$compile,EventosService,eventos,ciclos,temporadas,textos,nacionalidades,integrantes,obras,locaciones,paises,ciudades){
-			//$scope.isLoading = false;
 			$scope.isSaving = false;
 			$scope.evento = {};
 			$scope.evento.uidEvento = "";
@@ -31,9 +30,6 @@ angular
 			$scope.add = true;
 			$scope.eventos = eventos;
 			
-			
-			//$scope.textos = textos;
-			
 			$scope.ciclos = ciclos;
 			$scope.temporadas = temporadas;
 			$scope.nacionalidades = nacionalidades;
@@ -54,50 +50,6 @@ angular
 
 			$scope.eventoSeleccionado = {};
 
-			//$scope.ciudadesFiltradas = window._.filter($scope.ciudades,function(ciudad){
-			//	return ciudad.idpais == $scope.pais;
-			//});
-
-			/*getIntegrante= function(idIntegrante) {
-				window._.each($scope.integrantes,function(integrante){
-					if(integrante.id==idIntegrante){
-
-					}
-					console.log(integrante);
-
-				})
-			}*/
-
-			//alert($scope.evento.extras.textos.length);
-			
-
-			//if($scope.evento.extras.textos.length == 0) {
-
-				
-				/*getDefaultTexts();
-
-				function getDefaultTexts() {
-					var defaultTexts = [
-						"Ingrese las funciones del evento. Ejemplo: Funciones: Miércoles 5, Jueves 6, Viernes 7 y Sábado 8, 20:30; y Domingo 9 de marzo de 2014, 17:00",
-						"Ingrese otra información adicional. Ejemplo: Ballet Estable del Teatro Colón, Director: Lidia Segnis",
-						""
-					];
-
-					for(var i=0;i<defaultTexts.length;i++) {
-						addDefaultTexts('item-texto-evento','.multi-data-textos',defaultTexts[i]);
-					}
-				}
-
-				function addDefaultTexts(element,container,params) {
-					var container = $element.find(container);
-					var el = angular.element(document.createElement(element));
-					el.attr('params',params);
-					$compile(el)($scope);
-					angular.element(container.append(el));
-				}*/
-
-			//}
-
 			$scope.addElement = function(element,container,params) {
 				var container = $element.find(container);
 				var el = angular.element(document.createElement(element));
@@ -110,10 +62,10 @@ angular
 
 			$scope.addFecha = function(fecha) {
 				var data = window._.filter($scope.evento.fechas,function(t,i){
-					return t == fecha
+					return t.fecha == fecha.fecha
 				});
 				if(data.length==0) {
-					$scope.evento.fechas.push(fecha);
+					$scope.evento.fechas.push({fecha:fecha});
 					return true;
 				} else {
 					alert("Ya existe esta fecha");
@@ -131,8 +83,6 @@ angular
 			}
 
 			$scope.addTexto = function(txt) {
-				console.log(txt);
-				//texto.replace(new RegExp('\r?\n','g'), '<br />');
 				var data = window._.filter($scope.evento.extras.textos,function(t,i){
 					return t.texto == txt.texto;
 				});
@@ -170,28 +120,6 @@ angular
 					return m.idDirector != idDirector;
 				});
 			}
-
-			/*$scope.addCompositor = function(integrante) {
-				var data = window._.filter($scope.evento.extras.compositores,function(c,i){
-					return c.id == integrante.id
-				});
-				if(data.length==0) {
-					$scope.evento.extras.compositores.push(integrante);
-					return true;
-				} else {
-					alert("Ya existe este compositor");
-					return false;
-				}
-			}
-
-			$scope.removeCompositor = function(integrante) {
-				window._.each($scope.evento.extras.compositores,function(c,i){
-					if(c == integrante){
-						$scope.evento.extras.compositores.splice(i,1);
-						return;
-					}
-				});
-			}*/
 
 			$scope.addCompositor = function(compositor) {
 				var data = window._.filter($scope.evento.extras.compositores,function(m,i){
@@ -231,30 +159,9 @@ angular
 				});
 			}
 
-			/*$scope.addSolista = function(integrante) {
-				var data = window._.filter($scope.evento.extras.solistas,function(c,i){
-					return c == integrante
-				});
-				if(data.length==0) {
-					$scope.evento.extras.solistas.push(integrante);
-					return true;
-				} else {
-					alert("Ya existe este bailarin solista");
-					return false;
-				}
-			}
-
-			$scope.removeSolista = function(integrante) {
-				window._.each($scope.evento.extras.solistas,function(c,i){
-					if(c == integrante){
-						$scope.evento.extras.solistas.splice(i,1);
-						return;
-					}
-				});
-			}*/
-
 			$scope.parseIntegrante = function(id) {
-				if(id != "") {
+				console.log(id);
+				if(id != "" || id != undefined || id == 0) {
 					var txt = window._.filter($scope.integrantes,function(s,i){
 						return s.id== id;
 					});
@@ -265,7 +172,8 @@ angular
 			}			
 
 			$scope.parseCiclo = function(id) {
-				if(id != "") {
+				console.log(id);
+				if(id != "" || id != undefined || id == 0) {
 					var txt = window._.filter($scope.ciclos,function(s,i){
 						return s.id== id;
 					})[0].codigoCiclo;
@@ -276,7 +184,9 @@ angular
 			}
 
 			$scope.parseTemporada = function(id) {
-				if(id != "") {
+				console.log(id);
+				if(id != "" || id != undefined || id == 0) {
+					console.log("entra",id);
 					var txt = window._.filter($scope.temporadas,function(s,i){
 						return s.id == id;
 					})[0].codigoNombre;
@@ -287,7 +197,8 @@ angular
 			}
 
 			$scope.parseLocacion = function(id) {
-				if(id != "") {
+				console.log(id);
+				if(id != "" || id != undefined || id == 0) {
 					var txt = window._.filter($scope.locaciones,function(s,i){
 						return s.id == id;
 					})[0].codigoTexto;
@@ -298,7 +209,8 @@ angular
 			}
 
 			$scope.parseCiudad = function(id) {
-				if(id != "") {
+				console.log(id);
+				if(id != "" || id != undefined || id == 0) {
 					return window._.filter($scope.ciudades,function(s,i){
 						return s.idciudad == id;
 					})[0].str_ciudad;
@@ -308,7 +220,8 @@ angular
 			}
 
 			$scope.parsePais = function(id) {
-				if(id != "") {
+				console.log(id);
+				if(id != "" || id != undefined || id == 0) {
 					return window._.filter($scope.paises,function(s,i){
 						return s.idpais == id;
 					})[0].str_pais;
@@ -318,7 +231,8 @@ angular
 			}
 
 			$scope.parseObras = function(id) {
-				if(id != "") {
+				console.log(id);
+				if(id != "" || id != undefined || id == 0) {
 					return window._.filter($scope.obras,function(s,i){
 						return s.idObra == id;
 					})[0].strObra;
@@ -331,6 +245,27 @@ angular
 				var newStr = str!=null ? str.replace(/_/g,' ').toLowerCase() : "";
 				newStr = (newStr!="") ? newStr.replace(newStr.charAt(0),newStr.charAt(0).toUpperCase()) : "";
 				return newStr;
+			}
+
+			$scope.parseFecha = function(miliseconds) {
+				if(miliseconds == undefined) return;
+				var fecha = new Date();
+				fecha.setTime(miliseconds);
+				var day = (fecha.getDate() < 10) ? ("0"+parseFloat(fecha.getDate())) : fecha.getDate();
+				var month = (fecha.getMonth() < 10) ? ("0"+parseFloat(fecha.getMonth()+1)) : fecha.getMonth()+1;
+				var year = (fecha.getFullYear() < 10) ? ("0"+parseFloat(fecha.getFullYear())) : fecha.getFullYear();
+				return day+"/"+month+"/"+year;
+				//return fecha.getDate()+"/"+fecha.getMonth()+"/"+fecha.getFullYear();
+			}
+
+			$scope.parseHora = function(miliseconds) {
+				if(miliseconds == undefined) return;
+				console.log(miliseconds);
+				var fecha = new Date();
+				fecha.setTime(miliseconds);
+				var hora = (fecha.getHours() < 10) ? ("0"+parseFloat(fecha.getHours())) : fecha.getHours();
+				var minutes = (fecha.getMinutes() < 10) ? ("0"+parseFloat(fecha.getMinutes())) : fecha.getMinutes();
+				return hora+":"+minutes+" hs";
 			}
 
 			$scope.reloadEventos = function() {

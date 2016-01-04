@@ -28,8 +28,7 @@ angular
 				} else {
 					// Edit
 					console.log("Editar evento",$scope.evento.uidEvento);
-					$scope.evento.fechas = [1420171200];// BORRARR
-
+					
 					EventosService.editEvento($scope.evento).then(function(response) {
 						console.log(response);
 						if(response.status==200) {

@@ -9,9 +9,13 @@ angular
 			templateUrl: 'templates/directives/item-fecha-evento.html',
 			link: function(scope,element,attributes) {
 				if(attributes.data != undefined) {
-					var parsedDate = Date.parse(JSON.parse(attributes.data).fecha+" "+JSON.parse(attributes.data).horaInicio);
+					//var parsedDate = Date.parse(JSON.parse(attributes.data).fecha+" "+JSON.parse(attributes.data).horaInicio);
 					scope.fecha = new Date();
-					scope.fecha.setTime(parsedDate);
+					//scope.fecha.setT
+					//scope.fecha.setTime(JSON.parse(attributes.data).fecha);
+					scope.fecha.setTime(JSON.parse(attributes.data).fecha);
+					//console.log(JSON.parse(attributes.data))q
+					//scope.fecha.setTime(parsedDate);
 					scope.isConfirmed = true;
 				}
 			},
@@ -32,13 +36,16 @@ angular
 						return false;
 					}
 
+					
+
 					var time = Date.parse($scope.fecha).toString();
-					var tmpFecha = new Date();
-					tmpFecha.setTime(time);
-					console.log(time);
-					var objFecha = {fecha:tmpFecha.getFullYear()+"-"+tmpFecha.getMonth()+"-"+tmpFecha.getDate(),horaInicio:tmpFecha.getHours()+":"+tmpFecha.getMinutes()+":"+tmpFecha.getSeconds()}
-					console.log(objFecha)
-					$scope.isConfirmed = $scope.addFecha($scope.parseFecha($scope.fecha));
+					//var tmpFecha = new Date();
+					//tmpFecha.setTime(time);
+					//console.log(time);
+					//var objFecha = {fecha:tmpFecha.getFullYear()+"-"+tmpFecha.getMonth()+"-"+tmpFecha.getDate(),horaInicio:tmpFecha.getHours()+":"+tmpFecha.getMinutes()+":"+tmpFecha.getSeconds()}
+					//console.log(objFecha)
+					//$scope.isConfirmed = $scope.addFecha($scope.parseFecha($scope.fecha));
+					$scope.isConfirmed = $scope.addFecha(time);
 					//$scope.isConfirmed = $scope.addFecha($scope.fecha);
 					if($scope.isConfirmed) $element.remove();
 				}

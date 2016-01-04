@@ -383,20 +383,20 @@ select {
       margin: 0 0 0 3%; }
 
 .eventos-list .eventos-list-item .eventos-titulo {
-  width: 50%;
+  width: 29%;
   float: left; }
   .eventos-list .eventos-list-item .eventos-titulo h6 {
     font-size: 0.9rem; }
 
 .eventos-list .eventos-list-item .eventos-fechas {
-  width: 20%;
+  width: 14%;
   float: left;
   font-size: .9rem; }
 
 .eventos-list .eventos-list-item .eventos-link {
-  width: 20%;
+  width: 43%;
   float: left;
   font-size: .9rem; }
 
 .eventos-list .eventos-list-item .wrapper-controls {
-  width: 10%; }
+  width: 13%; }

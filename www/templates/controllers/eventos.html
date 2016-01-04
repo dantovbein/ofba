@@ -71,6 +71,7 @@
 
 						<item-fecha-evento ng-repeat="f in evento.fechas" data="{{f}}"></item-fecha-evento>
 					</div>
+					{{ evento.fechas }}
 				</div>
 			</li>
 			<li class="container-filters-form-list-item full-width">
@@ -167,7 +168,7 @@
 			</div>
 			<div class="container-data-list-item-column eventos eventos-fechas">
 				<ul>
-					<li ng-repeat="fecha in evento.fechas">{{fecha.fecha}} {{fecha.horaInicio}}</li>
+					<li ng-repeat="fecha in evento.fechas">{{ parseFecha(fecha.fecha) }} {{ parseHora() }}</li>
 				</ul>
 			</div>
 			<div class="container-data-list-item-column eventos eventos-link">
