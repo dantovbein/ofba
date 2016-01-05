@@ -382,19 +382,20 @@ select {
     .item-multi-data-evento .item-multi-data-nav-controls .btn {
       margin: 0 0 0 3%; }
 
+.eventos-list-header .eventos-titulo-header {
+  width: 70%; }
+
+.eventos-list-header eventos-fecha-header {
+  width: 14%; }
+
 .eventos-list .eventos-list-item .eventos-titulo {
-  width: 29%;
+  width: 70%;
   float: left; }
   .eventos-list .eventos-list-item .eventos-titulo h6 {
     font-size: 0.9rem; }
 
 .eventos-list .eventos-list-item .eventos-fechas {
   width: 14%;
-  float: left;
-  font-size: .9rem; }
-
-.eventos-list .eventos-list-item .eventos-link {
-  width: 43%;
   float: left;
   font-size: .9rem; }
 

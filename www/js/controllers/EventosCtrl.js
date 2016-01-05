@@ -74,11 +74,8 @@ angular
 			}
 
 			$scope.removeFecha = function(fecha) {
-				window._.each($scope.evento.fechas,function(t,i){
-					if(t == fecha){
-						$scope.evento.fechas.splice(i,1);
-						return;
-					}
+				$scope.evento.fechas = window._.filter($scope.evento.fechas,function(t,i){
+					return t.fecha != fecha;
 				});
 			}
 
@@ -160,7 +157,6 @@ angular
 			}
 
 			$scope.parseIntegrante = function(id) {
-				console.log(id);
 				if(id != "" || id != undefined || id == 0) {
 					var txt = window._.filter($scope.integrantes,function(s,i){
 						return s.id== id;
@@ -172,7 +168,6 @@ angular
 			}			
 
 			$scope.parseCiclo = function(id) {
-				console.log(id);
 				if(id != "" || id != undefined || id == 0) {
 					var txt = window._.filter($scope.ciclos,function(s,i){
 						return s.id== id;
@@ -184,7 +179,6 @@ angular
 			}
 
 			$scope.parseTemporada = function(id) {
-				console.log(id);
 				if(id != "" || id != undefined || id == 0) {
 					console.log("entra",id);
 					var txt = window._.filter($scope.temporadas,function(s,i){
@@ -197,7 +191,6 @@ angular
 			}
 
 			$scope.parseLocacion = function(id) {
-				console.log(id);
 				if(id != "" || id != undefined || id == 0) {
 					var txt = window._.filter($scope.locaciones,function(s,i){
 						return s.id == id;
@@ -209,7 +202,6 @@ angular
 			}
 
 			$scope.parseCiudad = function(id) {
-				console.log(id);
 				if(id != "" || id != undefined || id == 0) {
 					return window._.filter($scope.ciudades,function(s,i){
 						return s.idciudad == id;
@@ -220,7 +212,6 @@ angular
 			}
 
 			$scope.parsePais = function(id) {
-				console.log(id);
 				if(id != "" || id != undefined || id == 0) {
 					return window._.filter($scope.paises,function(s,i){
 						return s.idpais == id;
@@ -231,7 +222,6 @@ angular
 			}
 
 			$scope.parseObras = function(id) {
-				console.log(id);
 				if(id != "" || id != undefined || id == 0) {
 					return window._.filter($scope.obras,function(s,i){
 						return s.idObra == id;
@@ -252,10 +242,9 @@ angular
 				var fecha = new Date();
 				fecha.setTime(miliseconds);
 				var day = (fecha.getDate() < 10) ? ("0"+parseFloat(fecha.getDate())) : fecha.getDate();
-				var month = (fecha.getMonth() < 10) ? ("0"+parseFloat(fecha.getMonth()+1)) : fecha.getMonth()+1;
+				var month = (fecha.getMonth() < 9) ? ("0"+parseFloat(fecha.getMonth()+1)) : fecha.getMonth()+1;
 				var year = (fecha.getFullYear() < 10) ? ("0"+parseFloat(fecha.getFullYear())) : fecha.getFullYear();
 				return day+"/"+month+"/"+year;
-				//return fecha.getDate()+"/"+fecha.getMonth()+"/"+fecha.getFullYear();
 			}
 
 			$scope.parseHora = function(miliseconds) {

@@ -9,6 +9,7 @@
 			</li>
 			<li class="container-filters-form-list-item">
 				<label>Imágen:</label>
+				<!--<uploader-imagen></uploader-imagen>-->
 				<!--<input type="file" nv-file-select="" ng-model="evento.imagen" uploader="uploader" />-->
 			</li>
 			<li class="container-filters-form-list-item">
@@ -71,7 +72,6 @@
 
 						<item-fecha-evento ng-repeat="f in evento.fechas" data="{{f}}"></item-fecha-evento>
 					</div>
-					{{ evento.fechas }}
 				</div>
 			</li>
 			<li class="container-filters-form-list-item full-width">
@@ -151,13 +151,16 @@
 	</form>
 </section>
 
-{{evento}}
+{{ evento }}
 
 <section class="sub-section container-data" ng-controller="EventosListCtrl">
 	<h2 class="sub-section-title">Totál de eventos ({{ eventos.length }})</h2>
 	<ul class="container-data-list-header eventos-list-header">
 		<li class="container-data-list-header-item-column eventos-titulo-header">
 			<span class="container-data-list-header-item-column-value">Titulo</span>
+		</li>
+		<li class="container-data-list-header-item-column eventos-fecha-header">
+			<span class="container-data-list-header-item-column-value">Fecha/s</span>
 		</li>
 
 	</ul>
@@ -170,10 +173,7 @@
 				<ul>
 					<li ng-repeat="fecha in evento.fechas">{{ parseFecha(fecha.fecha) }} {{ parseHora() }}</li>
 				</ul>
-			</div>
-			<div class="container-data-list-item-column eventos eventos-link">
-				<span class="container-data-list-item-column-value">{{evento.link}}</span>
-			</div>			
+			</div>		
 			<div class="eventos wrapper-controls">
 				<nav class="wrapper-controls-nav">
 					<ul class="wrapper-controls-list">

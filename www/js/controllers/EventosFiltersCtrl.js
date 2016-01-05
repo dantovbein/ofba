@@ -4,7 +4,6 @@ angular
 	.module('app')
 	.controller('EventosFiltersCtrl',['$scope','EventosService',function($scope,EventosService){
 		$scope.postEvento = function() {
-			$scope.isSaving = true;
 			if($scope.validate()) {
 				// Post
 				if($scope.evento.uidEvento == undefined || $scope.evento.uidEvento == "") {
@@ -55,8 +54,8 @@ angular
 		}
 
 		$scope.validate = function() {
-			$scope.evento.desc = $scope.getHtmlDescription();
-			return true;
+			//$scope.evento.desc = $scope.getHtmlDescription();
+			//return true;
 
 			if($scope.evento.titulo=="") {
 				$scope.errorText = "Se debe escribir el título";
@@ -89,7 +88,8 @@ angular
 				$scope.errorText = "Se debe seleccionar el director";
 				return false;
 			} else {
-				$scope.evento.desc = $sccope.getHtmlDescription();
+				$scope.evento.desc = $scope.getHtmlDescription();
+				$scope.isSaving = true;
 				return true;
 			}
 		}

@@ -39,10 +39,20 @@ $widthNavControls: 35%;
 	}
 }
 
+.eventos-list-header {
+	.eventos-titulo-header {
+		width: 70%;
+	}
+
+	 eventos-fecha-header {
+	 	width: 14%;
+	 }
+}
+
 .eventos-list {
 	.eventos-list-item {
 		.eventos-titulo {
-			width: 29%;
+			width: 70%;
 			float: left;
 			h6 {
 				font-size: 0.9rem;
@@ -50,11 +60,6 @@ $widthNavControls: 35%;
 		}
 		.eventos-fechas {
 			width: 14%;
-			float: left;
-			font-size: .9rem;
-		}
-		.eventos-link {
-			width: 43%;
 			float: left;
 			font-size: .9rem;
 		}
