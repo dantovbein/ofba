@@ -54,9 +54,6 @@ angular
 		}
 
 		$scope.validate = function() {
-			//$scope.evento.desc = $scope.getHtmlDescription();
-			//return true;
-
 			if($scope.evento.titulo=="") {
 				$scope.errorText = "Se debe escribir el título";
 				return false;
@@ -88,6 +85,10 @@ angular
 				$scope.errorText = "Se debe seleccionar el director";
 				return false;
 			} else {
+				$scope.evento.strCiclo = $scope.parseCiclo($scope.evento.ciclo);
+				$scope.evento.strTemporada = $scope.parseTemporada($scope.evento.temporada);
+				$scope.evento.strCiudad = $scope.parseCiudad($scope.evento.ciudad);
+				$scope.evento.strLocacion = $scope.parseLocacion($scope.evento.locacion);
 				$scope.evento.desc = $scope.getHtmlDescription();
 				$scope.isSaving = true;
 				return true;

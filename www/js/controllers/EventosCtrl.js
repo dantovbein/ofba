@@ -184,7 +184,6 @@ angular
 
 			$scope.parseTemporada = function(id) {
 				if(id != "" || id != undefined || id == 0) {
-					console.log("entra",id);
 					var txt = window._.filter($scope.temporadas,function(s,i){
 						return s.id == id;
 					})[0].codigoNombre;
