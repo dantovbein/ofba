@@ -11,11 +11,15 @@ angular
 			$scope.evento.link = "";
 			$scope.evento.imagen = "";
 			$scope.evento.ciclo = "";
+			$scope.evento.strCiclo = "";
 			$scope.evento.locacion = "";
+			$scope.evento.strLocacion = "";
 			$scope.evento.ciudad = "";
+			$scope.evento.strCiudad = "";
 			$scope.evento.pais = "";
 			$scope.evento.nacionalidad = "";
 			$scope.evento.temporada = "";
+			$scope.evento.strTemporada = "";
 			$scope.evento.fechas = [];
 			$scope.evento.director = "";
 			$scope.evento.extras = {};
