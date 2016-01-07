@@ -22,6 +22,7 @@ angular
 			$scope.evento.strTemporada = "";
 			$scope.evento.fechas = [];
 			$scope.evento.director = "";
+			$scope.evento.textoFunciones = "";
 			$scope.evento.extras = {};
 			$scope.evento.extras.textos = [];
 
@@ -207,6 +208,7 @@ angular
 			$scope.parseCiudad = function(id) {
 				if(id != "" || id != undefined || id == 0) {
 					return window._.filter($scope.ciudades,function(s,i){
+						console.log(s);
 						return s.idciudad == id;
 					})[0].str_ciudad;
 				} else {

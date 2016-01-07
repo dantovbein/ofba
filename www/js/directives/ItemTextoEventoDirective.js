@@ -14,7 +14,7 @@ angular
 						scope.isDefault = false;
 						scope.isConfirmed = true;
 					} else {
-						if(element.index()<=1){
+						if(element.index()<1){
 							scope.placeholder = scope.placeholders[element.index()].placeholder;
 						} else {
 							scope.placeholder = "Ingrese información adicional";
@@ -22,16 +22,13 @@ angular
 						scope.isDefault = true;
 					}
 				},
-				post: function(scope,element,attributes) {
-					
-				}
+				post: function(scope,element,attributes) { }
 			},
 			controller: function($scope, $element) {
 				$scope.dataTexto = {};
 				$scope.dataTexto.texto = "";
 				$scope.isConfirmed = false;
-				$scope.placeholders = [{ placeholder:"Ingrese las funciones del evento. Ejemplo: Funciones: Miércoles 5, Jueves 6, Viernes 7 y Sábado 8, 20:30; y Domingo 9 de marzo de 2014, 17:00" },
-									   { placeholder:"Ingrese otra información adicional. Ejemplo: Ballet Estable del Teatro Colón, Director: Lidia Segnis" }];
+				$scope.placeholders = [{ placeholder:"Ingrese información adicional. Ejemplo: Ballet Estable del Teatro Colón, Director: Lidia Segnis" }];
 				
 				$scope.addElement = function() {
 					console.log("add element");

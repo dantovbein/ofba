@@ -72,9 +72,9 @@ angular
 			} else if ($scope.evento.pais == "") {
 				$scope.errorText = "Se debe seleccionar el pais";
 				return false;
-			} else if ($scope.evento.ciudad == "") {
-				$scope.errorText = "Se debe seleccionar la ciudad";
-				return false;
+			//} else if ($scope.evento.ciudad == "") {
+			//	$scope.errorText = "Se debe seleccionar la ciudad";
+			//	return false;
 			} else if ($scope.evento.temporada == "") {
 				$scope.errorText = "Se debe seleccionar la temporada";
 				return false;
@@ -87,7 +87,8 @@ angular
 			} else {
 				$scope.evento.strCiclo = $scope.parseCiclo($scope.evento.ciclo);
 				$scope.evento.strTemporada = $scope.parseTemporada($scope.evento.temporada);
-				$scope.evento.strCiudad = $scope.parseCiudad($scope.evento.ciudad);
+				//console.log($scope.evento.ciudad != undefined || $scope.evento.ciudad != "")
+				$scope.evento.strCiudad = ($scope.evento.ciudad != undefined && $scope.evento.ciudad != "") ? $scope.parseCiudad($scope.evento.ciudad) : "";
 				$scope.evento.strLocacion = $scope.parseLocacion($scope.evento.locacion);
 				$scope.evento.desc = $scope.getHtmlDescription();
 				$scope.isSaving = true;
@@ -105,13 +106,23 @@ angular
 			source += '<div class="span12">';
 			source += '<img class="pull-right img-ofba" src="images/ofba/events/thumbs/"' + $scope.evento.imagen + ' alt="" />';
 			
-			//source += '<h4>' + $scope.evento.titulo + '</h4>';
 			source += '<h4>' + $scope.parseTemporada($scope.evento.temporada) + '</h4>';
 			source += '<h5>' + $scope.parseCiclo($scope.evento.ciclo) + '</h5>';
 			source += '<h5>' + $scope.parseLocacion($scope.evento.locacion) + '</h5>';
-			source += '<h5>' + $scope.parseCiudad($scope.evento.ciudad) + ', ' + $scope.parsePais($scope.evento.pais) + '</h5>';
-			
+			//source += '<h5>' + $scope.parseCiudad($scope.evento.ciudad) + ', ' + $scope.parsePais($scope.evento.pais) + '</h5>';
+			source += '<h5>';
+			source += ($scope.evento.ciudad != undefined && $scope.evento.ciudad != "") ? $scope.parseCiudad($scope.evento.ciudad) + ', ' : '';
+			source += $scope.parsePais($scope.evento.pais);
+			source += '</h5>';
+
 			source += '</br>';
+
+			if($scope.evento.textoFunciones != undefined && $scope.evento.textoFunciones != "") {
+				source += '<p>';
+				source += $scope.evento.textoFunciones;
+				source += '</p>';
+				source += '</br>';
+			}
 
 			source += '<p>';
 			source += '<strong>Director: ';

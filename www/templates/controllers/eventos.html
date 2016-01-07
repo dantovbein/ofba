@@ -69,10 +69,13 @@
 						<div class="btn btn-add-fechas" ng-click="addElement('item-fecha-evento','.multi-data-fechas')">Agregar funciones al calendario<span class="btn-icon">⨁</span></div>
 					</header>
 					<div class="holder-content-multi-data multi-data-fechas">
-
 						<item-fecha-evento ng-repeat="f in evento.fechas" data="{{f}}"></item-fecha-evento>
 					</div>
+					<div class="item-multi-data item-multi-data-evento item-texto-evento">
+						<textarea placeholder="Ingrese las funciones del evento. Ejemplo: Funciones: Miércoles 5, Jueves 6, Viernes 7 y Sábado 8, 20:30; y Domingo 9 de marzo de 2014, 17:00" wrap="hard" ng-model="evento.textoFunciones"></textarea>
+					</div>
 				</div>
+				
 			</li>
 			<li class="container-filters-form-list-item full-width">
 				<h4 class="container-filters-form-list-item-title">Director principal:</h4>
