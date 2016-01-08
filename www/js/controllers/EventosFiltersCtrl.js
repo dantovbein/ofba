@@ -87,7 +87,6 @@ angular
 			} else {
 				$scope.evento.strCiclo = $scope.parseCiclo($scope.evento.ciclo);
 				$scope.evento.strTemporada = $scope.parseTemporada($scope.evento.temporada);
-				//console.log($scope.evento.ciudad != undefined || $scope.evento.ciudad != "")
 				$scope.evento.strCiudad = ($scope.evento.ciudad != undefined && $scope.evento.ciudad != "") ? $scope.parseCiudad($scope.evento.ciudad) : "";
 				$scope.evento.strLocacion = $scope.parseLocacion($scope.evento.locacion);
 				$scope.evento.desc = $scope.getHtmlDescription();
