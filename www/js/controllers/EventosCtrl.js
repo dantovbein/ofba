@@ -20,6 +20,8 @@ angular
 			$scope.evento.nacionalidad = "";
 			$scope.evento.temporada = "";
 			$scope.evento.strTemporada = "";
+			$scope.evento.catid = "";
+			$scope.evento.icsid = "";
 			$scope.evento.fechas = [];
 			$scope.evento.director = "";
 			$scope.evento.textoFunciones = "";
@@ -287,9 +289,10 @@ angular
 				$scope.evento.extras.compositores = [];
 				$scope.evento.extras.solistas = [];
 				$scope.evento.desc = "";
+				$scope.evento.textoFunciones = "";
 
 				$scope.eventoSeleccionado = {};
-
+				$scope.errorText = "";
 				$scope.isSaving = false;
 			}
 

@@ -2,7 +2,7 @@
 
 angular
 	.module('app')
-	.controller('EventosFiltersCtrl',['$scope','EventosService',function($scope,EventosService){
+	.controller('EventosFiltersCtrl',['$scope','EventosService','CiclosService',function($scope,EventosService,CiclosService){
 		$scope.postEvento = function() {
 			if($scope.validate()) {
 				// Post
@@ -90,7 +90,10 @@ angular
 				$scope.evento.strCiudad = ($scope.evento.ciudad != undefined && $scope.evento.ciudad != "") ? $scope.parseCiudad($scope.evento.ciudad) : "";
 				$scope.evento.strLocacion = $scope.parseLocacion($scope.evento.locacion);
 				$scope.evento.desc = $scope.getHtmlDescription();
+				$scope.evento.catid = CiclosService.parseCategorias($scope.evento.ciclo);
+				$scope.evento.icsid = CiclosService.parseCalendarios($scope.evento.ciclo);
 				$scope.isSaving = true;
+				$scope.errorText = "";
 				return true;
 			}
 		}
